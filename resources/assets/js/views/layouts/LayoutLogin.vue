@@ -6,8 +6,8 @@
       <div class="w-full">
         <a href="/admin">
           <img
-            src="/assets/img/crater-logo.png"
-            class="block w-48 h-auto max-w-full mb-32 text-primary-400"
+            src="/assets/img/telcoges-logo.png"
+            class="block w-64 h-auto max-w-full mb-32 text-primary-400"
             alt="Crater Logo"
           />
         </a>

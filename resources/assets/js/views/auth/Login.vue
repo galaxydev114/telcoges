@@ -61,6 +61,7 @@
       :disabled="isLoading"
       type="submit"
       variant="primary"
+      class="w-100"
     >
       {{ $t('login.login') }}
     </sw-button>
