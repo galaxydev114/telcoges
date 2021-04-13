@@ -93,7 +93,7 @@
         </sw-input-group>
       </div>
 
-      <div class="grid gap-6 mt-4 sm:grid-col-1 md:grid-cols-2">
+      <div class="grid gap-6 mt-4 sm:grid-col-1 md:grid-cols-2 d-none">
         <sw-input-group
           :label="$tc('settings.language')"
           :error="languageError"
