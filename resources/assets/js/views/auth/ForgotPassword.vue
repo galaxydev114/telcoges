@@ -38,7 +38,7 @@
         to="/login"
         class="text-sm text-primary-400 hover:text-gray-700"
       >
-        {{ $t('general.back_to_login') }}
+        ¿Volver al inicio de sesión?
       </router-link>
     </div>
   </form>

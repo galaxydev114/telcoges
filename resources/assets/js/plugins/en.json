@@ -505,18 +505,18 @@
     }
   },
   "login": {
-    "email": "Email",
-    "password": "Password",
-    "forgot_password": "Forgot Password?",
-    "or_signIn_with": "or Sign in with",
-    "login": "Login",
-    "register": "Register",
-    "reset_password": "Reset Password",
-    "password_reset_successfully": "Password Reset Successfully",
-    "enter_email": "Enter email",
-    "enter_password": "Enter Password",
-    "retype_password": "Retype Password",
-    "login_placeholder": "mail@example.com"
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "forgot_password": "¿Olvidaste tu contraseña?",
+    "or_signIn_with": "o Inicia sesión con",
+    "login": "Iniciar sesión",
+    "register": "Registro",
+    "reset_password": "Restablecer la contraseña",
+    "password_reset_successfully": "Contraseña reestablecida con éxito",
+    "enter_email": "Escriba el correo electrónico",
+    "enter_password": "Escriba la contraseña",
+    "retype_password": "Reescriba la contraseña",
+    "login_placeholder": "correo@ejemplo.com"
   },
   "users": {
     "title": "Users",
@@ -1109,6 +1109,8 @@
   },
   "layout_login": {
     "copyright_crater": "Copyright @ Telcoges - 2021",
+    "management_software_company": "Software de gestión para tu empresa",
+    "tool_you_whatever_you": "La herramienta que necesitas para administrar su empresa, esté donde esté y cuando lo necesite.",
     "super_simple_invoicing": "Super Simple Invoicing",
     "for_freelancer": "for Freelancers &",
     "small_businesses": "Small Businesses ",
