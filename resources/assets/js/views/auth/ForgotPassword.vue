@@ -26,7 +26,7 @@
       variant="primary"
     >
       <div v-if="!isSent">
-        {{ $t('validation.send_reset_link') }}
+        Enviar enlace de restablecimiento
       </div>
       <div v-else>
         {{ $t('validation.not_yet') }}
