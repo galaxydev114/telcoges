@@ -12,10 +12,10 @@
       />
       <div v-if="$v.formData.email.$error">
         <span v-if="!$v.formData.email.required" class="text-sm text-danger">
-          {{ $t('validation.required') }}
+          Se requiere campo
         </span>
         <span v-if="!$v.formData.email.email" class="text-sm text-danger">
-          {{ $t('validation.email_incorrect') }}
+          Email incorrecto.
         </span>
       </div>
     </div>
@@ -29,7 +29,7 @@
         Enviar enlace de restablecimiento
       </div>
       <div v-else>
-        {{ $t('validation.not_yet') }}
+        ¿Aún no? Envíalo de nuevo
       </div>
     </sw-button>
 

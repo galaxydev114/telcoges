@@ -1,7 +1,7 @@
 <template>
   <form id="loginForm" @submit.prevent="validateBeforeSubmit">
     <sw-input-group
-      :label="$t('login.email')"
+      label="Correo electrónico"
       :error="emailError"
       class="mb-4"
       required
@@ -18,7 +18,7 @@
     </sw-input-group>
 
     <sw-input-group
-      :label="$t('login.password')"
+      label="Contraseña"
       :error="passwordError"
       class="mb-4"
       required
@@ -51,7 +51,7 @@
           to="forgot-password"
           class="text-sm text-primary-400 hover:text-gray-700"
         >
-          {{ $t('login.forgot_password') }}
+          ¿Olvidaste tu contraseña?
         </router-link>
       </div>
     </div>
@@ -63,7 +63,7 @@
       variant="primary"
       class="w-100"
     >
-      {{ $t('login.login') }}
+      Iniciar sesión
     </sw-button>
   </form>
 </template>
@@ -114,10 +114,10 @@ export default {
         return ''
       }
       if (!this.$v.loginData.email.required) {
-        return this.$tc('validation.required')
+        return "Se requiere campo"
       }
       if (!this.$v.loginData.email.email) {
-        return this.$tc('validation.email_incorrect')
+        return "Email incorrecto."
       }
     },
 
@@ -126,11 +126,11 @@ export default {
         return ''
       }
       if (!this.$v.loginData.password.required) {
-        return this.$tc('validation.required')
+        return "Se requiere campo"
       }
       if (!this.$v.loginData.password.minLength) {
         return this.$tc(
-          'validation.password_min_length',
+          'La contraseña debe contener {count} caracteres',
           this.$v.loginData.password.$params.minLength.min,
           { count: this.$v.loginData.password.$params.minLength.min }
         )
