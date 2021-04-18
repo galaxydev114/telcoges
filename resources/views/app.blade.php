@@ -2,7 +2,7 @@
 <html lang="en" class="h-full">
 
 <head>
-    <title>Crater - Self Hosted Invoicing Platform</title>
+    <title>TelcoGes</title>
     <script src="/assets/js/pace/pace.js"></script>
     <link href="{{mix("/assets/css/crater.css")}}" rel="stylesheet" type="text/css">
     <meta name="viewport" content="width=device-width,initial-scale=1">

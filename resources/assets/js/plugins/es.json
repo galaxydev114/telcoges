@@ -1096,7 +1096,9 @@
     }
   },
   "layout_login": {
-    "copyright_crater": "Copyright @ Crater - 2020",
+    "copyright_crater": "Copyright @ Telcoges - 2021",
+    "management_software_company": "Software de gestión para tu empresa",
+    "tool_you_whatever_you": "La herramienta que necesitas para administrar su empresa, esté donde esté y cuando lo necesite.",
     "super_simple_invoicing": "Facturación super simple",
     "for_freelancer": "para autónomos y",
     "small_businesses": "pequeñas empresas",

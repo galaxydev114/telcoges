@@ -27,15 +27,15 @@
         <h1
           class="hidden mb-3 text-3xl font-bold leading-normal text-white xl:text-5xl xl:leading-tight md:none lg:block"
         >
-          {{ $t('layout_login.super_simple_invoicing') }} <br />
-          {{ $t('layout_login.for_freelancer') }} <br />
-          {{ $t('layout_login.small_businesses') }} <br />
+          {{ $t('layout_login.management_software_company') }} <br />
+          <!-- {{ $t('layout_login.for_freelancer') }} <br />
+          {{ $t('layout_login.small_businesses') }} <br /> -->
         </h1>
         <p
           class="hidden text-sm not-italic font-normal leading-normal text-gray-100 xl:text-base xl:leading-6 md:none lg:block"
         >
-          {{ $t('layout_login.crater_help') }}<br />
-          {{ $t('layout_login.invoices_and_estimates') }}<br />
+          {{ $t('layout_login.tool_you_whatever_you') }}<br />
+          <!-- {{ $t('layout_login.invoices_and_estimates') }}<br /> -->
         </p>
       </div>
 
