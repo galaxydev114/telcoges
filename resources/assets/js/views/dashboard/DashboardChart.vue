@@ -106,8 +106,8 @@ export default {
     return {
       ...this.$store.state.dashboard,
       isLoaded: false,
-      years: ['This year', 'Previous year'],
-      selectedYear: 'This year',
+      years: ['Este año', 'Año anterior'],
+      selectedYear: 'Este año',
     }
   },
   computed: {
@@ -129,7 +129,7 @@ export default {
   },
   watch: {
     selectedYear(val) {
-      if (val === 'Previous year') {
+      if (val === 'Año anterior') {
         let params = { previous_year: true }
         this.loadData(params)
       } else {

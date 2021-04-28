@@ -1,7 +1,7 @@
 <template>
   <form id="loginForm" @submit.prevent="validateBeforeSubmit">
     <sw-input-group
-      label="Correo electrónico"
+      :label="$t('login.email')"
       :error="emailError"
       class="mb-4"
       required
@@ -18,7 +18,7 @@
     </sw-input-group>
 
     <sw-input-group
-      label="Contraseña"
+      :label="$t('login.password')"
       :error="passwordError"
       class="mb-4"
       required
@@ -51,7 +51,7 @@
           to="forgot-password"
           class="text-sm text-primary-400 hover:text-gray-700"
         >
-          ¿Olvidaste tu contraseña?
+          {{ $t('login.forgot_password') }}
         </router-link>
       </div>
     </div>
@@ -63,8 +63,17 @@
       variant="primary"
       class="w-100"
     >
-      Iniciar sesión
+      {{ $t('login.login') }}
     </sw-button>
+    <div class="mt-5 pt-3 text-center top-hr">
+      <span class="text-sm">¿No tienes una cuenta?</span>
+      <router-link
+        to="register"
+        class="text-sm text-primary-400 hover:text-gray-700"
+      >
+        {{ $t('login.register') }}
+      </router-link>
+    </div>
   </form>
 </template>
 
@@ -114,10 +123,10 @@ export default {
         return ''
       }
       if (!this.$v.loginData.email.required) {
-        return "Se requiere campo"
+        return this.$tc('validation.required')
       }
       if (!this.$v.loginData.email.email) {
-        return "Email incorrecto."
+        return this.$tc('validation.email_incorrect')
       }
     },
 
@@ -126,11 +135,11 @@ export default {
         return ''
       }
       if (!this.$v.loginData.password.required) {
-        return "Se requiere campo"
+        return this.$tc('validation.required')
       }
       if (!this.$v.loginData.password.minLength) {
         return this.$tc(
-          'La contraseña debe contener {count} caracteres',
+          'validation.password_min_length',
           this.$v.loginData.password.$params.minLength.min,
           { count: this.$v.loginData.password.$params.minLength.min }
         )

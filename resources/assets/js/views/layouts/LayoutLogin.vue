@@ -7,13 +7,13 @@
         <a href="/admin">
           <img
             src="/assets/img/telcoges-logo.png"
-            class="block w-64 h-auto max-w-full mb-32 text-primary-400"
+            class="block w-64 h-auto max-w-full mb-24 text-primary-400"
             alt="Crater Logo"
           />
         </a>
         <router-view></router-view>
         <div
-          class="pt-24 mt-0 text-sm not-italic font-medium leading-relaxed text-left text-gray-500 md:pt-40"
+          class="pt-24 mt-0 text-sm not-italic font-medium leading-relaxed text-left text-gray-500 md:pt-28"
         >
           <p class="mb-3">{{ $t('layout_login.copyright_crater') }}</p>
         </div>

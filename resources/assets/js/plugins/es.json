@@ -517,6 +517,19 @@
     "retype_password": "Reescriba la contraseña",
     "login_placeholder": "correo@ejemplo.com"
   },
+  "signup": {
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "password_confirm": "Confirmar contraseña",
+    "login": "Iniciar sesión",
+    "register": "Registro",
+    "enter_name": "Ingrese su nombre",
+    "enter_email": "Escriba el correo electrónico",
+    "enter_password": "Escriba la contraseña",
+    "retype_password": "Reescriba la contraseña",
+    "login_placeholder": "correo@ejemplo.com"
+  },
   "users": {
     "title": "Usuarios",
     "users_list": "Lista de usuarios",
