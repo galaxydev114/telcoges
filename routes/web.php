@@ -1,6 +1,7 @@
 <?php
 
 use Crater\Http\Controllers\V1\Auth\LoginController;
+use Crater\Http\Controllers\V1\Auth\RegisterController;
 use Crater\Http\Controllers\V1\Estimate\EstimatePdfController;
 use Crater\Http\Controllers\V1\Expense\DownloadReceiptController;
 use Crater\Http\Controllers\V1\Invoice\InvoicePdfController;
@@ -22,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('login', [LoginController::class, 'login']);
-
+Route::post('register', [RegisterController::class, 'register']);
 
 Route::prefix('reports')->group(function () {
 

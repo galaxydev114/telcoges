@@ -169,11 +169,11 @@ export default {
           title: 'settings.menu_title.backup',
           icon: 'database-icon',
         },
-        {
-          link: '/admin/settings/update-app',
-          title: 'settings.menu_title.update_app',
-          icon: 'refresh-icon',
-        },
+        // {
+        //   link: '/admin/settings/update-app',
+        //   title: 'settings.menu_title.update_app',
+        //   icon: 'refresh-icon',
+        // },
       ],
     }
   },

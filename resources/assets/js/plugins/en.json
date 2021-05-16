@@ -508,27 +508,30 @@
     "password": "Contraseña",
     "forgot_password": "¿Olvidaste tu contraseña?",
     "or_signIn_with": "o Inicia sesión con",
-    "login": "Iniciar sesión",
+    "login": "Iniciar Sesión",
     "register": "Registro",
     "reset_password": "Restablecer la contraseña",
     "password_reset_successfully": "Contraseña reestablecida con éxito",
     "enter_email": "Escriba el correo electrónico",
     "enter_password": "Escriba la contraseña",
     "retype_password": "Reescriba la contraseña",
-    "login_placeholder": "correo@ejemplo.com"
+    "login_placeholder": "correo@ejemplo.com",
+    "already_has_account": "Já tem uma conta?"
   },
   "signup": {
     "name": "Nombre",
     "email": "Correo electrónico",
     "password": "Contraseña",
     "password_confirm": "Confirmar contraseña",
-    "login": "Iniciar sesión",
+    "login": "Iniciar Sesión",
     "register": "Registro",
+    "create_account": "Crear cuenta",
     "enter_name": "Ingrese su nombre",
     "enter_email": "Escriba el correo electrónico",
     "enter_password": "Escriba la contraseña",
     "retype_password": "Reescriba la contraseña",
-    "login_placeholder": "correo@ejemplo.com"
+    "login_placeholder": "correo@ejemplo.com",
+    "already_has_account": "Já tem uma conta?"
   },
   "users": {
     "title": "Usuarios",

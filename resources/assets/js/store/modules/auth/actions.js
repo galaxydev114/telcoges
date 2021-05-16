@@ -5,26 +5,48 @@ import router from '@/router.js'
 
 export const login = ({ commit }, data) => {
   return new Promise((resolve, reject) => {
-    window.axios.get('/sanctum/csrf-cookie').then((response) => {
-      window.axios
-        .post('/login', data)
-        .then((response) => {
-          commit(types.SET_LOGOUT, false)
+    window.axios
+      .post('/login', data)
+      .then((response) => {
+        if (response.data.success) {
           commit('user/' + userTypes.RESET_CURRENT_USER, null, { root: true })
           commit(rootTypes.UPDATE_APP_LOADING_STATUS, false, { root: true })
-
-          window.toastr['success']('Login Successful')
           resolve(response)
-        })
-        .catch((err) => {
-          commit(types.AUTH_ERROR, err.response)
-          reject(err)
-        })
-    })
+        } else {
+          window.toastr['error'](response.data.message)
+          reject(response)
+        }
+      })
+      .catch((err) => {
+        commit(types.AUTH_ERROR, err.response)
+        reject(err)
+      })
   })
 }
 
-export const setLogoutFalse = ({ state, commit }) => {
+export const register = ({ commit }, data) => {
+  return new Promise((resolve, reject) => {
+    window.axios
+      .post('/register', data)
+      .then((response) => {
+        if (response.data.success) {
+          commit('user/' + userTypes.RESET_CURRENT_USER, null, { root: true })
+          commit(rootTypes.UPDATE_APP_LOADING_STATUS, false, { root: true })
+          window.toastr['success'](response.data.message)
+          resolve(response)
+        } else {
+          window.toastr['error'](response.data.message)
+          reject(response)
+        }
+      })
+      .catch((err) => {
+        commit(types.AUTH_ERROR, err.response)
+        reject(err)
+      })
+  })
+}
+
+export const setLogoutFalse = ({ commit }) => {
   commit(types.SET_LOGOUT, false)
 }
 
@@ -40,7 +62,7 @@ export const logout = ({ state, commit }) => {
       .get('/auth/logout')
       .then(() => {
         router.push('/login')
-        window.toastr['success']('Logged out!', 'Success')
+        // window.toastr['success']('Logged out!', 'Success')
       })
       .catch((err) => {
         router.push('/login')

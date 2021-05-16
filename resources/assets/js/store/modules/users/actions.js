@@ -6,6 +6,7 @@ export const fetchUsers = ({ commit, dispatch, state }, params) => {
     window.axios
       .get(`/api/v1/users`, { params })
       .then((response) => {
+        console.log("===>", response)
         commit(types.BOOTSTRAP_USERS, response.data.users.data)
         commit(types.SET_TOTAL_USERS, response.data.users.total)
         commit(

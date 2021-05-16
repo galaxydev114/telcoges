@@ -1,5 +1,9 @@
 <template>
-  <form id="registerForm" @submit.prevent="validateBeforeSubmit">
+  <form
+    id="registerForm"
+    style="margin-top: -2rem"
+    @submit.prevent="validateBeforeSubmit"
+  >
     <sw-input-group
       :label="$t('signup.name')"
       :error="nameError"
@@ -68,30 +72,49 @@
     >
       <sw-input
         :placeholder="$t('signup.retype_password')"
-        v-model="signupData.retypePassword"
-        :invalid="$v.signupData.retypePassword.$error"
+        v-model="signupData.password_confirmation"
+        :invalid="$v.signupData.password_confirmation.$error"
         :type="getInputType"
-        name="password"
-        @input="$v.signupData.retypePassword.$touch()"
+        name="password_confirmation"
+        @input="$v.signupData.password_confirmation.$touch()"
       />
     </sw-input-group>
-    <sw-button class="btn btn-login btn-full">{{
-      $t('login.register')
+    <sw-button class="btn btn-login btn-full w-full text-uppercase">{{
+      $t('signup.create_account')
     }}</sw-button>
+    <div class="mt-5 pt-3 text-center top-hr">
+      <span class="text-sm">{{ $t('signup.already_has_account') }}</span>
+      <router-link
+        to="login"
+        class="text-sm text-primary-400 hover:text-gray-700"
+      >
+        {{ $t('signup.login') }}
+      </router-link>
+    </div>
   </form>
 </template>
 <script type="text/babel">
 import { mapActions } from 'vuex'
-const { required, email, sameAs, minLength } = require('vuelidate/lib/validators')
+import { EyeIcon, EyeOffIcon } from '@vue-hero-icons/outline'
+const {
+  required,
+  email,
+  sameAs,
+  minLength,
+} = require('vuelidate/lib/validators')
 
 export default {
+  components: {
+    EyeIcon,
+    EyeOffIcon,
+  },
   data() {
     return {
       signupData: {
         name: '',
         email: '',
         password: '',
-        retypePassword: '',
+        password_confirmation: '',
       },
       submitted: false,
       isLoading: false,
@@ -111,7 +134,7 @@ export default {
         required,
         minLength: minLength(8),
       },
-      retypePassword: {
+      password_confirmation: {
         sameAsPassword: sameAs('password'),
       },
     },
@@ -143,6 +166,9 @@ export default {
       if (!this.$v.signupData.password.$error) {
         return ''
       }
+      if (!this.$v.signupData.email.required) {
+        return this.$tc('validation.required')
+      }
       if (!this.$v.signupData.password.minLength) {
         return this.$tc(
           'validation.password_min_length',
@@ -153,11 +179,11 @@ export default {
     },
 
     retypePasswordError() {
-      if (!this.$v.signupData.retypePassword.$error) {
+      if (!this.$v.signupData.password_confirmation.$error) {
         return ''
       }
 
-      if (!this.$v.signupData.retypePassword.sameAsPassword) {
+      if (!this.$v.signupData.password_confirmation.sameAsPassword) {
         return this.$tc('validation.password_incorrect')
       }
     },
@@ -173,7 +199,7 @@ export default {
   watch: {
     'signupData.password'(val) {
       if (!val) {
-        this.signupData.retypePassword = ''
+        this.signupData.password_confirmation = ''
       }
     },
   },
@@ -181,8 +207,6 @@ export default {
   methods: {
     ...mapActions('auth', ['register']),
     async validateBeforeSubmit() {
-      axios.defaults.withCredentials = true
-
       this.$v.signupData.$touch()
       if (this.$v.$invalid) {
         return true
@@ -191,8 +215,11 @@ export default {
       this.isLoading = true
 
       try {
-        await this.login(this.loginData)
-        this.$router.push('/login')
+        await this.register(this.signupData).then((res) => {
+          if (res.data.success) {
+            this.$router.push('/login')
+          }
+        })
         this.isLoading = false
       } catch (error) {
         this.isLoading = false

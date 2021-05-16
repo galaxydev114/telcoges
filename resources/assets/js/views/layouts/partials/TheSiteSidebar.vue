@@ -154,7 +154,10 @@ export default {
         ],
       ]
 
-      if (this.currentUser.role == 'super admin') {
+      if (
+        this.currentUser.role == 'super admin' ||
+        this.currentUser.role == 'admin'
+      ) {
         menu[2] = [
           {
             title: 'navigation.users',

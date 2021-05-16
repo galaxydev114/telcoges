@@ -61,7 +61,7 @@
       :disabled="isLoading"
       type="submit"
       variant="primary"
-      class="w-100"
+      class="w-100 text-uppercase"
     >
       {{ $t('login.login') }}
     </sw-button>
@@ -156,7 +156,6 @@ export default {
   methods: {
     ...mapActions('auth', ['login']),
     async validateBeforeSubmit() {
-      axios.defaults.withCredentials = true
 
       this.$v.loginData.$touch()
       if (this.$v.$invalid) {
@@ -166,8 +165,14 @@ export default {
       this.isLoading = true
 
       try {
-        await this.login(this.loginData)
-        this.$router.push('/admin/dashboard')
+        await this.login(this.loginData).then((res) => {
+          if (res.data.success) {
+            let path = res.data.redirectTo
+              ? res.data.redirectTo
+              : '/admin/dashboard'
+            this.$router.push(path)
+          }
+        })
         this.isLoading = false
       } catch (error) {
         this.isLoading = false

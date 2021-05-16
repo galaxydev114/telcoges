@@ -1,5 +1,5 @@
 <template>
-  <base-page v-if="isSuperAdmin" class="items">
+  <base-page v-if="isAuthorization" class="items">
     <sw-page-header :title="$t('users.title')">
       <sw-breadcrumb slot="breadcrumbs">
         <sw-breadcrumb-item to="dashboard" :title="$t('general.home')" />
@@ -273,8 +273,8 @@ export default {
       'totalUsers',
       'selectAllField',
     ]),
-    isSuperAdmin() {
-      return this.currentUser.role == 'super admin'
+    isAuthorization() {
+      return this.currentUser.role == 'super admin' || this.currentUser.role == 'admin'
     },
     showEmptyScreen() {
       return !this.totalUsers && !this.isRequestOngoing
@@ -303,7 +303,7 @@ export default {
     },
   },
   created() {
-    if (!this.isSuperAdmin) {
+    if (!this.isAuthorization) {
       this.$router.push('/admin/dashboard')
     }
   },
@@ -346,7 +346,7 @@ export default {
       }
 
       this.isRequestOngoing = true
-
+console.log("===");
       let response = await this.fetchUsers(data)
 
       this.isRequestOngoing = false

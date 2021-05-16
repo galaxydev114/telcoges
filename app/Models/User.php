@@ -72,6 +72,15 @@ class User extends Authenticatable implements HasMedia
     ];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    /**
      * Find the user instance for the given username.
      *
      * @param  string  $username
@@ -94,13 +103,13 @@ class User extends Authenticatable implements HasMedia
         return ($this->role == 'super admin') || ($this->role == 'admin');
     }
 
-    public static function login($request)
-    {
-        $remember = $request->remember;
-        $email = $request->email;
-        $password = $request->password;
-        return (\Auth::attempt(array('email' => $email, 'password' => $password), $remember));
-    }
+    // public static function login($request)
+    // {
+    //     $remember = $request->remember;
+    //     $email = $request->email;
+    //     $password = $request->password;
+    //     return (\Auth::attempt(array('email' => $email, 'password' => $password), $remember));
+    // }
 
     public function getFormattedCreatedAtAttribute($value)
     {
@@ -426,5 +435,10 @@ class User extends Authenticatable implements HasMedia
         }
 
         return $companySettings;
+    }
+
+    public function isVerified()
+    {
+        return $this->email_verified_at == NULL ? false : true;
     }
 }

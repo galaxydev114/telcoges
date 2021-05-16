@@ -1,7 +1,8 @@
 <template>
   <div class="grid h-full grid-cols-12 overflow-y-hidden bg-gray-100">
     <div
-      class="flex items-center justify-center w-full max-w-sm col-span-12 p-4 mx-auto text-gray-900 md:p-8 md:col-span-6 lg:col-span-4 flex-2 md:pb-48 md:pt-40"
+      class="flex items-center justify-center w-full max-w-sm col-span-12 p-4 mx-auto text-gray-900 md:p-8 md:col-span-6 lg:col-span-4 flex-2"
+      style="z-index: 99"
     >
       <div class="w-full">
         <a href="/admin">
@@ -54,7 +55,7 @@
   background-size: 100% 100%;
   height: 300px;
   right: 32%;
-  bottom: 0;
+  bottom: -50px;
 }
 
 .content-box::before {
