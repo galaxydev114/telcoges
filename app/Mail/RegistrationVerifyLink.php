@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mail;
+namespace Crater\Mail;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
