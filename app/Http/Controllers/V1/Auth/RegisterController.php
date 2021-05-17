@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-
+use Carbon\Carbon;
+use Crater\Mail\RegistrationVerifyLink;
 use Crater\Models\User;
 use Crater\Models\Company;
 use Crater\Models\Setting;
@@ -17,6 +18,7 @@ use Crater\Models\CompanySetting;
 use Crater\Models\Address;
 use Crater\Models\PaymentMethod;
 use Crater\Models\Unit;
+use Mail;
 
 class RegisterController extends Controller
 {
@@ -197,12 +199,21 @@ class RegisterController extends Controller
         ]);
     }
 
-    // public function verify(Request $request)
-    // {
-    //     $user = User::where('email', $request->email)->first();
+    public function verify(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
 
-    //     if (! is_null($user) ) {
+        if (! is_null($user) ) {
+            if ( $user->verify_token == $request->token ) {
+                $user->email_verified_at = Carbon::now();
+                $user->save();
+    
+                return redirect('login');
+            } else {
+                return redirect('login');
+            }
+        }
 
-    //     }
-    // }
+        return redirect('register');
+    }
 }

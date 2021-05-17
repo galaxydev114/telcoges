@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login', [LoginController::class, 'login']);
 Route::post('register', [RegisterController::class, 'register']);
+Route::get('user/email/verify', [RegisterController::class, 'verify'])->name('email.verify');
 
 Route::prefix('reports')->group(function () {
 

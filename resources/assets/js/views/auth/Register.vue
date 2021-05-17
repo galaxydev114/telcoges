@@ -79,9 +79,15 @@
         @input="$v.signupData.password_confirmation.$touch()"
       />
     </sw-input-group>
-    <sw-button class="btn btn-login btn-full w-full text-uppercase">{{
-      $t('signup.create_account')
-    }}</sw-button>
+    <sw-button
+      :loading="isLoading"
+      :disabled="isLoading"
+      type="submit"
+      variant="primary"
+      class="w-100 text-uppercase"
+    >
+      {{ $t('signup.create_account') }}
+    </sw-button>
     <div class="mt-5 pt-3 text-center top-hr">
       <span class="text-sm">{{ $t('signup.already_has_account') }}</span>
       <router-link
