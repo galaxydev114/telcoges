@@ -7,18 +7,26 @@
                         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse;background-color:transparent;border-top-width:0;border-bottom-width:0" bgcolor="transparent">
                             <tbody>
                                 <tr>
-                                    <td valign="top" style="padding-top:20px;padding-bottom:0px">
-                                        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;border-collapse:collapse">
+                                    <td align="center" valign="top">
+                                        <table border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse:collapse">
                                             <tbody>
                                                 <tr>
-                                                    <td valign="top" style="padding-top:9px">
-                                                        <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%;min-width:100%;border-collapse:collapse" width="100%">
+                                                    <td valign="top" style="padding-top:20px;padding-bottom:0px">
+                                                        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;border-collapse:collapse">
                                                             <tbody>
                                                                 <tr>
-                                                                    <td valign="top" style="text-align:left;word-break:break-word;color:#808080;font-family:'Open Sans','Helvetica Neue',Arial,Helvetica,sans-serif;font-size:11px;line-height:125%;padding:0px 18px 9px" align="left">
-                                                                        <a href="{{ env('APP_URL') }}" style="color:#ffffff;font-weight:normal;text-decoration:underline" target="_blank">
-                                                                            <img src="{{ url('images/mail-brand.png') }}" alt="{{ env('APP_NAME') }}" width="143" style="max-width:143px;padding-bottom:0;display:inline!important;vertical-align:bottom;height:auto!important;outline:none;text-decoration:none;border:0">
-                                                                        </a>
+                                                                    <td valign="top" style="padding-top:9px">
+                                                                        <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%;min-width:100%;border-collapse:collapse" width="100%">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td valign="top" style="text-align:left;word-break:break-word;color:#808080;font-family:'Open Sans','Helvetica Neue',Arial,Helvetica,sans-serif;font-size:11px;line-height:125%;padding:0px 18px 9px" align="left">
+                                                                                        <a href="{{ env('APP_URL') }}" style="color:#ffffff;font-weight:normal;text-decoration:underline" target="_blank">
+                                                                                            <img src="{{ url('images/mail-brand.png') }}" alt="{{ env('APP_NAME') }}" width="143" style="max-width:143px;padding-bottom:0;display:inline!important;vertical-align:bottom;height:auto!important;outline:none;text-decoration:none;border:0">
+                                                                                        </a>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
