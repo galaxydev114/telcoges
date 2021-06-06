@@ -25,12 +25,8 @@
       type="submit"
       variant="primary"
     >
-      <div v-if="!isSent">
-        Enviar enlace de restablecimiento
-      </div>
-      <div v-else>
-        ¿Aún no? Envíalo de nuevo
-      </div>
+      <div v-if="!isSent">Enviar enlace de restablecimiento</div>
+      <div v-else>¿Aún no? Envíalo de nuevo</div>
     </sw-button>
 
     <div class="mt-4 mb-4 text-sm">
@@ -78,7 +74,7 @@ export default {
           )
 
           if (res.data) {
-            toastr['success']('Mail sent successfuly!', 'Success')
+            toastr['success']('El correo enviado con éxito!', 'Éxito')
           }
 
           this.isSent = true
