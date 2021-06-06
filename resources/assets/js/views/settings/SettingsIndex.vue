@@ -152,12 +152,6 @@ export default {
           title: 'settings.menu_title.expense_category',
           icon: 'clipboard-list-icon',
         },
-
-        {
-          link: '/admin/settings/mail-configuration',
-          title: 'settings.mail.mail_config',
-          icon: 'mail-icon',
-        },
         // {
         //   link: '/admin/settings/update-app',
         //   title: 'settings.menu_title.update_app',
@@ -168,6 +162,11 @@ export default {
       if (this.currentUser.role == 'super admin') {
         menu = [
           ...menu,
+          {
+            link: '/admin/settings/mail-configuration',
+            title: 'settings.mail.mail_config',
+            icon: 'mail-icon',
+          },
           {
             link: '/admin/settings/file-disk',
             title: 'settings.menu_title.file_disk',
