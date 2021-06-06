@@ -94,7 +94,7 @@
       <sw-button
         slot="actions"
         tag-name="router-link"
-        to="/admin/suppliers/create"
+        to="suppliers/create"
         size="lg"
         variant="primary-outline"
       >
@@ -195,7 +195,11 @@
           <template slot-scope="row">
             <span>{{ $t('suppliers.contact_name') }}</span>
             <span>
-              {{ row.contact_name ? row.contact_name : $t('suppliers.no_contact_name') }}
+              {{
+                row.contact_name
+                  ? row.contact_name
+                  : $t('suppliers.no_contact_name')
+              }}
             </span>
           </template>
         </sw-table-column>

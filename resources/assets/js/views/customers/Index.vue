@@ -94,7 +94,7 @@
       <sw-button
         slot="actions"
         tag-name="router-link"
-        to="/admin/customers/create"
+        to="customers/create"
         size="lg"
         variant="primary-outline"
       >
