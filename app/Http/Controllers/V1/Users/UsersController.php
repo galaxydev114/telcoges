@@ -8,6 +8,7 @@ use Crater\Models\User;
 use Crater\Models\CompanySetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class UsersController extends Controller
 {
@@ -21,8 +22,11 @@ class UsersController extends Controller
     {
         $limit = $request->has('limit') ? $request->limit : 10;
 
-        $users = User::where('role', 'admin', 'creator')
-            ->applyFilters(
+        $users = User::where([
+                    'role' => 'user',
+                    'company_id' => Auth::user()->company_id
+                ]
+            )->applyFilters(
                 $request->only([
                     'phone',
                     'email',
@@ -48,10 +52,15 @@ class UsersController extends Controller
     public function store(UserRequest $request)
     {
         $data = $request->validated();
-        $data['role'] = 'admin';
+        $data['role'] = 'user';
         $data['company_id'] = Auth::user()->company_id;
         $data['creator_id'] = Auth::id();
+        
         $user = User::create($data);
+
+        // checked email verify
+        $user->email_verified_at = Carbon::now();
+        $user->save();
 
         $user->setSettings([
             'language' => CompanySetting::getSetting('language', $user->company_id)

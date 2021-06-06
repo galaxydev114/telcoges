@@ -77,7 +77,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -102,7 +102,7 @@ return [
     | localized telephone numbers, street address information and more.
     |
     */
-    'faker_locale' => 'en_US',
+    'faker_locale' => 'es_US',
 
     /*
     |--------------------------------------------------------------------------

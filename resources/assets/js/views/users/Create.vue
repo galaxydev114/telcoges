@@ -1,19 +1,19 @@
 <template>
-  <base-page v-if="isSuperAdmin" class="item-create">
-    <sw-page-header class="mb-3" :title="pageTitle">
+  <base-page v-if="isSuperAdminOrAdmin" class="item-create">
+    <sw-page-header  :title="pageTitle" class="mb-3">
       <sw-breadcrumb slot="breadcrumbs">
-        <sw-breadcrumb-item to="/admin/dashboard" :title="$t('general.home')" />
-        <sw-breadcrumb-item to="/admin/users" :title="$tc('users.user', 2)" />
+        <sw-breadcrumb-item :title="$t('general.home')" to="/admin/dashboard" />
+        <sw-breadcrumb-item :title="$tc('users.user', 2)" to="/admin/users" />
         <sw-breadcrumb-item
           v-if="$route.name === 'users.edit'"
-          to="#"
           :title="$t('users.edit_user')"
+          to="#"
           active
         />
         <sw-breadcrumb-item
           v-else
-          to="#"
           :title="$t('users.new_user')"
+          to="#"
           active
         />
       </sw-breadcrumb>
@@ -43,8 +43,8 @@
 
             <sw-input-group
               :label="$t('users.email')"
-              class="mt-4"
               :error="emailError"
+              class="mt-4"
               required
             >
               <sw-input
@@ -106,9 +106,6 @@ const {
   required,
   minLength,
   email,
-  numeric,
-  minValue,
-  maxLength,
   requiredIf,
 } = require('vuelidate/lib/validators')
 
@@ -129,8 +126,11 @@ export default {
 
   computed: {
     ...mapGetters('user', ['currentUser']),
-    isSuperAdmin() {
-      return this.currentUser.role == 'super admin'
+    isSuperAdminOrAdmin() {
+      return (
+        this.currentUser.role == 'super admin' ||
+        this.currentUser.role == 'admin'
+      )
     },
 
     pageTitle() {
@@ -195,7 +195,7 @@ export default {
   },
 
   created() {
-    if (!this.isSuperAdmin) {
+    if (!this.isSuperAdminOrAdmin) {
       this.$router.push('/admin/dashboard')
     }
     if (this.isEdit) {
@@ -249,7 +249,6 @@ export default {
         this.isLoading = true
         if (this.isEdit) {
           response = await this.updateUser(this.formData)
-          let data
           if (response.data.success) {
             window.toastr['success'](this.$tc('users.updated_message'))
             this.$router.push('/admin/users')
@@ -260,7 +259,6 @@ export default {
           }
         } else {
           response = await this.addUser(this.formData)
-          let data
           if (response.data.success) {
             this.isLoading = false
             if (!this.isEdit) {

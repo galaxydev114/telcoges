@@ -8,6 +8,8 @@ use Crater\Http\Controllers\V1\Backup\BackupsController;
 use Crater\Http\Controllers\V1\Backup\DownloadBackupController;
 use Crater\Http\Controllers\V1\Customer\CustomersController;
 use Crater\Http\Controllers\V1\Customer\CustomerStatsController;
+use Crater\Http\Controllers\V1\Supplier\SuppliersController;
+use Crater\Http\Controllers\V1\Supplier\SupplierStatsController;
 use Crater\Http\Controllers\V1\CustomField\CustomFieldsController;
 use Crater\Http\Controllers\V1\Dashboard\DashboardController;
 use Crater\Http\Controllers\V1\Estimate\ChangeEstimateStatusController;
@@ -61,6 +63,7 @@ use Crater\Http\Controllers\V1\Update\FinishUpdateController;
 use Crater\Http\Controllers\V1\Update\MigrateUpdateController;
 use Crater\Http\Controllers\V1\Update\UnzipUpdateController;
 use Crater\Http\Controllers\V1\Users\UsersController;
+use Crater\Http\Controllers\V1\Companies\CompaniesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -106,7 +109,7 @@ Route::prefix('/v1')->group(function () {
         Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
         // Send reset password mail
-        Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->middleware("throttle:10,2");;
+        Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->middleware("throttle:10,2");
 
         // handle reset password form process
         Route::post('reset/password', [ResetPasswordController::class, 'reset']);
@@ -204,6 +207,15 @@ Route::prefix('/v1')->group(function () {
         Route::get('customers/{customer}/stats', CustomerStatsController::class);
 
         Route::resource('customers', CustomersController::class);
+
+        // Suppliers
+        //----------------------------------
+
+        Route::post('/suppliers/delete', [SuppliersController::class, 'delete']);
+
+        Route::get('suppliers/{supplier}/stats', SupplierStatsController::class);
+
+        Route::resource('suppliers', SuppliersController::class);
 
 
         // Items
@@ -342,6 +354,16 @@ Route::prefix('/v1')->group(function () {
         Route::post('/users/delete', [UsersController::class, 'delete']);
 
         Route::apiResource('/users', UsersController::class);
+
+        // Companies
+        //----------------------------------
+
+        Route::post('/companies/delete', [CompaniesController::class, 'delete']);
+
+        Route::get('companies/{id}', [CompaniesController::class, 'show']);
+
+        Route::apiResource('/companies', CompaniesController::class);
+        
 
     });
 });

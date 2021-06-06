@@ -274,7 +274,10 @@ export default {
       'selectAllField',
     ]),
     isAuthorization() {
-      return this.currentUser.role == 'super admin' || this.currentUser.role == 'admin'
+      return (
+        this.currentUser.role == 'super admin' ||
+        this.currentUser.role == 'admin'
+      )
     },
     showEmptyScreen() {
       return !this.totalUsers && !this.isRequestOngoing
@@ -346,7 +349,7 @@ export default {
       }
 
       this.isRequestOngoing = true
-console.log("===");
+
       let response = await this.fetchUsers(data)
 
       this.isRequestOngoing = false

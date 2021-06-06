@@ -240,6 +240,10 @@ class Estimate extends Model implements HasMedia
             $query->whereCustomer($filters->get('customer_id'));
         }
 
+        if ($filters->get('supplier_id')) {
+            $query->whereSupplier($filters->get('supplier_id'));
+        }
+
         if ($filters->get('orderByField') || $filters->get('orderBy')) {
             $field = $filters->get('orderByField') ? $filters->get('orderByField') : 'estimate_number';
             $orderBy = $filters->get('orderBy') ? $filters->get('orderBy') : 'asc';
@@ -260,6 +264,11 @@ class Estimate extends Model implements HasMedia
     public function scopeWhereCustomer($query, $customer_id)
     {
         $query->where('estimates.user_id', $customer_id);
+    }
+
+    public function scopeWhereSuppplier($query, $supplier_id)
+    {
+        $query->where('estimates.user_id', $supplier_id);
     }
 
     public function scopePaginateData($query, $limit)

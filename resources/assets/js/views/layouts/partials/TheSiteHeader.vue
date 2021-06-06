@@ -84,6 +84,17 @@
             {{ $t('navigation.settings') }}
           </sw-dropdown-item>
 
+          <sw-dropdown-item
+            v-show="
+              currentUser.role == 'super admin' || currentUser.role == 'admin'
+            "
+            tag-name="router-link"
+            to="/admin/users"
+          >
+            <users-icon class="w-4 h-4 mr-2 text-gray-600" />
+            {{ $t('navigation.my_users') }}
+          </sw-dropdown-item>
+
           <sw-dropdown-item @click="logout">
             <logout-icon class="w-4 h-4 mr-2 text-gray-600" />
             {{ $t('navigation.logout') }}
@@ -102,6 +113,7 @@ import {
   DocumentIcon,
   UserIcon,
   CogIcon,
+  UsersIcon,
 } from '@vue-hero-icons/solid'
 
 import { LogoutIcon } from '@vue-hero-icons/outline'
@@ -114,6 +126,7 @@ export default {
     UserIcon,
     CogIcon,
     LogoutIcon,
+    UsersIcon,
   },
   computed: {
     ...mapGetters('user', ['currentUser']),

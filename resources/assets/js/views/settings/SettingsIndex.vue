@@ -18,8 +18,8 @@
 
     <div class="w-full mb-6 select-wrapper xl:hidden">
       <sw-select
-        :options="menuItems"
-        v-model="currentSetting"
+        :options="settingMenus.menuItems"
+        v-model="settingMenus.currentSetting"
         :searchable="true"
         :show-labels="false"
         :allow-empty="false"
@@ -32,7 +32,7 @@
       <div class="hidden col-span-3 mt-1 xl:block">
         <sw-list>
           <sw-list-item
-            v-for="(menuItem, index) in menuItems"
+            v-for="(menuItem, index) in settingMenus.menuItems"
             :title="$t(menuItem.title)"
             :key="index"
             :to="menuItem.link"
@@ -76,6 +76,8 @@ import {
   CreditCardIcon,
 } from '@vue-hero-icons/solid'
 
+import { mapGetters } from 'vuex'
+
 export default {
   components: {
     UserIcon,
@@ -95,14 +97,11 @@ export default {
     ClipboardCheckIcon,
   },
 
-  data() {
-    return {
-      currentSetting: {
-        link: '/admin/settings/user-profile',
-        title: 'settings.menu_title.account_settings',
-        icon: 'user-icon',
-      },
-      menuItems: [
+  computed: {
+    ...mapGetters('user', ['currentUser']),
+
+    settingMenus() {
+      let menu = [
         {
           link: '/admin/settings/user-profile',
           title: 'settings.menu_title.account_settings',
@@ -159,23 +158,38 @@ export default {
           title: 'settings.mail.mail_config',
           icon: 'mail-icon',
         },
-        {
-          link: '/admin/settings/file-disk',
-          title: 'settings.menu_title.file_disk',
-          icon: 'folder-icon',
-        },
-        {
-          link: '/admin/settings/backup',
-          title: 'settings.menu_title.backup',
-          icon: 'database-icon',
-        },
         // {
         //   link: '/admin/settings/update-app',
         //   title: 'settings.menu_title.update_app',
         //   icon: 'refresh-icon',
         // },
-      ],
-    }
+      ]
+
+      if (this.currentUser.role == 'super admin') {
+        menu = [
+          ...menu,
+          {
+            link: '/admin/settings/file-disk',
+            title: 'settings.menu_title.file_disk',
+            icon: 'folder-icon',
+          },
+          {
+            link: '/admin/settings/backup',
+            title: 'settings.menu_title.backup',
+            icon: 'database-icon',
+          },
+        ]
+      }
+
+      return {
+        currentSetting: {
+          link: '/admin/settings/user-profile',
+          title: 'settings.menu_title.account_settings',
+          icon: 'user-icon',
+        },
+        menuItems: menu,
+      }
+    },
   },
 
   watch: {
@@ -187,7 +201,7 @@ export default {
   },
 
   mounted() {
-    this.currentSetting = this.menuItems.find(
+    this.settingMenus.currentSetting = this.settingMenus.menuItems.find(
       (item) => item.link == this.$route.path
     )
   },

@@ -42,7 +42,7 @@ class ResetPasswordController extends Controller
     protected function sendResetResponse(Request $request, $response)
     {
         return response()->json([
-            'message' => 'Password reset successfully.'
+            'message' => 'Restablecimiento de contraseña con éxito.'
         ]);
     }
 
@@ -73,6 +73,6 @@ class ResetPasswordController extends Controller
      */
     protected function sendResetFailedResponse(Request $request, $response)
     {
-        return response('Failed, Invalid Token.', 403);
+        return response('Token fallido, no válido.', 403);
     }
 }

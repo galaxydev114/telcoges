@@ -9,6 +9,7 @@ import auth from './modules/auth'
 import user from './modules/user'
 import category from './modules/category'
 import customer from './modules/customer'
+import supplier from './modules/supplier'
 import company from './modules/company'
 import dashboard from './modules/dashboard'
 import estimate from './modules/estimate'
@@ -20,6 +21,7 @@ import modal from './modules/modal'
 import customFields from './modules/custom-field'
 import taxType from './modules/tax-type'
 import users from './modules/users'
+import companies from './modules/companies'
 import backup from './modules/backup'
 import disks from './modules/disk'
 import estimateTemplate from './modules/estimate-template'
@@ -60,6 +62,7 @@ export default new Vuex.Store({
     category,
     company,
     customer,
+    supplier,
     dashboard,
     estimate,
     item,
@@ -70,6 +73,7 @@ export default new Vuex.Store({
     payment,
     taxType,
     users,
+    companies,
     backup,
     disks,
     estimateTemplate,

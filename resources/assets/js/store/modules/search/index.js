@@ -5,6 +5,8 @@ import * as getters from './getters'
 const initialState = {
   userList: [],
   customerList: [],
+  supplierList: [],
+  companyList: []
 }
 
 export default {

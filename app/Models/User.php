@@ -103,6 +103,11 @@ class User extends Authenticatable implements HasMedia
         return ($this->role == 'super admin') || ($this->role == 'admin');
     }
 
+    public function isAuthorization()
+    {
+        return ($this->role == 'super admin') || ($this->role == 'admin') || ($this->role == 'user');
+    }
+
     // public static function login($request)
     // {
     //     $remember = $request->remember;
@@ -221,6 +226,11 @@ class User extends Authenticatable implements HasMedia
         return $query->where('role', 'customer');
     }
 
+    public function scopeSupplier($query)
+    {
+        return $query->where('role', 'supplier');
+    }
+
     public function scopePaginateData($query, $limit)
     {
         if ($limit == 'all') {
@@ -254,6 +264,10 @@ class User extends Authenticatable implements HasMedia
             $query->whereCustomer($filters->get('customer_id'));
         }
 
+        if ($filters->get('supplier_id')) {
+            $query->whereSupplier($filters->get('supplier_id'));
+        }
+
         if ($filters->get('phone')) {
             $query->wherePhone($filters->get('phone'));
         }
@@ -273,6 +287,11 @@ class User extends Authenticatable implements HasMedia
     public function scopeWhereCustomer($query, $customer_id)
     {
         $query->orWhere('users.id', $customer_id);
+    }
+
+    public function scopeWhereSupplier($query, $supplier_id)
+    {
+        $query->orWhere('users.id', $supplier_id);
     }
 
     public function scopeApplyInvoiceFilters($query, array $filters)
@@ -319,6 +338,34 @@ class User extends Authenticatable implements HasMedia
             }
 
             $customer->delete();
+        }
+
+        return true;
+    }
+
+    public static function deleteSuppliers($ids)
+    {
+        foreach ($ids as $id) {
+
+            $supplier = self::find($id);
+
+            if ($supplier->estimates()->exists()) {
+                $supplier->estimates()->delete();
+            }
+
+            if ($supplier->invoices()->exists()) {
+                $supplier->invoices()->delete();
+            }
+
+            if ($supplier->payments()->exists()) {
+                $supplier->payments()->delete();
+            }
+
+            if ($supplier->addresses()->exists()) {
+                $supplier->addresses()->delete();
+            }
+
+            $supplier->delete();
         }
 
         return true;
@@ -410,6 +457,81 @@ class User extends Authenticatable implements HasMedia
         return $customer;
     }
 
+    public static function createSupplier($request)
+    {
+        $data = $request->only([
+            'name',
+            'email',
+            'phone',
+            'company_name',
+            'contact_name',
+            'website',
+            'enable_portal'
+        ]);
+
+        $data['creator_id'] = Auth::id();
+        $data['company_id'] = $request->header('company');
+        $data['role'] = 'supplier';
+        $data['password'] = Hash::make($request->password);
+        $supplier = User::create($data);
+
+        $supplier['currency_id'] = $request->currency_id;
+        $supplier->save();
+
+        if ($request->addresses) {
+            foreach ($request->addresses as $address) {
+                $supplier->addresses()->create($address);
+            }
+        }
+
+        $customFields = $request->customFields;
+
+        if ($customFields) {
+            $supplier->addCustomFields($customFields);
+        }
+
+        $supplier = User::with('billingAddress', 'shippingAddress', 'fields')->find($supplier->id);
+
+        return $supplier;
+    }
+
+    public static function updateSupplier($request, $supplier)
+    {
+        $data = $request->only([
+            'name',
+            'currency_id',
+            'email',
+            'phone',
+            'company_name',
+            'contact_name',
+            'website',
+            'enable_portal'
+        ]);
+
+        $data['role'] = 'supplier';
+        if ($request->has('password')) {
+            $supplier->password = Hash::make($request->password);
+        }
+        $supplier->update($data);
+
+        $supplier->addresses()->delete();
+        if ($request->addresses) {
+            foreach ($request->addresses as $address) {
+                $supplier->addresses()->create($address);
+            }
+        }
+
+        $customFields = $request->customFields;
+
+        if ($customFields) {
+            $supplier->updateCustomFields($customFields);
+        }
+
+        $supplier = User::with('billingAddress', 'shippingAddress', 'fields')->find($supplier->id);
+
+        return $supplier;
+    }
+
     public function setSettings($settings)
     {
         foreach ($settings as $key => $value) {
@@ -438,7 +560,7 @@ class User extends Authenticatable implements HasMedia
     }
 
     public function isVerified()
-    {
+    {   
         return $this->email_verified_at == NULL ? false : true;
     }
 }

@@ -76,8 +76,10 @@ function format_money_pdf($money, $currency = null)
 {
     $money = $money / 100;
 
+    $company_id = auth()->user()->company_id;
+
     if (!$currency) {
-        $currency = Currency::findOrFail(CompanySetting::getSetting('currency', 1));
+        $currency = Currency::findOrFail(CompanySetting::getSetting('currency', $company_id));
     }
 
     $format_money = number_format(

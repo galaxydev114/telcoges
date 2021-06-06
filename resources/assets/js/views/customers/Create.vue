@@ -8,11 +8,11 @@
             :title="$t('general.home')"
           />
           <sw-breadcrumb-item
-            to="/admin/customers"
+            to="/admin/contacts/customers"
             :title="$tc('customers.customer', 2)"
           />
           <sw-breadcrumb-item
-            v-if="$route.name === 'customers.edit'"
+            v-if="$route.name === 'contacts.customers.edit'"
             to="#"
             :title="$t('customers.edit_customer')"
             active
@@ -546,13 +546,13 @@ export default {
     ...mapGetters(['currencies']),
     ...mapGetters('company', ['defaultCurrency']),
     isEdit() {
-      if (this.$route.name === 'customers.edit') {
+      if (this.$route.name === 'contacts.customers.edit') {
         return true
       }
       return false
     },
     pageTitle() {
-      if (this.$route.name === 'customers.edit') {
+      if (this.$route.name === 'contacts.customers.edit') {
         return this.$t('customers.edit_customer')
       }
       return this.$t('customers.new_customer')
@@ -784,7 +784,7 @@ export default {
           response = await this.updateCustomer(this.formData)
           if (response.data.success) {
             this.$router.push(
-              `/admin/customers/${response.data.customer.id}/view`
+              `/admin/contacts/customers/${response.data.customer.id}/view`
             )
             window.toastr['success'](this.$t('customers.updated_message'))
           }
@@ -795,7 +795,7 @@ export default {
           response = await this.addCustomer(this.formData)
           if (response.data.success) {
             this.$router.push(
-              `/admin/customers/${response.data.customer.id}/view`
+              `/admin/contacts/customers/${response.data.customer.id}/view`
             )
             window.toastr['success'](this.$t('customers.created_message'))
           }

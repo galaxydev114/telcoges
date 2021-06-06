@@ -7,7 +7,7 @@ use Crater\Http\Requests;
 use Crater\Models\User;
 use Crater\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-
+use Auth;
 
 class CustomersController extends Controller
 {
@@ -40,9 +40,16 @@ class CustomersController extends Controller
             ->leftJoin('invoices', 'users.id', '=', 'invoices.user_id')
             ->paginateData($limit);
 
+        // return response()->json([
+        //     'customers' => $customers,
+        //     'customerTotalCount' => User::whereRole('customer')->count()
+        // ]);
         return response()->json([
             'customers' => $customers,
-            'customerTotalCount' => User::whereRole('customer')->count()
+            'customerTotalCount' => User::where([
+                'role' => 'customer',
+                'company_id' => Auth::user()->company_id
+                ])->count()
         ]);
     }
 

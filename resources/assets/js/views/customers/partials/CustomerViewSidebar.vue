@@ -82,7 +82,7 @@
     >
       <router-link
         v-for="(customer, index) in customers"
-        :to="`/admin/customers/${customer.id}/view`"
+        :to="`/admin/contacts/customers/${customer.id}/view`"
         :key="index"
         :id="'customer-' + customer.id"
         :class="[

@@ -19,16 +19,35 @@
         :key="groupIndex"
         variant="sidebar"
       >
-        <sw-list-item
-          v-for="(item, index) in menuItems"
-          :title="$t(item.title)"
-          :key="index"
-          :active="hasActiveUrl(item.route)"
-          :to="item.route"
-          tag-name="router-link"
-        >
-          <component slot="icon" :is="item.icon" class="h-5" />
-        </sw-list-item>
+        <div v-for="(item, index) in menuItems" :key="index">
+          <div v-if="item.route">
+            <sw-list-item
+              :title="$t(item.title)"
+              :active="hasActiveUrl(item.route)"
+              :to="item.route"
+              tag-name="router-link"
+            >
+              <component slot="icon" :is="item.icon" class="h-5" />
+            </sw-list-item>
+          </div>
+          <div v-else class="sidebar-link-list-group">
+            <span class="sidebar-link-list-group-icon">
+              <component slot="icon" :is="item.icon" class="h-5" />
+            </span>
+            <sw-list-group :title="$t(item.title)">
+              <sw-list-item
+                v-for="(subItem, subItemIndex) in item.routes"
+                :title="$t(subItem.title)"
+                :key="subItemIndex"
+                :active="hasActiveUrl(subItem.route)"
+                :to="subItem.route"
+                class="sidebar-link-items"
+                tag-name="router-link"
+              >
+              </sw-list-item>
+            </sw-list-group>
+          </div>
+        </div>
       </sw-list>
     </div>
 
@@ -50,17 +69,35 @@
           :key="groupIndex"
           variant="sidebar"
         >
-          <sw-list-item
-            v-for="(item, index) in menuItems"
-            :title="$t(item.title)"
-            :key="index"
-            :active="hasActiveUrl(item.route)"
-            :to="item.route"
-            tag-name="router-link"
-            @click.native="toggleSidebar"
-          >
-            <component slot="icon" :is="item.icon" class="h-5" />
-          </sw-list-item>
+          <div v-for="(item, index) in menuItems" :key="index">
+            <div v-if="item.route">
+              <sw-list-item
+                :title="$t(item.title)"
+                :active="hasActiveUrl(item.route)"
+                :to="item.route"
+                tag-name="router-link"
+              >
+                <component slot="icon" :is="item.icon" class="h-5" />
+              </sw-list-item>
+            </div>
+            <div v-else class="sidebar-link-list-group">
+              <span class="sidebar-link-list-group-icon">
+                <component slot="icon" :is="item.icon" class="h-5" />
+              </span>
+              <sw-list-group :title="$t(item.title)">
+                <sw-list-item
+                  v-for="(subItem, subItemIndex) in item.routes"
+                  :title="$t(subItem.title)"
+                  :key="subItemIndex"
+                  :active="hasActiveUrl(subItem.route)"
+                  :to="subItem.route"
+                  class="sidebar-link-items"
+                  tag-name="router-link"
+                >
+                </sw-list-item>
+              </sw-list-group>
+            </div>
+          </div>
         </sw-list>
       </div>
     </transition>
@@ -79,6 +116,7 @@ import {
   ChartBarIcon,
   CogIcon,
   UsersIcon,
+  OfficeBuildingIcon,
 } from '@vue-hero-icons/outline'
 import { mapGetters, mapActions } from 'vuex'
 
@@ -94,6 +132,7 @@ export default {
     ChartBarIcon,
     CogIcon,
     UsersIcon,
+    OfficeBuildingIcon,
   },
 
   computed: {
@@ -106,11 +145,6 @@ export default {
             title: 'navigation.dashboard',
             icon: 'home-icon',
             route: '/admin/dashboard',
-          },
-          {
-            title: 'navigation.customers',
-            icon: 'user-icon',
-            route: '/admin/customers',
           },
           {
             title: 'navigation.items',
@@ -154,17 +188,34 @@ export default {
         ],
       ]
 
-      if (
-        this.currentUser.role == 'super admin' ||
-        this.currentUser.role == 'admin'
-      ) {
+      if (this.currentUser.role == 'super admin') {
         menu[2] = [
           {
-            title: 'navigation.users',
-            icon: 'users-icon',
-            route: '/admin/users',
+            title: 'navigation.companies',
+            icon: 'office-building-icon',
+            route: '/admin/companies',
           },
           ...menu[2],
+        ]
+      }
+
+      if (this.currentUser.role != 'super admin') {
+        menu[0] = [
+          ...menu[0],
+          {
+            title: 'navigation.contacts',
+            icon: 'user-icon',
+            routes: [
+              {
+                title: 'navigation.contacts_customers',
+                route: '/admin/contacts/customers',
+              },
+              {
+                title: 'navigation.contacts_suppliers',
+                route: '/admin/contacts/suppliers',
+              },
+            ],
+          },
         ]
       }
 

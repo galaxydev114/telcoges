@@ -79,6 +79,25 @@
         @input="$v.signupData.password_confirmation.$touch()"
       />
     </sw-input-group>
+    <div class="d-flex flex-items-start pb-2">
+      <sw-checkbox
+        variant="primary"
+        size="sm"
+        class="mt-1 mr-1"
+        @change="handleCheck($event)"
+      />
+      <div>
+        <span :class="{ 'text-danger': required }" class="text-sm">
+          {{ $t('general.telcoges_agree') }}
+        </span>
+        <router-link
+          to="#"
+          class="text-sm text-primary-400 hover:text-gray-700"
+        >
+          {{ $t('general.terms_of_service') }}
+        </router-link>
+      </div>
+    </div>
     <sw-button
       :loading="isLoading"
       :disabled="isLoading"
@@ -125,6 +144,8 @@ export default {
       submitted: false,
       isLoading: false,
       isShowPassword: false,
+      required: false,
+      isChecked: false,
     }
   },
   validations: {
@@ -194,6 +215,12 @@ export default {
       }
     },
 
+    requireAgreed() {
+      if (this.$v.isAgreed.$error) {
+        return true
+      }
+    },
+
     getInputType() {
       if (this.isShowPassword) {
         return 'text'
@@ -212,9 +239,18 @@ export default {
 
   methods: {
     ...mapActions('auth', ['register']),
+
+    checkAgreed() {
+      if (!this.isChecked) {
+        this.required = true
+        return false
+      }
+      return true
+    },
+
     async validateBeforeSubmit() {
       this.$v.signupData.$touch()
-      if (this.$v.$invalid) {
+      if (this.$v.$invalid || !this.checkAgreed()) {
         return true
       }
 
@@ -229,6 +265,16 @@ export default {
         this.isLoading = false
       } catch (error) {
         this.isLoading = false
+      }
+    },
+
+    handleCheck(e) {
+      if (!e) {
+        this.required = true
+        this.isChecked = false
+      } else {
+        this.required = false
+        this.isChecked = true
       }
     },
   },

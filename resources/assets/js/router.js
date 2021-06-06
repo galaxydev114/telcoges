@@ -23,7 +23,13 @@ import NotFoundPage from './views/errors/404.vue'
 // Dashbord
 import Dashboard from './views/dashboard/Dashboard.vue'
 
-// Customers
+// Contacts
+//== Suppliers
+import SupplierIndex from './views/suppliers/Index.vue'
+import SupplierCreate from './views/suppliers/Create.vue'
+import SupplierView from './views/suppliers/View.vue'
+
+//== Customers
 import CustomerIndex from './views/customers/Index.vue'
 import CustomerCreate from './views/customers/Create.vue'
 import CustomerView from './views/customers/View.vue'
@@ -54,6 +60,10 @@ import ExpenseCreate from './views/expenses/Create.vue'
 //User
 import UserIndex from './views/users/Index.vue'
 import UserCreate from './views/users/Create.vue'
+
+//Company
+import CompanyIndex from './views/companies/Index.vue'
+import CompanyCreate from './views/companies/Create.vue'
 
 // Report
 import SalesReports from './views/reports/SalesReports'
@@ -159,24 +169,45 @@ const routes = [
         component: Dashboard,
       },
 
+      // Suppliers
+      {
+        path: 'contacts/suppliers',
+        component: SupplierIndex,
+      },
+      {
+        path: 'contacts/suppliers/create',
+        name: 'contacts.suppliers.create',
+        component: SupplierCreate,
+      },
+      {
+        path: 'contacts/suppliers/:id/edit',
+        name: 'contacts.suppliers.edit',
+        component: SupplierCreate,
+      },
+      {
+        path: 'contacts/suppliers/:id/view',
+        name: 'contacts.suppliers.view',
+        component: SupplierView,
+      },
+
       // Customers
       {
-        path: 'customers',
+        path: 'contacts/customers',
         component: CustomerIndex,
       },
       {
-        path: 'customers/create',
-        name: 'customers.create',
+        path: 'contacts/customers/create',
+        name: 'contacts.customers.create',
         component: CustomerCreate,
       },
       {
-        path: 'customers/:id/edit',
-        name: 'customers.edit',
+        path: 'contacts/customers/:id/edit',
+        name: 'contacts.customers.edit',
         component: CustomerCreate,
       },
       {
-        path: 'customers/:id/view',
-        name: 'customers.view',
+        path: 'contacts/customers/:id/view',
+        name: 'contacts.customers.view',
         component: CustomerView,
       },
 
@@ -297,6 +328,22 @@ const routes = [
         path: 'users/:id/edit',
         name: 'users.edit',
         component: UserCreate,
+      },
+
+      // Company
+      {
+        path: 'companies',
+        component: CompanyIndex,
+      },
+      {
+        path: 'companies/create',
+        name: 'companies.create',
+        component: CompanyCreate,
+      },
+      {
+        path: 'companies/:id/edit',
+        name: 'companies.edit',
+        component: CompanyCreate,
       },
 
       // Reports

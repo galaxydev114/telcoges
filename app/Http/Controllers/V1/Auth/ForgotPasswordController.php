@@ -31,7 +31,7 @@ class ForgotPasswordController extends Controller
     protected function sendResetLinkResponse(Request $request, $response)
     {
         return response()->json([
-            'message' => 'Password reset email sent.',
+            'message' => 'Correo electrónico de restablecimiento de contraseña enviado.',
             'data' => $response,
         ]);
     }
@@ -45,6 +45,6 @@ class ForgotPasswordController extends Controller
      */
     protected function sendResetLinkFailedResponse(Request $request, $response)
     {
-        return response('Email could not be sent to this email address.', 403);
+        return response('No se pudo enviar el correo electrónico a esta dirección de correo electrónico.', 403);
     }
 }

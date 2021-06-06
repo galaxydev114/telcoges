@@ -4,7 +4,7 @@
       <template slot="actions">
         <sw-button
           tag-name="router-link"
-          :to="`/admin/customers/${$route.params.id}/edit`"
+          :to="`/admin/contacts/customers/${$route.params.id}/edit`"
           class="mr-3"
           variant="primary-outline"
         >
@@ -127,7 +127,7 @@ export default {
           let res = await this.deleteMultipleCustomers()
           if (res.data.success) {
             window.toastr['success'](this.$tc('customers.deleted_message'))
-            this.$router.push('/admin/customers')
+            this.$router.push('/admin/contacts/customers')
             return true
           } else if (request.data.error) {
             window.toastr['error'](res.data.message)
