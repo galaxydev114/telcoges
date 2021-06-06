@@ -24,6 +24,7 @@
           :data="getDueInvoices"
           :show-filter="false"
           table-class="table"
+          :filter-no-results="$t('table.filter_no_results')"
         >
           <sw-table-column
             :sortable="true"
@@ -98,16 +99,16 @@
             <sw-dropdown slot-scope="row">
               <dot-icon slot="activator" />
               <sw-dropdown-item
-                tag-name="router-link"
                 :to="`invoices/${row.id}/edit`"
+                tag-name="router-link"
               >
                 <pencil-icon class="h-5 mr-3 text-gray-600" />
                 {{ $t('general.edit') }}
               </sw-dropdown-item>
 
               <sw-dropdown-item
-                tag-name="router-link"
                 :to="`invoices/${row.id}/view`"
+                tag-name="router-link"
               >
                 <eye-icon class="h-5 mr-3 text-gray-600" />
                 {{ $t('invoices.view') }}
@@ -159,6 +160,7 @@
           :data="getRecentEstimates"
           :show-filter="false"
           table-class="table"
+          :filter-no-results="$t('table.filter_no_results')"
         >
           <sw-table-column
             :sortable="true"

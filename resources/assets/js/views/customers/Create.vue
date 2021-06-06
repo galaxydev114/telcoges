@@ -111,6 +111,21 @@
             </sw-input-group>
 
             <sw-input-group
+              :label="$t('customers.nif')"
+              class="md:col-span-3"
+              :error="nifError"
+              required
+            >
+              <sw-input
+                v-model.trim="formData.nif"
+                type="text"
+                name="nif"
+                tabindex="5"
+                :placeholder="$t('customers.personal_tax_id_number_placeholder')"
+              />
+            </sw-input-group>
+
+            <sw-input-group
               :label="$t('customers.primary_currency')"
               class="md:col-span-3"
             >
@@ -121,7 +136,7 @@
                 :allow-empty="false"
                 :searchable="true"
                 :show-labels="false"
-                :tabindex="5"
+                :tabindex="6"
                 :placeholder="$t('customers.select_currency')"
                 label="name"
                 track-by="id"
@@ -137,7 +152,7 @@
                 v-model="formData.website"
                 :invalid="$v.formData.website.$error"
                 type="url"
-                tabindex="6"
+                tabindex="7"
                 @input="$v.formData.website.$touch()"
               />
             </sw-input-group>
@@ -160,7 +175,7 @@
                 v-model.trim="billing.name"
                 type="text"
                 name="address_name"
-                tabindex="7"
+                tabindex="8"
               />
             </sw-input-group>
 
@@ -174,7 +189,7 @@
                 :searchable="true"
                 :show-labels="false"
                 :allow-empty="true"
-                :tabindex="8"
+                :tabindex="9"
                 :placeholder="$t('general.select_country')"
                 label="name"
                 track-by="id"
@@ -189,7 +204,7 @@
                 v-model="billing.state"
                 name="billing.state"
                 type="text"
-                tabindex="9"
+                tabindex="10"
               />
             </sw-input-group>
 
@@ -198,7 +213,7 @@
                 v-model="billing.city"
                 name="billing.city"
                 type="text"
-                tabindex="10"
+                tabindex="11"
               />
             </sw-input-group>
 
@@ -213,7 +228,7 @@
                   type="text"
                   name="billing_street1"
                   rows="3"
-                  tabindex="11"
+                  tabindex="12"
                   @input="$v.billing.address_street_1.$touch()"
                 />
               </sw-input-group>
@@ -225,7 +240,7 @@
                   type="text"
                   name="billing_street2"
                   rows="3"
-                  tabindex="12"
+                  tabindex="13"
                   @input="$v.billing.address_street_2.$touch()"
                 />
               </sw-input-group>
@@ -237,13 +252,13 @@
                   v-model.trim="billing.phone"
                   type="text"
                   name="phone"
-                  tabindex="13"
+                  tabindex="14"
                 />
               </sw-input-group>
 
               <sw-input-group :label="$t('customers.zip_code')">
                 <sw-input
-                  tabindex="14"
+                  tabindex="15"
                   v-model.trim="billing.zip"
                   type="text"
                   name="zip"
@@ -289,7 +304,7 @@
                 v-model.trim="shipping.name"
                 type="text"
                 name="address_name"
-                tabindex="15"
+                tabindex="16"
               />
             </sw-input-group>
 
@@ -302,7 +317,7 @@
                 :options="countries"
                 :searchable="true"
                 :show-labels="false"
-                :tabindex="16"
+                :tabindex="17"
                 :allow-empty="true"
                 :placeholder="$t('general.select_country')"
                 label="name"
@@ -318,7 +333,7 @@
                 v-model="shipping.state"
                 name="shipping.state"
                 type="text"
-                tabindex="17"
+                tabindex="18"
               />
             </sw-input-group>
 
@@ -327,7 +342,7 @@
                 v-model="shipping.city"
                 name="shipping.city"
                 type="text"
-                tabindex="18"
+                tabindex="19"
               />
             </sw-input-group>
 
@@ -337,7 +352,7 @@
             >
               <sw-textarea
                 v-model.trim="shipping.address_street_1"
-                :tabindex="19"
+                :tabindex="20"
                 :placeholder="$t('general.street_1')"
                 type="text"
                 name="street_1"
@@ -355,7 +370,7 @@
 
               <sw-textarea
                 v-model.trim="shipping.address_street_2"
-                :tabindex="20"
+                :tabindex="21"
                 :placeholder="$t('general.street_2')"
                 type="text"
                 name="street_2"
@@ -378,7 +393,7 @@
                   v-model.trim="shipping.phone"
                   type="text"
                   name="phone"
-                  tabindex="21"
+                  tabindex="22"
                 />
               </sw-input-group>
 
@@ -387,7 +402,7 @@
                   v-model.trim="shipping.zip"
                   type="text"
                   name="zip"
-                  tabindex="22"
+                  tabindex="23"
                 />
               </sw-input-group>
             </div>
@@ -418,7 +433,7 @@
                 :isEdit="isEdit"
                 :is="field.type + 'Field'"
                 :invalid-fields="invalidFields"
-                :tabindex="23 + index"
+                :tabindex="24 + index"
                 @update="setCustomFieldValue"
               />
             </sw-input-group>
@@ -480,6 +495,7 @@ export default {
         currency_id: null,
         website: null,
         addresses: [],
+        nif: '',
       },
       currency: null,
       billing: {
@@ -523,6 +539,9 @@ export default {
       },
       website: {
         url,
+      },
+      nif: {
+        required,
       },
     },
     billing: {
@@ -610,6 +629,15 @@ export default {
 
       if (!this.$v.formData.email.email) {
         return this.$tc('validation.email_incorrect')
+      }
+    },
+    nifError() {
+      if (!this.$v.formData.nif.$error) {
+        return ''
+      }
+
+      if (!this.$v.formData.nif.required) {
+        return this.$tc('validation.required')
       }
     },
     urlError() {

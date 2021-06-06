@@ -181,6 +181,21 @@ export default {
         ]
       }
 
+      if (this.currentUser.role == 'user') {
+        menu = [
+          {
+            link: '/admin/settings/user-profile',
+            title: 'settings.menu_title.account_settings',
+            icon: 'user-icon',
+          },
+          {
+            link: '/admin/settings/notes',
+            title: 'settings.menu_title.notes',
+            icon: 'clipboard-check-icon',
+          },
+        ]
+      }
+
       return {
         currentSetting: {
           link: '/admin/settings/user-profile',

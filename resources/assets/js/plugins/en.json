@@ -17,6 +17,9 @@
     "contacts_suppliers": "Proveedores",
     "my_users": "Mis Usuarios"
   },
+  "table": {
+    "filter_no_results": "No hay filas coincidentes"
+  },
   "general": {
     "add_company": "Añadir empresa",
     "view_pdf": "Ver PDF",
@@ -237,7 +240,9 @@
     "confirm_delete": "No podrá recuperar este cliente y todas las facturas, estimaciones y pagos relacionados. | No podrá recuperar estos clientes y todas las facturas, estimaciones y pagos relacionados.",
     "created_message": "Cliente creado con éxito",
     "updated_message": "Cliente actualizado con éxito",
-    "deleted_message": "Cliente eliminado correctamente | Clientes eliminados exitosamente"
+    "deleted_message": "Cliente eliminado correctamente | Clientes eliminados exitosamente",
+    "nif": "NIF",
+    "personal_tax_id_number_placeholder": "Número de Identificación Fiscal"
   },
   "suppliers": {
     "title": "Proveedores",
@@ -564,6 +569,7 @@
     "select_a_customer": "Selecciona un cliente",
     "expense_title": "Título",
     "customer": "Cliente",
+    "supplier": "Proveedor",
     "contact": "Contacto",
     "category": "Categoría",
     "from_date": "Desde la fecha",
@@ -844,7 +850,9 @@
       "address": "Dirección",
       "zip": "Código Postal",
       "save": "Guardar",
-      "updated_message": "Información de la empresa actualizada con éxito"
+      "updated_message": "Información de la empresa actualizada con éxito",
+      "cif": "CiF - DNI",
+      "company_tax_id_number_placeholder": "Certificado de Identificación Fiscal"
     },
     "custom_fields": {
       "title": "Campos Personalizados",

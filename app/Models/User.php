@@ -397,10 +397,12 @@ class User extends Authenticatable implements HasMedia
         $data['creator_id'] = Auth::id();
         $data['company_id'] = $request->header('company');
         $data['role'] = 'customer';
-        $data['password'] = Hash::make($request->password);
+        // $data['password'] = Hash::make($request->password);
+      
         $customer = User::create($data);
 
         $customer['currency_id'] = $request->currency_id;
+        $customer['nif'] = $request->nif;
         $customer->save();
 
         if ($request->addresses) {
@@ -432,12 +434,16 @@ class User extends Authenticatable implements HasMedia
             'website',
             'enable_portal'
         ]);
-
         $data['role'] = 'customer';
-        if ($request->has('password')) {
-            $customer->password = Hash::make($request->password);
-        }
+        // if ($request->has('password')) {
+        //     $customer->password = Hash::make($request->password);
+        // }
+        
         $customer->update($data);
+
+        $customer->nif = $request->nif;
+
+        $customer->save();
 
         $customer->addresses()->delete();
         if ($request->addresses) {
@@ -472,10 +478,11 @@ class User extends Authenticatable implements HasMedia
         $data['creator_id'] = Auth::id();
         $data['company_id'] = $request->header('company');
         $data['role'] = 'supplier';
-        $data['password'] = Hash::make($request->password);
+        // $data['password'] = Hash::make($request->password);
         $supplier = User::create($data);
 
         $supplier['currency_id'] = $request->currency_id;
+        $supplier['nif'] = $request->nif;
         $supplier->save();
 
         if ($request->addresses) {
@@ -509,11 +516,14 @@ class User extends Authenticatable implements HasMedia
         ]);
 
         $data['role'] = 'supplier';
-        if ($request->has('password')) {
-            $supplier->password = Hash::make($request->password);
-        }
+        // if ($request->has('password')) {
+        //     $supplier->password = Hash::make($request->password);
+        // }
         $supplier->update($data);
 
+        $supplier->nif = $request->nif;
+        $supplier->save();
+        
         $supplier->addresses()->delete();
         if ($request->addresses) {
             foreach ($request->addresses as $address) {

@@ -103,11 +103,13 @@ export default {
     ChartSquareBarIcon
   },
   data() {
+    const date = new Date()
+    let currentYear = date.getFullYear()
     return {
       ...this.$store.state.dashboard,
       isLoaded: false,
-      years: ['Este año', 'Año anterior'],
-      selectedYear: 'Este año',
+      years: [currentYear, currentYear-1],
+      selectedYear: currentYear,
     }
   },
   computed: {
@@ -129,7 +131,10 @@ export default {
   },
   watch: {
     selectedYear(val) {
-      if (val === 'Año anterior') {
+      const date = new Date()
+      let currentYear = date.getFullYear()
+
+      if (val === (currentYear-1)) {
         let params = { previous_year: true }
         this.loadData(params)
       } else {

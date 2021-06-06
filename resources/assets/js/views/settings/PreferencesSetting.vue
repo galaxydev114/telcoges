@@ -36,7 +36,7 @@
           />
         </sw-input-group>
 
-        <sw-input-group
+        <!-- <sw-input-group
           :label="$tc('settings.preferences.default_language')"
           :error="languageError"
           required
@@ -53,7 +53,7 @@
             label="name"
             track-by="code"
           />
-        </sw-input-group>
+        </sw-input-group> -->
 
         <sw-input-group
           :label="$tc('settings.preferences.time_zone')"
@@ -160,7 +160,7 @@ export default {
     return {
       isLoading: false,
       formData: {
-        language: null,
+        language: 'es',
         currency: null,
         timeZone: null,
         dateFormat: null,
@@ -176,9 +176,9 @@ export default {
       currency: {
         required,
       },
-      language: {
-        required,
-      },
+      // language: {
+      //   required,
+      // },
       dateFormat: {
         required,
       },
@@ -211,14 +211,14 @@ export default {
       }
     },
 
-    languageError() {
-      if (!this.$v.formData.language.$error) {
-        return ''
-      }
-      if (!this.$v.formData.language.required) {
-        return this.$tc('validation.required')
-      }
-    },
+    // languageError() {
+    //   if (!this.$v.formData.language.$error) {
+    //     return ''
+    //   }
+    //   if (!this.$v.formData.language.required) {
+    //     return this.$tc('validation.required')
+    //   }
+    // },
 
     timeZoneError() {
       if (!this.$v.formData.timeZone.$error) {

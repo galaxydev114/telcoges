@@ -79,7 +79,7 @@
           />
         </sw-input-group>
 
-        <sw-input-group
+        <!-- <sw-input-group
           :label="$tc('settings.company_info.country')"
           :error="countryError"
           required
@@ -96,7 +96,7 @@
             label="name"
             track-by="id"
           />
-        </sw-input-group>
+        </sw-input-group> -->
 
         <sw-input-group :label="$tc('settings.company_info.state')">
           <sw-input
@@ -126,6 +126,17 @@
           />
         </sw-input-group>
 
+        <sw-input-group :label="$tc('settings.company_info.cif')" :error="cifError" required>
+          <sw-input
+            v-model="formData.cif"
+            :invalid="$v.formData.cif.$error"
+            :placeholder="$tc('settings.company_info.company_tax_id_number_placeholder')"
+            name="city"
+            class="mt-2"
+            type="text"
+          />
+        </sw-input-group>
+        
         <div>
           <sw-input-group
             :label="$tc('settings.company_info.address')"
@@ -185,9 +196,10 @@ export default {
         address_street_1: '',
         address_street_2: '',
         website: '',
-        country_id: null,
+        // country_id: null,
         state: '',
         city: '',
+        cif: '',
       },
       isLoading: false,
       country: null,
@@ -212,9 +224,9 @@ export default {
       name: {
         required,
       },
-      country_id: {
-        required,
-      },
+      // country_id: {
+      //   required,
+      // },
       email: {
         email,
       },
@@ -223,6 +235,9 @@ export default {
       },
       address_street_2: {
         maxLength: maxLength(255),
+      },
+      cif: {
+        required,
       },
     },
   },
@@ -236,14 +251,22 @@ export default {
         return this.$tc('validation.required')
       }
     },
-    countryError() {
-      if (!this.$v.formData.country_id.$error) {
+    cifError() {
+      if (!this.$v.formData.cif.$error) {
         return ''
       }
-      if (!this.$v.formData.country_id.required) {
+      if (!this.$v.formData.cif.required) {
         return this.$tc('validation.required')
       }
     },
+    // countryError() {
+    //   if (!this.$v.formData.country_id.$error) {
+    //     return ''
+    //   }
+    //   if (!this.$v.formData.country_id.required) {
+    //     return this.$tc('validation.required')
+    //   }
+    // },
     address1Error() {
       if (!this.$v.formData.address_street_1.$error) {
         return ''
@@ -295,6 +318,7 @@ export default {
         this.formData.phone = response.data.user.company.address.phone
         this.formData.state = response.data.user.company.address.state
         this.formData.city = response.data.user.company.address.city
+        this.formData.cif = response.data.user.company.address.cif
         this.country = response.data.user.company.address.country
         this.previewLogo = response.data.user.company.logo
       }

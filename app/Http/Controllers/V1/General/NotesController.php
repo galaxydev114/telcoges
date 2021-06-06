@@ -19,6 +19,7 @@ class NotesController extends Controller
         $limit = $request->limit ?? 10;
 
         $notes = Note::latest()
+            ->where('user_id', auth()->user()->id)
             ->applyFilters($request->only(['type', 'search']))
             ->paginate($limit);
 
@@ -35,7 +36,13 @@ class NotesController extends Controller
      */
     public function store(NotesRequest $request)
     {
-        $note = Note::create($request->validated());
+        $data = $request->validated();
+        $note = Note::create([
+            'type' => $data['type'],
+            'name' => $data['name'],
+            'notes' => $data['notes'],
+            'user_id' => auth()->user()->id
+        ]);
 
         return response()->json([
             'note' => $note

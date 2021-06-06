@@ -128,14 +128,14 @@
             />
           </sw-input-group>
 
-          <sw-input-group :label="$t('expenses.customer')">
+          <sw-input-group :label="$t('expenses.supplier')">
             <sw-select
               ref="baseSelect"
-              v-model="customer"
-              :options="customers"
+              v-model="supplier"
+              :options="suppliers"
               :searchable="true"
               :show-labels="false"
-              :placeholder="$t('customers.select_a_customer')"
+              :placeholder="$t('suppliers.select_a_supplier')"
               class="mt-1"
               label="name"
               track-by="id"
@@ -279,7 +279,7 @@ export default {
       category: null,
       previewReceipt: null,
       fileSendUrl: '/api/v1/expenses',
-      customer: null,
+      supplier: null,
       fileObject: null,
     }
   },
@@ -334,7 +334,7 @@ export default {
 
     ...mapGetters('category', ['categories']),
 
-    ...mapGetters('customer', ['customers']),
+    ...mapGetters('supplier', ['suppliers']),
 
     ...mapGetters('company', ['getSelectedCompany']),
 
@@ -415,7 +415,7 @@ export default {
 
     ...mapActions('category', ['fetchCategories']),
 
-    ...mapActions('customer', ['fetchCustomers']),
+    ...mapActions('supplier', ['fetchSuppliers']),
 
     openCategoryModal() {
       this.openModal({
@@ -441,8 +441,8 @@ export default {
       this.previewReceipt = res.data.image
     },
 
-    setExpenseCustomer(id) {
-      this.customer = this.customers.find((c) => {
+    setExpenseSupplier(id) {
+      this.supplier = this.suppliers.find((c) => {
         return c.id == id
       })
     },
@@ -450,7 +450,7 @@ export default {
     async loadData() {
       this.isRequestOnGoing = true
       await this.fetchCategories({ limit: 'all' })
-      await this.fetchCustomers({ limit: 'all' })
+      await this.fetchSuppliers({ limit: 'all' })
       if (this.isEdit) {
         this.isRequestOnGoing = true
         let response = await this.fetchExpense(this.$route.params.id)
@@ -473,8 +473,8 @@ export default {
         }
 
         if (response.data.expense.user_id) {
-          this.customer = this.customers.find(
-            (customer) => customer.id === response.data.expense.user_id
+          this.supplier = this.suppliers.find(
+            (supplier) => supplier.id === response.data.expense.user_id
           )
         }
 
@@ -493,8 +493,8 @@ export default {
         return true
       }
       await this.setInitialCustomFields('Expense')
-      if (this.$route.query.customer) {
-        this.setExpenseCustomer(parseInt(this.$route.query.customer))
+      if (this.$route.query.supplier) {
+        this.setExpenseSupplier(parseInt(this.$route.query.supplier))
       }
       this.isRequestOnGoing = false
     },
@@ -519,7 +519,7 @@ export default {
       )
       data.append('amount', this.formData.amount)
       data.append('notes', this.formData.notes ? this.formData.notes : '')
-      data.append('user_id', this.customer ? this.customer.id : '')
+      data.append('user_id', this.supplier ? this.supplier.id : '')
       data.append('customFields', JSON.stringify(this.formData.customFields))
 
       if (this.isEdit) {

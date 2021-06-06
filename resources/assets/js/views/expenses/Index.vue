@@ -35,11 +35,11 @@
     <!--Filter Wrapper -->
     <slide-y-up-transition>
       <sw-filter-wrapper v-show="showFilters" class="mt-3">
-        <sw-input-group :label="$t('expenses.customer')" class="flex-1 mt-3">
-          <base-customer-select
-            ref="customerSelect"
-            @select="onSelectCustomer"
-            @deselect="clearCustomerSearch"
+        <sw-input-group :label="$t('expenses.supplier')" class="flex-1 mt-3">
+          <base-supplier-select
+            ref="supplierSelect"
+            @select="onSelectSupplier"
+            @deselect="clearSupplierSearch"
           />
         </sw-input-group>
 
@@ -202,12 +202,12 @@
 
         <sw-table-column
           :sortable="true"
-          :label="$t('expenses.customer')"
+          :label="$t('expenses.supplier')"
           sort-as="user_name"
           show="user_name"
         >
           <template slot-scope="row">
-            <span>{{ $t('expenses.customer') }}</span>
+            <span>{{ $t('expenses.supplier') }}</span>
             <span> {{ row.user_name ? row.user_name : $t('expenses.not_selected') }} </span>
           </template>
         </sw-table-column>
@@ -324,7 +324,7 @@ export default {
 
     ...mapGetters('company', ['defaultCurrency']),
 
-    ...mapGetters('customer', ['customers']),
+    ...mapGetters('supplier', ['suppliers']),
 
     selectField: {
       get: function () {
@@ -413,8 +413,8 @@ export default {
       }
     },
 
-    onSelectCustomer(customer) {
-      this.filters.user = customer
+    onSelectSupplier(supplier) {
+      this.filters.user = supplier
     },
 
     refreshTable() {
@@ -427,7 +427,7 @@ export default {
 
     clearFilter() {
       if (this.filters.user) {
-        this.$refs.customerSelect.$refs.baseSelect.removeElement(
+        this.$refs.supplierSelect.$refs.baseSelect.removeElement(
           this.filters.user
         )
       }
@@ -440,7 +440,7 @@ export default {
       }
     },
 
-    async clearCustomerSearch(removedOption, id) {
+    async clearSupplierSearch(removedOption, id) {
       this.filters.user = ''
       this.refreshTable()
     },

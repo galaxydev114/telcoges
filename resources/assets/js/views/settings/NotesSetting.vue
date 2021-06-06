@@ -28,6 +28,7 @@
     <sw-table-component
       ref="table"
       variant="gray"
+      :filter-no-results="$t('table.filter_no_results')"
       :show-filter="false"
       :data="fetchData"
     >

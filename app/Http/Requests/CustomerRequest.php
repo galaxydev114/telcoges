@@ -28,6 +28,9 @@ class CustomerRequest extends FormRequest
             'name' => [
                 'required'
             ],
+            'nif' => [
+                'required'
+            ],
             'addresses.*.address_street_1' => [
                 'max:255'
             ],
