@@ -50,7 +50,7 @@ class MailResetPasswordNotification extends ResetPassword
             ->action('Restablecer la contraseña', $link )
             ->line("Este enlace de restablecimiento de contraseña caducará en ".config('auth.passwords.users.expire')." minutos" )
             ->line("Si no solicitó un restablecimiento de contraseña, no es necesario realizar ninguna otra acción." )
-            ->salutation('Saludos, ' . "\n" . config('app.name'));
+            ->salutation('Saludos, ' . "<br/>" . config('app.name'));
     }
 
     /**
