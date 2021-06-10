@@ -147,6 +147,20 @@ export default {
             route: '/admin/dashboard',
           },
           {
+            title: 'navigation.contacts',
+            icon: 'user-icon',
+            routes: [
+              {
+                title: 'navigation.contacts_customers',
+                route: '/admin/contacts/customers',
+              },
+              {
+                title: 'navigation.contacts_suppliers',
+                route: '/admin/contacts/suppliers',
+              },
+            ],
+          },
+          {
             title: 'navigation.items',
             icon: 'star-icon',
             route: '/admin/items',
@@ -161,7 +175,7 @@ export default {
           {
             title: 'navigation.invoices',
             icon: 'document-text-icon',
-            route: '/admin/invoices',
+            route: '/admin/invoices', 
           },
           {
             title: 'navigation.payments',
@@ -199,25 +213,25 @@ export default {
         ]
       }
 
-      if (this.currentUser.role != 'super admin') {
-        menu[0] = [
-          ...menu[0],
-          {
-            title: 'navigation.contacts',
-            icon: 'user-icon',
-            routes: [
-              {
-                title: 'navigation.contacts_customers',
-                route: '/admin/contacts/customers',
-              },
-              {
-                title: 'navigation.contacts_suppliers',
-                route: '/admin/contacts/suppliers',
-              },
-            ],
-          },
-        ]
-      }
+      // if (this.currentUser.role != 'super admin') {
+      //   menu[0] = [
+      //     ...menu[0],
+      //     {
+      //       title: 'navigation.contacts',
+      //       icon: 'user-icon',
+      //       routes: [
+      //         {
+      //           title: 'navigation.contacts_customers',
+      //           route: '/admin/contacts/customers',
+      //         },
+      //         {
+      //           title: 'navigation.contacts_suppliers',
+      //           route: '/admin/contacts/suppliers',
+      //         },
+      //       ],
+      //     },
+      //   ]
+      // }
 
       return menu
     },

@@ -4,23 +4,23 @@
       <sw-page-header class="mb-5" :title="pageTitle">
         <sw-breadcrumb slot="breadcrumbs">
           <sw-breadcrumb-item
-            to="/admin/dashboard"
             :title="$t('general.home')"
+            to="/admin/dashboard"
           />
           <sw-breadcrumb-item
-            to="/admin/contacts/suppliers"
             :title="$tc('suppliers.supplier', 2)"
+            to="/admin/contacts/suppliers"
           />
           <sw-breadcrumb-item
             v-if="$route.name === 'contacts.suppliers.edit'"
-            to="#"
             :title="$t('suppliers.edit_supplier')"
+            to="#"
             active
           />
           <sw-breadcrumb-item
             v-else
-            to="#"
             :title="$t('suppliers.new_supplier')"
+            to="#"
             active
           />
         </sw-breadcrumb>
@@ -56,8 +56,8 @@
           >
             <sw-input-group
               :label="$t('suppliers.display_name')"
-              class="md:col-span-3"
               :error="displayNameError"
+              class="md:col-span-3"
               required
             >
               <sw-input
@@ -85,8 +85,8 @@
 
             <sw-input-group
               :label="$t('suppliers.email')"
-              class="md:col-span-3"
               :error="emailError"
+              class="md:col-span-3"
             >
               <sw-input
                 :invalid="$v.formData.email.$error"
@@ -107,6 +107,24 @@
                 type="text"
                 name="phone"
                 tabindex="4"
+              />
+            </sw-input-group>
+
+            <sw-input-group
+              :label="$t('customers.nif')"
+              :error="nifError"
+              class="md:col-span-3"
+              required
+            >
+              <sw-input
+                :invalid="$v.formData.nif.$error"
+                v-model.trim="formData.nif"
+                :placeholder="
+                  $t('customers.personal_tax_id_number_placeholder')
+                "
+                type="text"
+                name="nif"
+                tabindex="5"
               />
             </sw-input-group>
 
@@ -243,10 +261,10 @@
 
               <sw-input-group :label="$t('suppliers.zip_code')">
                 <sw-input
-                  tabindex="14"
                   v-model.trim="billing.zip"
                   type="text"
                   name="zip"
+                  tabindex="14"
                 />
               </sw-input-group>
             </div>
@@ -406,16 +424,16 @@
             class="grid col-span-5 lg:col-span-4 gap-y-6 gap-x-4 md:grid-cols-6"
           >
             <sw-input-group
-              class="md:col-span-3"
               v-for="(field, index) in customFields"
               :label="field.label"
               :required="field.is_required ? true : false"
               :key="index"
+              class="md:col-span-3"
             >
               <component
                 :type="field.type.label"
                 :field="field"
-                :isEdit="isEdit"
+                :is-edit="isEdit"
                 :is="field.type + 'Field'"
                 :invalid-fields="invalidFields"
                 :tabindex="23 + index"
@@ -480,6 +498,7 @@ export default {
         currency_id: null,
         website: null,
         addresses: [],
+        nif: '',
       },
       currency: null,
       billing: {
@@ -523,6 +542,9 @@ export default {
       },
       website: {
         url,
+      },
+      nif: {
+        required,
       },
     },
     billing: {
@@ -619,6 +641,15 @@ export default {
 
       if (!this.$v.formData.website.url) {
         return this.$tc('validation.invalid_url')
+      }
+    },
+    nifError() {
+      if (!this.$v.formData.nif.$error) {
+        return ''
+      }
+
+      if (!this.$v.formData.nif.required) {
+        return this.$tc('validation.required')
       }
     },
     billAddress1Error() {

@@ -56,8 +56,8 @@
           >
             <sw-input-group
               :label="$t('customers.display_name')"
-              class="md:col-span-3"
               :error="displayNameError"
+              class="md:col-span-3"
               required
             >
               <sw-input
@@ -85,8 +85,8 @@
 
             <sw-input-group
               :label="$t('customers.email')"
-              class="md:col-span-3"
               :error="emailError"
+              class="md:col-span-3"
             >
               <sw-input
                 :invalid="$v.formData.email.$error"
@@ -112,16 +112,17 @@
 
             <sw-input-group
               :label="$t('customers.nif')"
-              class="md:col-span-3"
               :error="nifError"
+              class="md:col-span-3"
               required
             >
               <sw-input
+                :invalid="$v.formData.nif.$error"
                 v-model.trim="formData.nif"
+                :placeholder="$t('customers.personal_tax_id_number_placeholder')"
                 type="text"
                 name="nif"
                 tabindex="5"
-                :placeholder="$t('customers.personal_tax_id_number_placeholder')"
               />
             </sw-input-group>
 
@@ -258,10 +259,10 @@
 
               <sw-input-group :label="$t('customers.zip_code')">
                 <sw-input
-                  tabindex="15"
                   v-model.trim="billing.zip"
                   type="text"
                   name="zip"
+                  tabindex="15"
                 />
               </sw-input-group>
             </div>
@@ -421,16 +422,16 @@
             class="grid col-span-5 lg:col-span-4 gap-y-6 gap-x-4 md:grid-cols-6"
           >
             <sw-input-group
-              class="md:col-span-3"
               v-for="(field, index) in customFields"
               :label="field.label"
               :required="field.is_required ? true : false"
               :key="index"
+              class="md:col-span-3"
             >
               <component
                 :type="field.type.label"
                 :field="field"
-                :isEdit="isEdit"
+                :is-edit="isEdit"
                 :is="field.type + 'Field'"
                 :invalid-fields="invalidFields"
                 :tabindex="24 + index"

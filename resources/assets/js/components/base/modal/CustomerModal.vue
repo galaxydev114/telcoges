@@ -51,6 +51,24 @@
             </sw-input-group>
 
             <sw-input-group
+              :label="$t('customers.nif')"
+              :error="nifError"
+              class="mt-4"
+              variant="horizontal"
+              required
+            >
+              <sw-input
+                :invalid="$v.formData.nif.$error"
+                v-model.trim="formData.nif"
+                :placeholder="$t('customers.personal_tax_id_number_placeholder')"
+                type="text"
+                name="nif"
+                class="mt-1 md:mt-0"
+                tabindex="5"
+              />
+            </sw-input-group>
+
+            <sw-input-group
               :label="$tc('settings.currencies.currency')"
               class="mt-4"
               variant="horizontal"
@@ -62,7 +80,7 @@
                 :allow-empty="false"
                 :show-labels="false"
                 :placeholder="$t('customers.select_currency')"
-                :maxHeight="200"
+                :max-height="200"
                 label="name"
                 class="mt-1 md:mt-0"
                 track-by="id"
@@ -385,6 +403,7 @@ export default {
         website: null,
         contact_name: null,
         addresses: [],
+        nif: '',
       },
       billing: {
         name: null,
@@ -421,6 +440,9 @@ export default {
       },
       website: {
         url,
+      },
+      nif: {
+        required,
       },
     },
     billing: {
@@ -508,6 +530,15 @@ export default {
       }
       if (!this.$v.shipping.address_street_2.maxLength) {
         return this.$t('validation.address_maxlength')
+      }
+    },
+    nifError() {
+      if (!this.$v.formData.nif.$error) {
+        return ''
+      }
+
+      if (!this.$v.formData.nif.required) {
+        return this.$tc('validation.required')
       }
     },
 
