@@ -138,7 +138,7 @@ class RegisterController extends Controller
             'estimate_billing_address_format' => $billingAddressFormat,
             'payment_company_address_format' => $companyAddressFormat,
             'payment_from_customer_address_format' => $paymentFromCustomerAddress,
-            'currency' => 1,
+            'currency' => 3,
             'time_zone' => 'Asia/Kolkata',
             'language' => 'en',
             'fiscal_year' => '1-12',

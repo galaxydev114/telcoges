@@ -922,6 +922,7 @@
         "title": "Facturas",
         "notes": "Notas",
         "invoice_prefix": "Prefijo de las facturas",
+        "invoice_number_length": "Longitud del número de factura",
         "default_invoice_email_body": "Cuerpo predeterminado del correo electrónico de la factura",
         "invoice_settings": "Ajustes de facturas",
         "autogenerate_invoice_number": "Autogenerar número de factura",
