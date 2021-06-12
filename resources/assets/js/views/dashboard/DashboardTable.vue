@@ -23,8 +23,8 @@
           ref="inv_table"
           :data="getDueInvoices"
           :show-filter="false"
-          table-class="table"
           :filter-no-results="$t('table.filter_no_results')"
+          table-class="table"
         >
           <sw-table-column
             :sortable="true"
@@ -159,8 +159,8 @@
           ref="est_table"
           :data="getRecentEstimates"
           :show-filter="false"
-          table-class="table"
           :filter-no-results="$t('table.filter_no_results')"
+          table-class="table"
         >
           <sw-table-column
             :sortable="true"
@@ -229,16 +229,16 @@
               <dot-icon slot="activator" />
 
               <sw-dropdown-item
-                tag-name="router-link"
                 :to="`estimates/${row.id}/edit`"
+                tag-name="router-link"
               >
                 <pencil-icon class="h-5 mr-3 text-gray-600" />
                 {{ $t('general.edit') }}
               </sw-dropdown-item>
 
               <sw-dropdown-item
-                tag-name="router-link"
                 :to="`estimates/${row.id}/view`"
+                tag-name="router-link"
               >
                 <eye-icon class="h-5 mr-3 text-gray-600" />
                 {{ $t('general.view') }}

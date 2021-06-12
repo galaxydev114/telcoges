@@ -134,7 +134,7 @@ export default {
       const date = new Date()
       let currentYear = date.getFullYear()
 
-      if (val === (currentYear-1)) {
+      if (val === (currentYear - 1)) {
         let params = { previous_year: true }
         this.loadData(params)
       } else {

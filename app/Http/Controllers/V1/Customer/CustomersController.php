@@ -44,6 +44,7 @@ class CustomersController extends Controller
         //     'customers' => $customers,
         //     'customerTotalCount' => User::whereRole('customer')->count()
         // ]);
+        
         return response()->json([
             'customers' => $customers,
             'customerTotalCount' => User::where([

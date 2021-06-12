@@ -33,6 +33,12 @@
             </label>
             <div class="flex flex-col flex-1 p-0">
               <label
+                v-if="selectedCustomer.nif"
+                class="relative w-11/12 text-sm truncate"
+              >
+                {{ selectedCustomer.nif }}
+              </label>
+              <label
                 v-if="selectedCustomer.billing_address.name"
                 class="relative w-11/12 text-sm truncate"
               >
@@ -84,6 +90,12 @@
               {{ $t('general.ship_to') }}
             </label>
             <div class="flex flex-col flex-1 p-0">
+              <label
+                v-if="selectedCustomer.nif"
+                class="relative w-11/12 text-sm truncate"
+              >
+                {{ selectedCustomer.nif }}
+              </label>
               <label
                 v-if="selectedCustomer.shipping_address.name"
                 class="relative w-11/12 text-sm truncate"

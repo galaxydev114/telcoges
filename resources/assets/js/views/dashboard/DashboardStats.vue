@@ -28,7 +28,7 @@
     <router-link
       slot="item-title"
       class="relative flex justify-between p-3 bg-white rounded shadow hover:bg-gray-100 lg:col-span-2 xl:p-4"
-      to="/admin/customers"
+      to="/admin/contacts/customers"
     >
       <div>
         <span

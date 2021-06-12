@@ -625,6 +625,7 @@ export default {
         website: null,
         contact_name: null,
         addresses: [],
+        nif: '',
       }
 
       this.billingCountry = null
@@ -688,6 +689,7 @@ export default {
       this.formData.contact_name = this.modalData.contact_name
       this.formData.phone = this.modalData.phone
       this.formData.website = this.modalData.website
+      this.formData.nif = this.modalData.nif
       this.currency = this.modalData.currency
 
       if (this.modalData.billing_address) {
