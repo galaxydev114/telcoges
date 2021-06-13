@@ -45,7 +45,7 @@
           </sw-dropdown-item>
 
           <sw-dropdown-item
-            :to="`/admin/invoices/${$route.params.id}/edit`"
+            :to="`/admin/sales/${$route.params.id}/edit`"
             tag-name="router-link"
           >
             <pencil-icon class="h-5 mr-3 text-gray-600" />
@@ -157,7 +157,7 @@
       >
         <router-link
           v-for="(invoice, index) in invoices"
-          :to="`/admin/invoices/${invoice.id}/view`"
+          :to="`/admin/sales/${invoice.id}/view`"
           :id="'invoice-' + invoice.id"
           :key="index"
           :class="[
@@ -447,7 +447,7 @@ export default {
             let request = await this.deleteInvoice({ ids: [id] })
             if (request.data.success) {
               window.toastr['success'](this.$tc('invoices.deleted_message', 1))
-              this.$router.push('/admin/invoices')
+              this.$router.push('/admin/sales')
             } else if (request.data.error) {
               window.toastr['error'](request.data.message)
             }

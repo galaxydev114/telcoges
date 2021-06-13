@@ -271,6 +271,28 @@ const routes = [
         component: InvoiceCreate,
       },
 
+      // Invoices
+      {
+        path: 'sales',
+        name: 'sales.index',
+        component: InvoiceIndex,
+      },
+      {
+        path: 'sales/create',
+        name: 'sales.create',
+        component: InvoiceCreate,
+      },
+      {
+        path: 'sales/:id/view',
+        name: 'sales.view',
+        component: InvoiceView,
+      },
+      {
+        path: 'sales/:id/edit',
+        name: 'sales.edit',
+        component: InvoiceCreate,
+      },
+
       // Payments
       {
         path: 'payments',

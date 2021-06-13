@@ -173,9 +173,9 @@ export default {
             route: '/admin/estimates',
           },
           {
-            title: 'navigation.invoices',
+            title: 'navigation.sales',
             icon: 'document-text-icon',
-            route: '/admin/invoices', 
+            route: '/admin/sales',
           },
           {
             title: 'navigation.payments',

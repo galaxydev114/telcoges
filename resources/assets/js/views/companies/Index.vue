@@ -198,7 +198,7 @@
         >
           <template slot-scope="row">
             <span>{{ $t('companies.phone') }}</span>
-            <span>{{ row.phone ? row.phone : 'No Contact' }} </span>
+            <span>{{ row.phone ? row.phone : 'Sin Contacto' }} </span>
           </template>
         </sw-table-column>
 

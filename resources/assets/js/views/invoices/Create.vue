@@ -10,19 +10,16 @@
             :title="$t('general.home')"
             to="/admin/dashboard"
           />
+          <sw-breadcrumb-item :title="$tc('sales.sale', 2)" to="/admin/sales" />
           <sw-breadcrumb-item
-            :title="$tc('invoices.invoice', 2)"
-            to="/admin/invoices"
-          />
-          <sw-breadcrumb-item
-            v-if="$route.name === 'invoices.edit'"
-            :title="$t('invoices.edit_invoice')"
+            v-if="$route.name === 'sales.edit'"
+            :title="$t('sales.edit_sale')"
             to="#"
             active
           />
           <sw-breadcrumb-item
             v-else
-            :title="$t('invoices.new_invoice')"
+            :title="$t('sales.new_sale')"
             to="#"
             active
           />
@@ -50,7 +47,7 @@
             size="lg"
           >
             <save-icon v-if="!isLoading" class="mr-2 -ml-1" />
-            {{ $t('invoices.save_invoice') }}
+            {{ $t('sales.save_sale') }}
           </sw-button>
         </template>
       </sw-page-header>
@@ -523,13 +520,13 @@ export default {
 
     pageTitle() {
       if (this.isEdit) {
-        return this.$t('invoices.edit_invoice')
+        return this.$t('sales.edit_sale')
       }
-      return this.$t('invoices.new_invoice')
+      return this.$t('sales.new_sale')
     },
 
     isEdit() {
-      if (this.$route.name === 'invoices.edit') {
+      if (this.$route.name === 'sales.edit') {
         return true
       }
       return false
@@ -905,7 +902,7 @@ export default {
         data.user_id = this.selectedCustomer.id
       }
 
-      if (this.$route.name === 'invoices.edit') {
+      if (this.$route.name === 'sales.edit') {
         this.submitUpdate(data)
         return
       }
@@ -917,7 +914,7 @@ export default {
       this.addInvoice(data)
         .then((res) => {
           if (res.data) {
-            this.$router.push(`/admin/invoices/${res.data.invoice.id}/view`)
+            this.$router.push(`/admin/sales/${res.data.invoice.id}/view`)
 
             window.toastr['success'](this.$t('invoices.created_message'))
           }
@@ -934,7 +931,7 @@ export default {
         .then((res) => {
           this.isLoading = false
           if (res.data.success) {
-            this.$router.push(`/admin/invoices/${res.data.invoice.id}/view`)
+            this.$router.push(`/admin/sales/${res.data.invoice.id}/view`)
             window.toastr['success'](this.$t('invoices.updated_message'))
           }
 

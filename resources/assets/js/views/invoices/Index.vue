@@ -1,9 +1,9 @@
 <template>
   <base-page>
-    <sw-page-header :title="$t('invoices.title')">
+    <sw-page-header :title="$t('sales.title')">
       <sw-breadcrumb slot="breadcrumbs">
-        <sw-breadcrumb-item to="dashboard" :title="$t('general.home')" />
-        <sw-breadcrumb-item to="#" :title="$tc('invoices.invoice', 2)" active />
+        <sw-breadcrumb-item :title="$t('general.home')" to="dashboard"/>
+        <sw-breadcrumb-item :title="$tc('sales.sale', 2)" to="#" active />
       </sw-breadcrumb>
 
       <template slot="actions">
@@ -19,13 +19,13 @@
 
         <sw-button
           tag-name="router-link"
-          to="/admin/invoices/create"
+          to="/admin/sales/create"
           class="ml-4"
           size="lg"
           variant="primary"
         >
           <plus-icon class="w-6 h-6 mr-1 -ml-2" />
-          {{ $t('invoices.new_invoice') }}
+          {{ $t('sales.new_sale') }}
         </sw-button>
       </template>
     </sw-page-header>
@@ -82,10 +82,7 @@
           />
         </sw-input-group>
 
-        <sw-input-group
-          :label="$t('invoices.invoice_number')"
-          class="mt-2 xl:ml-8"
-        >
+        <sw-input-group :label="$t('sales.sale_number')" class="mt-2 xl:ml-8">
           <sw-input v-model="filters.invoice_number">
             <hashtag-icon slot="leftIcon" class="h-5 ml-1 text-gray-500" />
           </sw-input>
@@ -93,29 +90,30 @@
 
         <label
           class="absolute text-sm leading-snug text-black cursor-pointer"
-          @click="clearFilter"
           style="top: 10px; right: 15px"
-          >{{ $t('general.clear_all') }}</label
+          @click="clearFilter"
         >
+          {{ $t('general.clear_all') }}
+        </label>
       </sw-filter-wrapper>
     </slide-y-up-transition>
 
     <sw-empty-table-placeholder
       v-show="showEmptyScreen"
-      :title="$t('invoices.no_invoices')"
-      :description="$t('invoices.list_of_invoices')"
+      :title="$t('sales.no_sales')"
+      :description="$t('sales.list_of_sales')"
     >
       <moon-walker-icon class="mt-5 mb-4" />
 
       <sw-button
         slot="actions"
         tag-name="router-link"
-        to="/admin/invoices/create"
+        to="/admin/sales/create"
         size="lg"
         variant="primary-outline"
       >
         <plus-icon class="w-6 h-6 mr-1 -ml-2" />
-        {{ $t('invoices.new_invoice') }}
+        {{ $t('sales.new_sale') }}
       </sw-button>
     </sw-empty-table-placeholder>
 
@@ -181,6 +179,8 @@
         ref="table"
         :show-filter="false"
         :data="fetchData"
+        :filter-no-results="$t('table.filter_no_results')"
+        :responsive="true"
         table-class="table"
       >
         <sw-table-column
@@ -214,7 +214,7 @@
           <template slot-scope="row">
             <span>{{ $t('invoices.number') }}</span>
             <router-link
-              :to="{ path: `invoices/${row.id}/view` }"
+              :to="{ path: `sales/${row.id}/view` }"
               class="font-medium text-primary-500"
             >
               {{ row.invoice_number }}
@@ -258,7 +258,9 @@
               :bg-color="$utils.getBadgeStatusColor(row.status).bgColor"
               :color="$utils.getBadgeStatusColor(row.status).color"
             >
-              {{ $utils.getStatusTranslation(row.paid_status.replace('_', ' ')) }}
+              {{
+                $utils.getStatusTranslation(row.paid_status.replace('_', ' '))
+              }}
             </sw-badge>
           </template>
         </sw-table-column>
@@ -289,19 +291,19 @@
               <dot-icon slot="activator" />
 
               <sw-dropdown-item
+                :to="`sales/${row.id}/edit`"
                 tag-name="router-link"
-                :to="`invoices/${row.id}/edit`"
               >
                 <pencil-icon class="h-5 mr-3 text-gray-600" />
                 {{ $t('general.edit') }}
               </sw-dropdown-item>
 
               <sw-dropdown-item
+                :to="`sales/${row.id}/view`"
                 tag-name="router-link"
-                :to="`invoices/${row.id}/view`"
               >
                 <eye-icon class="h-5 mr-3 text-gray-600" />
-                {{ $t('invoices.view') }}
+                {{ $t('sales.view') }}
               </sw-dropdown-item>
 
               <sw-dropdown-item
@@ -334,8 +336,8 @@
                   row.status === 'VIEWED' ||
                   row.status === 'OVERDUE'
                 "
-                tag-name="router-link"
                 :to="`/admin/payments/${row.id}/create`"
+                tag-name="router-link"
               >
                 <credit-card-icon class="h-5 mr-3 text-gray-600" />
                 {{ $t('payments.record_payment') }}
