@@ -18,6 +18,12 @@
     "contacts_suppliers": "Proveedores",
     "my_users": "Mis Usuarios"
   },
+  "labels": {
+    "customer": "Cliente",
+    "invoice": "Factura",
+    "estimate": "Estimar",
+    "payment": "Pago"
+  },
   "table": {
     "filter_no_results": "No hay filas coincidentes"
   },
@@ -152,6 +158,7 @@
   "global_search": {
     "search": "Buscar...",
     "customers": "Clientes",
+    "suppliers": "Proveedores",
     "users": "Usuarios",
     "no_results_found": "No se encontraron resultados"
   },
@@ -978,7 +985,26 @@
       "select_relative_date": "Seleccionar fecha relativa",
       "ticked_by_default": "Marcada por defecto",
       "updated_message": "Campo personalizado actualizado correctamente",
-      "added_message": "Campo personalizado agregado correctamente"
+      "added_message": "Campo personalizado agregado correctamente",
+      "models" : {
+        "customer": "Cliente",
+        "invoice": "Venta",
+        "estimate": "Estimar",
+        "expense": "Gastos",
+        "payment": "Pago"
+      },
+      "types": {
+        "input": "Texto",
+        "textarea": "Textarea",
+        "phone": "Teléfono",
+        "url": "URL",
+        "number": "Número",
+        "dropdown": "Seleccionar Campo",
+        "switch": "Interruptor de Palanca",
+        "date": "Fecha",
+        "time": "Hora",
+        "datetime": "Fecha & Hora"
+      }
     },
     "customization": {
       "customization": "Personalización",

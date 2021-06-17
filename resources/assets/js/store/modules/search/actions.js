@@ -6,6 +6,7 @@ export const searchUsers = ({ commit, dispatch, state }, params) => {
       .get(`/api/v1/search`, { params })
       .then((response) => {
         commit(types.SET_CUSTOMER_LISTS, response.data.customers.data)
+        commit(types.SET_SUPPLIER_LISTS, response.data.suppliers.data)
         commit(types.SET_USER_LISTS, response.data.users.data)
         resolve(response)
       })

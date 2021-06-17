@@ -12,8 +12,11 @@
             :options="dateRange"
             :allow-empty="false"
             :show-labels="false"
+            placeholder="Seleccione Fecha"
             class="mt-2"
             @input="onChangeDateRange"
+            label="name"
+            track-by="id"
           />
         </sw-input-group>
       </div>
@@ -92,19 +95,49 @@ export default {
   data() {
     return {
       dateRange: [
-        'Today',
-        'This Week',
-        'This Month',
-        'This Quarter',
-        'This Year',
-        'Previous Week',
-        'Previous Month',
-        'Previous Quarter',
-        'Previous Year',
-        'Custom',
+        {
+          id: 'Today',
+          name: 'Hoy',
+        },
+        {
+          id: 'This Week',
+          name: 'Esta Semana',
+        },
+        {
+          id: 'This Month',
+          name: 'Este Mes',
+        },
+        {
+          id: 'This Quarter',
+          name: 'Este Cuarto',
+        },
+        {
+          id: 'This Year',
+          name: 'Este Año',
+        },
+        {
+          id: 'Previous Week',
+          name: 'Semana Pasada',
+        },
+        {
+          id: 'Previous Month',
+          name: 'Mes Anterior',
+        },
+        {
+          id: 'Previous Quarter',
+          name: 'Trimestre Anterior',
+        },
+        {
+          id: 'Previous Year',
+          name: 'Año Anterior',
+        },
+        {
+          id: 'Custom',
+          name: 'Personalizada',
+        },
       ],
 
-      selectedRange: 'This Month',
+      selectedRange: { id: 'This Month', name: 'Este Mes' },
       range: new Date(),
       formData: {
         from_date: moment().startOf('month').toString(),
@@ -194,7 +227,7 @@ export default {
     },
 
     onChangeDateRange() {
-      switch (this.selectedRange) {
+      switch (this.selectedRange.id) {
         case 'Today':
           this.formData.from_date = moment().toString()
           this.formData.to_date = moment().toString()
@@ -246,7 +279,7 @@ export default {
     },
 
     setRangeToCustom() {
-      this.selectedRange = 'Custom'
+      this.selectedRange = { id: 'Custom', name: 'Personalizada' }
     },
 
     async viewReportsPDF() {

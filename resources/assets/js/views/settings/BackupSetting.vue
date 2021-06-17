@@ -44,6 +44,7 @@
         ref="table"
         variant="gray"
         :show-filter="false"
+        :filter-no-results="$t('table.filter_no_results')"
         :data="fetchBackupsData"
       >
         <sw-table-column :label="$t('settings.backup.path')" show="path">

@@ -175,6 +175,7 @@ class CompaniesController extends Controller
         ];
 
         return response()->json([
+            'company' => $company_data,
             'success' => true
         ]);
     }

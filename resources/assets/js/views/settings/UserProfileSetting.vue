@@ -24,6 +24,7 @@
           <sw-avatar
             :preview-avatar="previewAvatar"
             :label="$tc('general.choose_file')"
+            :labels="croperLabels"
             @changed="onChange"
             @uploadHandler="onUploadHandler"
             @handleUploadError="onHandleUploadError"
@@ -159,6 +160,10 @@ export default {
       fileObject: null,
       language: null,
       isRequestOnGoing: false,
+      croperLabels: {
+        submit: 'Colocar',
+        cancel: 'Cancelar'
+      },
     }
   },
 
@@ -286,8 +291,8 @@ export default {
       this.formData.name = response.data.user.name
       this.formData.email = response.data.user.email
 
-      if (response.data.user.avatar) {
-        this.previewAvatar = response.data.user.avatar
+      if (response.data.user.photo) {
+        this.previewAvatar = '/uploads/' + response.data.user.photo
       } else {
         this.previewAvatar = '/images/default-avatar.jpg'
       }

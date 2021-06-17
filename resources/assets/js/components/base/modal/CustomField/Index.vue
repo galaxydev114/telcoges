@@ -34,6 +34,9 @@
             :show-labels="false"
             :allow-empty="false"
             @input="$v.formData.model_type.$touch()"
+            placeholder="Seleccione Modelo"
+            label="name"
+            track-by="id"
           />
         </sw-input-group>
         <sw-input-group
@@ -59,6 +62,7 @@
             :allow-empty="false"
             track-by="label"
             label="label"
+            placeholder="Seleccione Tipo"
             @input="onSelectTypeChange"
           />
         </sw-input-group>
@@ -222,18 +226,40 @@ export default {
         'Ending Date of Fiscal Month',
       ],
       dataTypes: [
-        { label: 'Text', value: 'Input' },
+        { label: 'Texto', value: 'Input' },
         { label: 'Textarea', value: 'TextArea' },
-        { label: 'Phone', value: 'Phone' },
+        { label: 'Teléfono', value: 'Phone' },
         { label: 'URL', value: 'Url' },
-        { label: 'Number', value: 'Number' },
-        { label: 'Select Field', value: 'Dropdown' },
-        { label: 'Switch Toggle', value: 'Switch' },
-        { label: 'Date', value: 'Date' },
-        { label: 'Time', value: 'Time' },
-        { label: 'Date & Time', value: 'DateTime' },
+        { label: 'Número', value: 'Number' },
+        { label: 'Seleccionar Campo', value: 'Dropdown' },
+        { label: 'Interruptor de Palanca', value: 'Switch' },
+        { label: 'Fecha', value: 'Date' },
+        { label: 'Hora', value: 'Time' },
+        { label: 'Fecha & Hora', value: 'DateTime' },
       ],
-      modelTypes: ['Customer', 'Invoice', 'Estimate', 'Expense', 'Payment'],
+      modelTypes: [
+        {
+          id: 'Customer',
+          name: 'Cliente'
+        },
+        {
+          id: 'Invoice',
+          name: 'Factura'
+        },
+        {
+          id: 'Estimate',
+          name: 'Estimar'
+        },
+        {
+          id: 'Expense',
+          name: 'Gastos'
+        },
+        {
+          id: 'Payment',
+          name: 'Pago'
+        },
+      ],
+
       selectType: null,
       formData: {
         label: null,
@@ -398,8 +424,10 @@ export default {
         return false
       }
 
+      this.formData.model_type ? this.formData.model_type.id : ''
       let data = {
         ...this.formData,
+        model_type: this.formData.model_type.id,
         options: this.formData.options.map((option) => option.name),
         default_answer:
           this.isDropdownSelected && this.formData.default_answer
@@ -433,6 +461,7 @@ export default {
       if (this.isEdit) {
         this.isLoading = true
         response = await this.updateCustomField(data)
+
         window.toastr['success'](
           this.$tc('settings.custom_fields.updated_message')
         )
@@ -477,6 +506,10 @@ export default {
         data.default_answer = { name: fieldData.defaultAnswer }
       }
       this.formData = { ...data }
+
+      this.formData.model_type = this.modelTypes.find(
+        (model_type) => model_type.id === fieldData.model_type
+      )
     },
     onChangeReset() {
       this.formData = {

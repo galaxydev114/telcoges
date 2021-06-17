@@ -83,14 +83,27 @@ class CompanyController extends Controller
         if ($data) {
             $company = Company::find($request->header('company'));
 
-            if ($company) {
-                $company->clearMediaCollection('logo');
+            $file_name = base64_file_upload($data->name, $data->data);
 
-                $company->addMediaFromBase64($data->data)
-                    ->usingFileName($data->name)
-                    ->toMediaCollection('logo');
-            }
+            $oldLogo = $company->logo;
+
+            $company->logo = $file_name;
+            $company->save();
+
+            file_remove($oldLogo);
         }
+
+        // if ($data) {
+        //     $company = Company::find($request->header('company'));
+
+        //     if ($company) {
+        //         $company->clearMediaCollection('logo');
+
+        //         $company->addMediaFromBase64($data->data)
+        //             ->usingFileName($data->name)
+        //             ->toMediaCollection('logo');
+        //     }
+        // }
 
         return response()->json([
             'success' => true
@@ -108,16 +121,27 @@ class CompanyController extends Controller
         $data = json_decode($request->admin_avatar);
 
         if ($data) {
+            $file_name = base64_file_upload($data->name, $data->data);
             $user = auth()->user();
 
-            if ($user) {
-                $user->clearMediaCollection('admin_avatar');
+            $oldPhoto = $user->photo;
 
-                $user->addMediaFromBase64($data->data)
-                    ->usingFileName($data->name)
-                    ->toMediaCollection('admin_avatar');
-            }
+            $user->photo = $file_name;
+            $user->save();
+
+            file_remove($oldPhoto);
         }
+        // if ($data) {
+        //     $user = auth()->user();
+
+        //     if ($user) {
+        //         $user->clearMediaCollection('admin_avatar');
+
+        //         $user->addMediaFromBase64($data->data)
+        //             ->usingFileName($data->name)
+        //             ->toMediaCollection('admin_avatar');
+        //     }
+        // }
 
         return response()->json([
             'user' => $user,

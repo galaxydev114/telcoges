@@ -47,7 +47,7 @@
       >
         <template slot-scope="row">
           <span>{{ $t('settings.customization.notes.type') }}</span>
-          <span class="mt-6">{{ row.type }}</span>
+          <span class="mt-6">{{ $utils.getLabelTranslation(row.type) }}</span>
         </template>
       </sw-table-column>
       <sw-table-column

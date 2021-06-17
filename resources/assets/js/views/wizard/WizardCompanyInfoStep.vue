@@ -23,11 +23,11 @@
                   class="h-5 mb-2 text-xl leading-6 text-gray-400"
                 />
                 <p class="text-xs leading-4 text-center text-gray-400">
-                  Drag a file here or
+                  Arrastre un archivo aquí o
                   <span id="pick-avatar" class="cursor-pointer text-primary-500"
-                    >browse</span
+                    >navegar</span
                   >
-                  to choose a file
+                  elegir un archivo
                 </p>
               </div>
             </div>

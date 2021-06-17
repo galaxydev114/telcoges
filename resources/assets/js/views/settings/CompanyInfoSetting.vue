@@ -31,11 +31,11 @@
                 class="h-5 mb-2 text-xl leading-6 text-gray-400"
               />
               <p class="text-xs leading-4 text-center text-gray-400">
-                Drag a file here or
+                Arrastre un archivo aquí o
                 <span id="pick-avatar" class="cursor-pointer text-primary-500">
-                  browse
+                  navegar
                 </span>
-                to choose a file
+                elegir un archivo
               </p>
             </div>
           </div>
@@ -320,7 +320,7 @@ export default {
         this.formData.city = response.data.user.company.address.city
         this.formData.cif = response.data.user.company.address.cif
         this.country = response.data.user.company.address.country
-        this.previewLogo = response.data.user.company.logo
+        this.previewLogo = '/uploads/' + response.data.user.company.logo
       }
       this.isRequestOnGoing = false
     },

@@ -24,7 +24,35 @@
           <router-link
             v-for="d in getCustomerList"
             :key="d.id"
-            :to="`/admin/customers/${d.id}/view`"
+            :to="`/admin/contacts/customers/${d.id}/view`"
+          >
+            <sw-dropdown-item>
+              <span
+                class="flex items-center justify-center w-8 h-8 mr-4 text-xs font-semibold bg-gray-300 rounded-full text-primary-500"
+              >
+                {{ initGenerator(d.name) }}
+              </span>
+
+              <div v-if="d.contact_name" class="flex flex-col">
+                <span class="text-sm text-black">{{ d.name }}</span>
+
+                <span class="text-xs text-gray-500">{{ d.contact_name }}</span>
+              </div>
+              <div v-else class="flex items-center">
+                <span class="text-sm text-black">{{ d.name }}</span>
+              </div>
+            </sw-dropdown-item>
+          </router-link>
+        </div>
+
+        <div v-if="getSupplierList.length > 0 && !isLoading">
+          <label class="text-xs text-gray-400 uppercase">
+            {{ $t('global_search.suppliers') }}
+          </label>
+          <router-link
+            v-for="d in getSupplierList"
+            :key="d.id"
+            :to="`/admin/contacts/suppliers/${d.id}/view`"
           >
             <sw-dropdown-item>
               <span
@@ -106,7 +134,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters('search', ['getCustomerList', 'getUserList']),
+    ...mapGetters('search', ['getCustomerList', 'getSupplierList', 'getUserList']),
   },
 
   created() {

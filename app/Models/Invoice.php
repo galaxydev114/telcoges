@@ -527,7 +527,7 @@ class Invoice extends Model implements HasMedia
 
         App::setLocale($locale);
 
-        $logo = $company->logo_path;
+        $logo = $company->logo;
 
         view()->share([
             'invoice' => $this,

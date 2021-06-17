@@ -14,6 +14,9 @@
             :show-labels="false"
             class="mt-2"
             @input="onChangeDateRange"
+            placeholder="Seleccione Fecha"
+            label="name"
+            track-by="id"
           />
         </sw-input-group>
       </div>
@@ -61,6 +64,8 @@
             class="mt-2"
             :placeholder="$t('reports.sales.report_type')"
             @input="getInitialReport"
+            label="name"
+            track-by="id"
           />
         </sw-input-group>
       </div>
@@ -104,22 +109,61 @@ export default {
 
   data() {
     return {
-      reportTypes: ['By Customer', 'By Item'],
-      selectedType: 'By Customer',
-      dateRange: [
-        'Today',
-        'This Week',
-        'This Month',
-        'This Quarter',
-        'This Year',
-        'Previous Week',
-        'Previous Month',
-        'Previous Quarter',
-        'Previous Year',
-        'Custom',
+      reportTypes: [
+        {
+          id: 'By Customer',
+          name: 'Por el cliente'
+        },
+        {
+          id: 'By Item',
+          name: 'Por artículo'
+        }
       ],
+      selectedType: { id: 'By Customer', name: 'Por el cliente' },
 
-      selectedRange: 'This Month',
+      dateRange: [
+        {
+          id: 'Today',
+          name: 'Hoy'
+        },
+        {
+          id: 'This Week',
+          name: 'Esta Semana'
+        },
+        {
+          id: 'This Month',
+          name: 'Este Mes'
+        },
+        {
+          id: 'This Quarter',
+          name: 'Este Cuarto'
+        },
+        {
+          id: 'This Year',
+          name: 'Este Año'
+        },
+        {
+          id: 'Previous Week',
+          name: 'Semana Pasada'
+        },
+        {
+          id: 'Previous Month',
+          name: 'Este Año'
+        },
+        {
+          id: 'Previous Quarter',
+          name: 'Trimestre Anterior'
+        },
+        {
+          id: 'Previous Year',
+          name: 'Año Anterior'
+        },
+        {
+          id: 'Custom',
+          name: 'Personalizada'
+        },
+      ],
+      selectedRange: { id: 'This Month', name: 'Este Mes' },
       range: new Date(),
       formData: {
         from_date: moment().startOf('month').toString(),
@@ -146,6 +190,7 @@ export default {
   },
 
   computed: {
+    ...mapGetters(['currencies']),
     ...mapGetters('company', ['getSelectedCompany']),
 
     getReportUrl() {
@@ -224,7 +269,7 @@ export default {
     },
 
     onChangeDateRange() {
-      switch (this.selectedRange) {
+      switch (this.selectedRange.id) {
         case 'Today':
           this.formData.from_date = moment().toString()
           this.formData.to_date = moment().toString()
@@ -276,11 +321,11 @@ export default {
     },
 
     setRangeToCustom() {
-      this.selectedRange = 'Custom'
+      this.selectedRange = { id: 'Custom', name: 'Personalizada' }
     },
 
     async getInitialReport() {
-      if (this.selectedType === 'By Customer') {
+      if (this.selectedType.id === 'By Customer') {
         this.url = this.customerDateRangeUrl
         return true
       }
@@ -300,7 +345,7 @@ export default {
       if (this.$v.$invalid) {
         return true
       }
-      if (this.selectedType === 'By Customer') {
+      if (this.selectedType.id === 'By Customer') {
         this.url = this.customerDateRangeUrl
         return true
       }
@@ -315,7 +360,7 @@ export default {
 
       window.open(this.getReportUrl + '&download=true')
       setTimeout(() => {
-        if (this.selectedType === 'By Customer') {
+        if (this.selectedType.id === 'By Customer') {
           this.url = this.customerDateRangeUrl
           return true
         }

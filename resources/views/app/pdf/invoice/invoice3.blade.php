@@ -307,7 +307,7 @@
             <tr>
                 <td width="50%" class="header-section-left">
                     @if($logo)
-                        <img class="header-logo" src="{{ $logo }}" alt="Company Logo">
+                        <img class="header-logo" src="{{ url('uploads') . '/' . $logo }}" alt="Logo de la compañía">
                     @else
                         <h1 class="header-logo"> {{$invoice->user->company->name}} </h1>
                     @endif

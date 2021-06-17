@@ -10,43 +10,44 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Company extends Model implements HasMedia
+// class Company extends Model implements HasMedia
+class Company extends Model
 {
-    use InteractsWithMedia;
+    // use InteractsWithMedia;
 
     use HasFactory;
 
     protected $fillable = ['name', 'logo', 'unique_hash'];
 
-    protected $appends = ['logo', 'logo_path'];
+    // protected $appends = ['logo', 'logo_path'];
 
-    public function getLogoPathAttribute()
-    {
-        $logo = $this->getMedia('logo')->first();
+    // public function getLogoPathAttribute()
+    // {
+    //     $logo = $this->getMedia('logo')->first();
 
-        $isSystem = FileDisk::whereSetAsDefault(true)->first()->isSystem();
+    //     $isSystem = FileDisk::whereSetAsDefault(true)->first()->isSystem();
 
-        if ($logo) {
-            if ($isSystem) {
-                return $logo->getPath();
-            } else {
-                return $logo->getFullUrl();
-            }
-        }
+    //     if ($logo) {
+    //         if ($isSystem) {
+    //             return $logo->getPath();
+    //         } else {
+    //             return $logo->getFullUrl();
+    //         }
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
-    public function getLogoAttribute()
-    {
-        $logo = $this->getMedia('logo')->first();
+    // public function getLogoAttribute()
+    // {
+    //     $logo = $this->getMedia('logo')->first();
 
-        if ($logo) {
-            return $logo->getFullUrl();
-        }
+    //     if ($logo) {
+    //         return $logo->getFullUrl();
+    //     }
 
-        return null;
-    }
+    //     return null;
+    // }
 
     public function user()
     {

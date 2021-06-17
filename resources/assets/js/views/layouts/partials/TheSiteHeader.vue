@@ -9,13 +9,13 @@
       <img
         id="logo-white"
         src="/assets/img/logo-white.png"
-        alt="Crater Logo"
+        alt="Telcoges Logo"
         class="hidden h-6 md:block"
       />
       <img
         id="logo-mobile"
         src="/assets/img/crater-white-small.png"
-        alt="Crater Logo"
+        alt="Telcoges Logo"
         class="block h-8 md:hidden"
       />
     </a>
@@ -45,7 +45,7 @@
             <plus-icon class="w-6 h-6" />
           </a>
 
-          <sw-dropdown-item tag-name="router-link" to="/admin/invoices/create">
+          <sw-dropdown-item tag-name="router-link" to="/admin/sales/create">
             <document-text-icon class="h-5 mr-2 text-gray-600" />
             {{ $t('invoices.new_invoice') }}
           </sw-dropdown-item>
@@ -55,9 +55,14 @@
             {{ $t('estimates.new_estimate') }}
           </sw-dropdown-item>
 
-          <sw-dropdown-item tag-name="router-link" to="/admin/customers/create">
+          <sw-dropdown-item tag-name="router-link" to="/admin/contacts/customers/create">
             <user-icon class="h-5 mr-2 text-gray-600" />
             {{ $t('customers.new_customer') }}
+          </sw-dropdown-item>
+
+          <sw-dropdown-item tag-name="router-link" to="/admin/contacts/suppliers/create">
+            <user-icon class="h-5 mr-2 text-gray-600" />
+            {{ $t('suppliers.new_supplier') }}
           </sw-dropdown-item>
         </sw-dropdown>
       </li>
@@ -134,10 +139,9 @@ export default {
     profilePicture() {
       if (
         this.currentUser &&
-        this.currentUser.avatar !== null &&
-        this.currentUser.avatar !== 0
+        this.currentUser.photo !== null
       ) {
-        return this.currentUser.avatar
+        return '/uploads/' + this.currentUser.photo
       } else {
         return '/images/default-avatar.jpg'
       }

@@ -26,6 +26,7 @@
       variant="gray"
       :show-filter="false"
       :data="fetchData"
+      :filter-no-results="$t('table.filter_no_results')"
     >
       <sw-table-column
         :sortable="true"
@@ -42,14 +43,20 @@
       <sw-table-column
         :sortable="true"
         :label="$t('settings.custom_fields.model')"
-        show="model_type"
-      />
+      >
+        <template slot-scope="row">
+          {{ $utils.getCustomFieldModelTranslation(row.model_type) }}
+        </template>
+      </sw-table-column>
 
       <sw-table-column
         :sortable="true"
         :label="$t('settings.custom_fields.type')"
-        show="type.label"
-      />
+      >
+        <template slot-scope="row">
+          {{ $utils.getCustomFieldTypeTranslation(row.type) }}
+        </template>
+      </sw-table-column>
 
       <sw-table-column
         :sortable="true"
@@ -61,10 +68,10 @@
           <span>{{ $t('settings.custom_fields.required') }}</span>
           <sw-badge
             :bg-color="
-              $utils.getBadgeStatusColor(row.is_required ? 'YES' : 'NO').bgColor
+              $utils.getBadgeStatusColor(row.is_required ? 'SÍ' : 'NO').bgColor
             "
             :color="
-              $utils.getBadgeStatusColor(row.is_required ? 'YES' : 'NO').color
+              $utils.getBadgeStatusColor(row.is_required ? 'SÍ' : 'NO').color
             "
           >
             {{

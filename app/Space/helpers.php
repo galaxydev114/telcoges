@@ -134,3 +134,27 @@ function getRelatedSlugs($type, $slug, $id = 0)
         ->where('id', '<>', $id)
         ->get();
 }
+
+if (!function_exists('base64_file_upload')) {
+    function base64_file_upload($file_name, $data)
+    {
+        $base64_str = substr($data, strpos($data, ",")+1);
+        $image = base64_decode($base64_str);
+        $png_url = uniqid() . time() . $file_name;
+        $path = public_path('uploads/' . $png_url);
+
+        file_put_contents($path, $image);
+
+        return $png_url;
+    }
+}
+
+if (!function_exists('file_remove')) {
+    function file_remove($file_name)
+    {
+        $file_path = public_path('uploads/' . $file_name);
+        if(File::exists($file_path)) {
+            File::delete($file_path);
+        }
+    }
+}

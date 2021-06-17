@@ -44,9 +44,12 @@ class DateFormatter
     {
         $new = [];
 
+        $locale = app()->getLocale();
+        Carbon::setlocale($locale);
+
         foreach (static::$formats as $format) {
             $new[] = array(
-                "display_date" => Carbon::now()->format($format['carbon_format']) ,
+                "display_date" => Carbon::now()->translatedFormat($format['carbon_format']),
                 "carbon_format_value" => $format['carbon_format'],
                 "moment_format_value" => $format['moment_format']
             );

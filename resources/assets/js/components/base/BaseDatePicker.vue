@@ -18,6 +18,7 @@
 import { mapGetters } from 'vuex'
 import SwDatePicker from '@bytefury/spacewind/src/components/SwDatePicker'
 import moment from 'moment'
+import {Spanish} from 'flatpickr/dist/l10n/es.js';
 
 export default {
   components: {
@@ -64,6 +65,7 @@ export default {
         altInput: true,
         enableTime: this.enableTime,
         time_24hr: this.time_24hr,
+        locale: Spanish,
       },
     }
   },

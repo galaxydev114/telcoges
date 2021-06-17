@@ -381,7 +381,7 @@
             <tr>
                 @if($logo)
                 <td width="60%" class="header-section-left">
-                    <img class="header-logo" src="{{ $logo }}" alt="Company Logo">
+                    <img class="header-logo" src="{{ url('uploads') . '/' . $logo }}" alt="Logo de la compañía">
                     @else
                 <td width="60%" class="header-section-left" style="padding-top: 0px;">
                     @if($invoice->user->company)

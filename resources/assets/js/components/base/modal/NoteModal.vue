@@ -30,7 +30,10 @@
             :options="types"
             :allow-empty="false"
             :show-labels="false"
+            placeholder="Seleccione Tipo"
             class="mt-2"
+            label="label"
+            track-by="id"
           />
         </sw-input-group>
         <sw-input-group
@@ -79,7 +82,20 @@ export default {
     return {
       isEdit: false,
       isLoading: false,
-      types: ['Invoice', 'Estimate', 'Payment'],
+      types: [
+        {
+          id: 'Invoice',
+          label: 'Factura'
+        },
+        {
+          id: 'Estimate',
+          label: 'Estimar'
+        },
+        {
+          id: 'Payment',
+          label: 'Pago'
+        }
+      ],
       selectType: null,
       formData: {
         type: '',
@@ -155,7 +171,7 @@ export default {
     } else {
       this.modalData
         ? (this.noteType = this.modalData)
-        : (this.noteType = 'Invoice')
+        : (this.noteType = { id: 'Invoice', label: 'Factura' })
     }
   },
   watch: {
@@ -179,15 +195,15 @@ export default {
     setFields() {
       this.fields = ['customer', 'customerCustom']
 
-      if (this.noteType === 'Invoice') {
+      if (this.noteType && this.noteType.id === 'Invoice') {
         this.fields.push('invoice', 'invoiceCustom')
       }
 
-      if (this.noteType === 'Estimate') {
+      if (this.noteType && this.noteType.id === 'Estimate') {
         this.fields.push('estimate', 'estimateCustom')
       }
 
-      if (this.noteType === 'Payment') {
+      if (this.noteType && this.noteType.id === 'Payment') {
         this.fields.push('payment', 'paymentCustom')
       }
 
@@ -215,7 +231,7 @@ export default {
       if (this.isEdit) {
         let data = {
           id: this.modalDataID,
-          type: this.noteType,
+          type: this.noteType ? this.noteType.id : '',
           name: this.formData.name,
           notes: this.formData.notes,
         }
@@ -234,7 +250,7 @@ export default {
       } else {
         try {
           let data = {
-            type: this.noteType,
+            type: this.noteType ? this.noteType.id : '',
             name: this.formData.name,
             notes: this.formData.notes,
           }
@@ -286,7 +302,9 @@ export default {
       }
     },
     async setData() {
-      this.noteType = this.modalData.type
+      this.noteType = this.types.find(
+        (noteType) => noteType.id == this.modalData.type
+      )
       this.formData.name = this.modalData.name
       this.formData.notes = this.modalData.notes
     },

@@ -17,20 +17,51 @@ class SearchController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $customers = User::where('role', 'customer')
-            ->applyFilters($request->only(['search']))
+        if (Auth::user()->role == 'admin' || Auth::user()->role == 'super admin') {
+            $customers = User::where([
+                        'role' => 'customer',
+                        'company_id' => Auth::user()->company_id
+                    ]
+                )->applyFilters($request->only(['search']))
+                ->latest()
+                ->paginate(10);
+            
+            $suppliers = User::where([
+                    'role' => 'supplier',
+                    'company_id' => Auth::user()->company_id
+                ]
+            )->applyFilters($request->only(['search']))
             ->latest()
             ->paginate(10);
-
-        if (Auth::user()->role == 'super admin') {
-            $users = User::where('role', 'admin')
-                ->applyFilters($request->only(['search']))
+            
+            $users = User::where([
+                        'role' => 'user',
+                        'company_id' => Auth::user()->company_id
+                    ]
+                )->applyFilters($request->only(['search']))
+                ->latest()
+                ->paginate(10);
+        } else {
+            $customers = User::where([
+                        'role' => 'customer',
+                        'creator_id' => Auth::user()->id
+                    ]
+                )->applyFilters($request->only(['search']))
+                ->latest()
+                ->paginate(10);
+            
+            $suppliers = User::where([
+                        'role' => 'supplier',
+                        'creator_id' => Auth::user()->id
+                    ]
+                )->applyFilters($request->only(['search']))
                 ->latest()
                 ->paginate(10);
         }
 
         return response()->json([
             'customers' => $customers,
+            'suppliers' => $suppliers,
             'users' => $users ?? []
         ]);
     }

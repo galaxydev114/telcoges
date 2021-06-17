@@ -41,7 +41,7 @@ export default {
             'company/' + companyTypes.SET_DEFAULT_TIME_ZONE,
             response.data.time_zone
           )
-
+          
           commit(types.SET_CURRENCIES, response.data.currencies)
 
           commit(types.SET_COUNTRIES, response.data.countries)

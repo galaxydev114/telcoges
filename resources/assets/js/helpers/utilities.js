@@ -293,6 +293,64 @@ export default {
         return status
     }
   },
+  getCustomFieldModelTranslation(label) {
+    switch (label) {
+      case 'Customer':
+        return i18n.tc('settings.custom_fields.models.customer')
+      case 'Invoice':
+        return i18n.tc('settings.custom_fields.models.invoice')
+      case 'Estimate':
+        return i18n.tc('settings.custom_fields.models.estimate')
+      case 'Expense':
+        return i18n.tc('settings.custom_fields.models.expense')
+      case 'Payment':
+        return i18n.tc('settings.custom_fields.models.payment')
+      default:
+        return label
+    }
+  },
+  getLabelTranslation(label) {
+    switch (label) {
+      case 'Customer':
+        return i18n.t('labels.customer')
+      case 'Invoice':
+        return i18n.t('labels.invoice')
+      case 'Estimate':
+        return i18n.t('labels.estimate')
+      case 'Expense':
+        return i18n.t('labels.expense')
+      case 'Payment':
+        return i18n.t('labels.payment')
+      default:
+        return label
+    }
+  },
+  getCustomFieldTypeTranslation(label) {
+    switch (label) {
+      case 'Input':
+        return i18n.tc('settings.custom_fields.types.input')
+      case 'TextArea':
+        return i18n.tc('settings.custom_fields.types.textarea')
+      case 'Phone':
+        return i18n.tc('settings.custom_fields.types.phone')
+      case 'Url':
+        return i18n.tc('settings.custom_fields.types.url')
+      case 'Number':
+        return i18n.tc('settings.custom_fields.types.number')
+      case 'Dropdown':
+        return i18n.tc('settings.custom_fields.types.dropdown')
+      case 'Switch':
+        return i18n.tc('settings.custom_fields.types.switch')
+      case 'Date':
+        return i18n.tc('settings.custom_fields.types.date')
+      case 'Time':
+        return i18n.tc('settings.custom_fields.types.time')
+      case 'DateTime':
+        return i18n.tc('settings.custom_fields.types.datetime')
+      default:
+        return label
+    }
+  },
   compareVersion(v1, v2, options) {
     const lexicographical = options && options.lexicographical
     const zeroExtend = options && options.zeroExtend

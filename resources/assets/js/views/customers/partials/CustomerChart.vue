@@ -99,13 +99,16 @@ export default {
     ChartSquareBarIcon,
   },
   data() {
+    const date = new Date()
+    let currentYear = date.getFullYear()
     return {
       id: null,
       customers: [],
       isLoaded: false,
       chartData: null,
-      years: ['This year', 'Previous year'],
-      selectedYear: 'This year',
+      years: [currentYear, currentYear-1],
+      selectedYear: currentYear,
+      thisYear: currentYear,
     }
   },
   computed: {
@@ -180,7 +183,9 @@ export default {
   watch: {
     $route(to, from) {
       this.loadCustomer()
-      this.selectedYear = 'This year'
+
+      const date = new Date()
+      this.selectedYear = date.getFullYear()
     },
   },
   created() {
@@ -198,7 +203,7 @@ export default {
       this.isLoaded = false
     },
     async onChangeYear(data) {
-      if (data == 'Previous year') {
+      if (data == (this.thisYear - 1)) {
         let response = await this.fetchViewCustomer({
           id: this.$route.params.id,
           previous_year: true,
