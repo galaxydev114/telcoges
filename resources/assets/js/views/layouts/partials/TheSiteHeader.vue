@@ -139,7 +139,7 @@ export default {
     profilePicture() {
       if (
         this.currentUser &&
-        this.currentUser.photo !== null
+        this.currentUser.photo
       ) {
         return '/uploads/' + this.currentUser.photo
       } else {
