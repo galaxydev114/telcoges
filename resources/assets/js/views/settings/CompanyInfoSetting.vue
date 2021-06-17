@@ -43,6 +43,7 @@
           <sw-avatar
             trigger="#logo-box"
             :preview-avatar="previewLogo"
+            :labels="croperLabels"
             @changed="onChange"
             @uploadHandler="onUploadHandler"
             @handleUploadError="onHandleUploadError"
@@ -209,6 +210,10 @@ export default {
       fileObject: null,
       cropperOutputMime: '',
       isRequestOnGoing: false,
+      croperLabels: {
+        submit: 'Colocar',
+        cancel: 'Cancelar'
+      },
     }
   },
   watch: {
