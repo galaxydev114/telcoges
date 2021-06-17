@@ -220,3 +220,20 @@
 .flex-items-start {
   align-items: start;
 }
+
+.hero-text-btn {
+  color: #807CE1;
+  cursor: pointer;
+  font-size: 14px;
+}
+.hero-text-btn svg {
+  color: #807CE1;
+  cursor: pointer;
+  width: 15px;
+}
+.hero-text-btn:hover {
+  color: rgba(40, 36, 97, 1);
+}
+.hero-text-btn:hover svg {
+  color: rgba(40, 36, 97, 1);
+}

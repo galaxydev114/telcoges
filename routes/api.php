@@ -241,6 +241,8 @@ Route::prefix('/v1')->group(function () {
 
         Route::get('/invoices/templates', InvoiceTemplatesController::class);
 
+        Route::get('/default-invoice-template', GetUserSettingsController::class);
+
         Route::apiResource('invoices', InvoicesController::class);
 
 

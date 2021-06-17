@@ -17,7 +17,8 @@ class ExpenseCategory extends Model
      *
      * @var array
      */
-    protected $appends = ['amount', 'formattedCreatedAt'];
+    // protected $appends = ['amount', 'formattedCreatedAt'];
+    protected $appends = ['formattedCreatedAt'];
 
     public function expenses()
     {
@@ -30,10 +31,10 @@ class ExpenseCategory extends Model
         return Carbon::parse($this->created_at)->format($dateFormat);
     }
 
-    public function getAmountAttribute()
-    {
-        return $this->expenses()->sum('amount');
-    }
+    // public function getAmountAttribute()
+    // {
+    //     return $this->expenses()->sum('amount');
+    // }
 
     public function scopeWhereCompany($query, $company_id)
     {

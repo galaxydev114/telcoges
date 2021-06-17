@@ -411,23 +411,23 @@ export default {
 
       status: [
         {
-          label: 'Status',
+          label: 'Estado',
           isDisable: true,
           options: [
-            { name: 'DRAFT', value: 'DRAFT' },
-            { name: 'DUE', value: 'DUE' },
-            { name: 'SENT', value: 'SENT' },
+            { name: 'BORRADOR', value: 'DRAFT' },
+            { name: 'DEBIDO', value: 'DUE' },
+            { name: 'ENVIADO', value: 'SENT' },
             { name: 'VIEWED', value: 'VIEWED' },
             { name: 'OVERDUE', value: 'OVERDUE' },
             { name: 'COMPLETED', value: 'COMPLETED' },
           ],
         },
         {
-          label: 'Paid Status',
+          label: 'Pagado Estado',
           options: [
-            { name: 'UNPAID', value: 'UNPAID' },
-            { name: 'PAID', value: 'PAID' },
-            { name: 'PARTIALLY PAID', value: 'PARTIALLY_PAID' },
+            { name: 'NO PAGADO', value: 'UNPAID' },
+            { name: 'PAGADA', value: 'PAID' },
+            { name: 'PARCIALMENTE PAGADO', value: 'PARTIALLY_PAID' },
           ],
         },
       ],
@@ -436,7 +436,7 @@ export default {
       activeTab: this.$t('general.due'),
       filters: {
         customer: '',
-        status: { name: 'DUE', value: 'DUE' },
+        status: { name: 'DEBIDO', value: 'DUE' },
         from_date: '',
         to_date: '',
         invoice_number: '',

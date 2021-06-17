@@ -159,7 +159,12 @@
         />
       </div>
 
-      <sw-table-component ref="table" :show-filter="false" :data="fetchData">
+      <sw-table-component
+        ref="table"
+        :show-filter="false"
+        :data="fetchData"
+        :filter-no-results="$t('table.filter_no_results')"
+      >
         <sw-table-column
           :sortable="false"
           :filterable="false"

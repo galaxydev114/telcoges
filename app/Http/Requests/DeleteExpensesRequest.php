@@ -2,6 +2,8 @@
 
 namespace Crater\Http\Requests;
 
+use Crater\Models\Expense;
+use Crater\Rules\RelationNotExist;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -30,7 +32,8 @@ class DeleteExpensesRequest extends FormRequest
             ],
             'ids.*' => [
                 'required',
-                Rule::exists('expenses', 'id')
+                Rule::exists('expenses', 'id'),
+                new RelationNotExist(Expense::class, 'payments')
             ]
         ];
     }

@@ -55,6 +55,10 @@ export default {
     state.invoiceTemplateId = templateId
   },
 
+  [types.SET_DEFAULT_TEMPLATE](state, checked) {
+    state.defaultTemplate = checked
+  },
+
   [types.SELECT_CUSTOMER](state, data) {
     state.selectedCustomer = data
   },

@@ -33,6 +33,10 @@
           </span>
         </div>
       </div>
+      <div class="grid grid-cols-1 gap-2 p-1 d-flex">
+        <sw-checkbox v-model="checkedAsDefault" variant="primary" size="sm" />
+        {{ $t('general.choose_default_invoice_template') }}
+      </div>
     </div>
     <div class="z-0 flex justify-end p-4 border-t border-gray-200 border-solid">
       <sw-button
@@ -54,6 +58,7 @@ export default {
   data() {
     return {
       selectedTemplate: 1,
+      checkedAsDefault: null,
       isLoading: false,
     }
   },
@@ -69,7 +74,10 @@ export default {
     ...mapActions('modal', ['closeModal', 'resetModalData']),
     async chooseTemplate() {
       this.isLoading = true
-      let resp = await this.setTemplate(this.selectedTemplate)
+      let resp = await this.setTemplate([
+        this.selectedTemplate,
+        this.checkedAsDefault,
+      ])
       if (resp) {
         this.isLoading = false
         this.resetModalData()

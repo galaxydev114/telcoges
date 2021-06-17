@@ -133,3 +133,12 @@ export const selectExpense = ({ commit, dispatch, state }, data) => {
     commit(types.SET_SELECT_ALL_STATE, false)
   }
 }
+
+export const setItem = ({ commit, dispatch, state }, data) => {
+  commit(types.RESET_ITEM)
+  commit(types.SET_ITEM, data)
+}
+
+export const resetItem = ({ commit, dispatch, state }) => {
+  commit(types.RESET_ITEM)
+}

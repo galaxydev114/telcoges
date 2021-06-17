@@ -219,7 +219,8 @@ export const resetCustomer = ({ commit, dispatch, state }) => {
 
 export const setTemplate = ({ commit, dispatch, state }, data) => {
   return new Promise((resolve, reject) => {
-    commit(types.SET_TEMPLATE_ID, data)
+    commit(types.SET_DEFAULT_TEMPLATE, data[1])
+    commit(types.SET_TEMPLATE_ID, data[0])
     resolve({})
   })
 }
@@ -259,4 +260,21 @@ export const selectNote = ({ commit, dispatch, state }, data) => {
 
 export const resetSelectedNote = ({ commit, dispatch, state }, data) => {
   commit(types.RESET_SELECTED_NOTE)
+}
+
+export const getDefaultInvoiceTemplate = ({ commit, dispatch, state }) => {
+  return new Promise((resolve, reject) => {
+    window.axios
+      .get(`/api/v1/default-invoice-template?settings[]=defaultInvoiceTempate`)
+      .then((response) => {
+        commit(
+          types.SET_TEMPLATE_ID,
+          parseInt(response.data.defaultInvoiceTempate)
+        )
+        resolve(response)
+      })
+      .catch((err) => {
+        reject(err)
+      })
+  })
 }

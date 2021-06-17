@@ -27,7 +27,7 @@
 
         <template slot="actions">
           <sw-button
-            v-if="$route.name === 'invoices.edit'"
+            v-if="$route.name === 'sales.edit'"
             :disabled="isLoading"
             :href="`/invoices/pdf/${newInvoice.unique_hash}`"
             tag-name="a"
@@ -507,6 +507,7 @@ export default {
     ...mapGetters('notes', ['notes']),
 
     ...mapGetters('invoice', [
+      'checkedAsDefault',
       'getTemplateId',
       'selectedCustomer',
       'selectedNote',
@@ -701,6 +702,7 @@ export default {
     ...mapActions('modal', ['openModal']),
 
     ...mapActions('invoice', [
+      'getDefaultInvoiceTemplate',
       'addInvoice',
       'fetchInvoice',
       'getInvoiceNumber',
@@ -756,6 +758,8 @@ export default {
           this.discountPerItem = response.data.discount_per_item
           this.taxPerItem = response.data.tax_per_item
         }
+
+        await this.getDefaultInvoiceTemplate()
       }
 
       Promise.all([
@@ -896,6 +900,7 @@ export default {
         tax: this.totalTax,
         user_id: null,
         invoice_template_id: this.getTemplateId,
+        checkedAsDefaultTemplate: this.checkedAsDefault,
       }
 
       if (this.selectedCustomer != null) {

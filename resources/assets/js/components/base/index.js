@@ -4,6 +4,8 @@ import BaseModal from './modal/BaseModal.vue'
 import BaseLoader from './BaseLoader.vue'
 import BaseCustomerSelect from './BaseCustomerSelect.vue'
 
+import BaseSupplierSelect from './BaseSupplierSelect.vue'
+
 import BaseCustomInput from './BaseCustomInput.vue'
 
 import CustomerSelectPopup from './popup/CustomerSelectPopup.vue'
@@ -42,3 +44,5 @@ Vue.component('base-time-picker', BaseTimePicker)
 
 Vue.component('dot-icon', DotIcon)
 Vue.component('save-icon', SaveIcon)
+
+Vue.component('base-supplier-select', BaseSupplierSelect)

@@ -19,12 +19,14 @@ class ExpensesController extends Controller
     {
         $limit = $request->has('limit') ? $request->limit : 10;
 
-        $expenses = Expense::with('category', 'creator', 'fields')
-            ->leftJoin('users', 'users.id', '=', 'expenses.user_id')
+        $expenses = Expense::with(['items', 'user', 'taxes', 'category', 'creator', 'fields'])
+            ->join('users', 'users.id', '=', 'expenses.user_id')
             ->join('expense_categories', 'expense_categories.id', '=', 'expenses.expense_category_id')
             ->applyFilters($request->only([
+                'status',
                 'expense_category_id',
                 'user_id',
+                'doc_num',
                 'expense_id',
                 'search',
                 'from_date',
@@ -66,7 +68,15 @@ class ExpensesController extends Controller
      */
     public function show(Expense $expense)
     {
-        $expense->load('creator', 'fields.customField');
+        // $expense->load('creator', 'fields.customField');
+
+        $expense->load([
+            'items',
+            'items.taxes',
+            'user',
+            'taxes.taxType',
+            'fields.customField'
+        ]);
 
         return response()->json([
             'expense' => $expense

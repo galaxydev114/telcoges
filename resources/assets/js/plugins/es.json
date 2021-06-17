@@ -22,6 +22,9 @@
     "filter_no_results": "No hay filas coincidentes"
   },
   "general": {
+    "choose_default_invoice_template": "Elija la plantilla por defecto.",
+    "remove_file": "Remover archivo",
+    "doc_num": "Num documento",
     "copied_pdf_url_clipboard": "Copió la URL del PDF en el portapapeles.",
     "add_company": "Añadir empresa",
     "view_pdf": "Ver PDF",
@@ -661,6 +664,7 @@
     "from_date": "Desde la fecha",
     "to_date": "Hasta la fecha",
     "expense_date": "Fecha",
+    "expense_due": "Vencimiento",
     "description": "Descripción",
     "receipt": "Recibo",
     "amount": "Cantidad",
@@ -1365,6 +1369,7 @@
     "invoices_and_estimates": "facturas y presupuestos con capacidad para elegir múltiples plantillas."
   },
   "validation": {
+    "doc_num_maxlength": "El número de documento no debe tener más de 255 caracteres.",
     "invalid_phone": "Numero de telefono invalido",
     "invalid_url": "URL no válida (por ejemplo, http://www.crater.com)",
     "invalid_domain_url": "URL no válida (por ejemplo, crater.com)",

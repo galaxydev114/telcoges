@@ -8,6 +8,7 @@ use Crater\Models\Invoice;
 use Crater\Http\Controllers\Controller;
 use Crater\Http\Requests\DeleteInvoiceRequest;
 use Crater\Jobs\GenerateInvoicePdfJob;
+use Auth;
 
 class InvoicesController extends Controller
 {
@@ -59,6 +60,12 @@ class InvoicesController extends Controller
             $invoice->send($request->subject, $request->body);
         }
 
+        if ($request->checkedAsDefaultTemplate) {
+            $user = Auth::user();
+
+            $user->setSettings(['defaultInvoiceTempate' => $request->invoice_template_id]);
+        }
+
         GenerateInvoicePdfJob::dispatch($invoice);
 
         return response()->json([
@@ -104,6 +111,12 @@ class InvoicesController extends Controller
         $invoice = $invoice->updateInvoice($request);
 
         GenerateInvoicePdfJob::dispatch($invoice, true);
+
+        if ($request->checkedAsDefaultTemplate) {
+            $user = Auth::user();
+
+            $user->setSettings(['defaultInvoiceTempate' => $request->invoice_template_id]);
+        }
 
         return response()->json([
             'invoice' => $invoice,

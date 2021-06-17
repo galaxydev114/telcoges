@@ -26,7 +26,6 @@ export const fetchCompany = ({ commit, dispatch }, id) => {
     window.axios
       .get(`/api/v1/companies/${id}`)
       .then((response) => {
-        console.log("===>", response);
         resolve(response)
       })
       .catch((err) => {
