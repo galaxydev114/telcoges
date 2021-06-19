@@ -35,6 +35,7 @@ class Expense extends Model implements HasMedia
     const STATUS_UNPAID = 'UNPAID';
     const STATUS_PARTIALLY_PAID = 'PARTIALLY_PAID';
     const STATUS_PAID = 'PAID';
+    const STATUS_PENDING = 'PENDING';
 
     protected $dates = [
         'created_at',
@@ -225,8 +226,7 @@ class Expense extends Model implements HasMedia
 
         if ($filters->get('status')) {
             if (
-                $filters->get('status') == self::STATUS_UNPAID ||
-                $filters->get('status') == self::STATUS_PARTIALLY_PAID ||
+                $filters->get('status') == self::STATUS_PENDING ||
                 $filters->get('status') == self::STATUS_PAID
             ) {
                 $query->wherePaidStatus($filters->get('status'));
@@ -335,7 +335,7 @@ class Expense extends Model implements HasMedia
         $data['creator_id'] = Auth::id();
         $data['status'] = Expense::STATUS_DRAFT;
         $data['company_id'] = $request->header('company');
-        $data['paid_status'] = Expense::STATUS_UNPAID;
+        $data['paid_status'] = Expense::STATUS_PENDING;
         $data['tax_per_item'] = CompanySetting::getSetting('tax_per_item', $request->header('company')) ?? 'NO ';
         $data['discount_per_item'] = CompanySetting::getSetting('discount_per_item', $request->header('company')) ?? 'NO';
         $data['due_amount'] = $request->total;
@@ -391,7 +391,7 @@ class Expense extends Model implements HasMedia
         if ($data['due_amount'] == 0 && $this->paid_status != Expense::STATUS_PAID) {
             $data['status'] = Expense::STATUS_COMPLETED;
             $data['paid_status'] = Expense::STATUS_PAID;
-        } elseif ($this->due_amount < 0 && $this->paid_status != Expense::STATUS_UNPAID) {
+        } elseif ($this->due_amount < 0 && $this->paid_status != Expense::STATUS_PENDING) {
             return response()->json([
                 'error' => 'invalid_due_amount'
             ]);

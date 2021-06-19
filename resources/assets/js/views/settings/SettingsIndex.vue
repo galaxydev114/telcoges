@@ -122,11 +122,11 @@ export default {
           title: 'settings.menu_title.customization',
           icon: 'pencil-alt-icon',
         },
-        {
-          link: '/admin/settings/notifications',
-          title: 'settings.menu_title.notifications',
-          icon: 'bell-icon',
-        },
+        // {
+        //   link: '/admin/settings/notifications',
+        //   title: 'settings.menu_title.notifications',
+        //   icon: 'bell-icon',
+        // },
         {
           link: '/admin/settings/tax-types',
           title: 'settings.menu_title.tax_types',

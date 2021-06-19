@@ -143,10 +143,10 @@ class CompaniesController extends Controller
         Unit::create(['name' => 'mg', 'company_id' => $company->id]);
         Unit::create(['name' => 'pc', 'company_id' => $company->id]);
 
-        PaymentMethod::create(['name' => 'Cash', 'company_id' => $company->id]);
-        PaymentMethod::create(['name' => 'Check', 'company_id' => $company->id]);
-        PaymentMethod::create(['name' => 'Credit Card', 'company_id' => $company->id]);
-        PaymentMethod::create(['name' => 'Bank Transfer', 'company_id' => $company->id]);
+        // PaymentMethod::create(['name' => 'Cash', 'company_id' => $company->id]);
+        // PaymentMethod::create(['name' => 'Check', 'company_id' => $company->id]);
+        // PaymentMethod::create(['name' => 'Credit Card', 'company_id' => $company->id]);
+        // PaymentMethod::create(['name' => 'Bank Transfer', 'company_id' => $company->id]);
 
         return response()->json([
             'company' => $company,

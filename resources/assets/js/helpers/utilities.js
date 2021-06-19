@@ -189,6 +189,20 @@ export default {
       return array2.indexOf(i) < 0
     })
   },
+  getExpensePaidStatusColor(status) {
+    switch (status) {
+      case 'PENDING':
+        return {
+          bgColor: '#F8EDCB',
+          color: '#744210',
+        }
+      case 'PAID':
+        return {
+          bgColor: '#D5EED0',
+          color: '#276749',
+        }
+    }
+  },
   getBadgeStatusColor(status) {
     switch (status) {
       case 'DRAFT':
@@ -321,6 +335,10 @@ export default {
         return i18n.t('labels.expense')
       case 'Payment':
         return i18n.t('labels.payment')
+      case 'PENDING':
+        return i18n.t('labels.pending')
+      case 'PAID':
+        return i18n.t('labels.paid')
       default:
         return label
     }

@@ -71,7 +71,7 @@
               />
             </sw-input-group>
 
-            <sw-input-group
+            <!-- <sw-input-group
               :label="$t('customers.primary_contact_name')"
               class="md:col-span-3"
             >
@@ -81,7 +81,7 @@
                 type="text"
                 tabindex="2"
               />
-            </sw-input-group>
+            </sw-input-group> -->
 
             <sw-input-group
               :label="$t('customers.email')"

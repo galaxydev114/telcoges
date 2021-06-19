@@ -142,3 +142,20 @@ export const setItem = ({ commit, dispatch, state }, data) => {
 export const resetItem = ({ commit, dispatch, state }) => {
   commit(types.RESET_ITEM)
 }
+
+export const updatePaidStatus = ({ commit, dispatch, state }, data) => {
+  return new Promise((resolve, reject) => {
+    window.axios
+      .post(`/api/v1/expenses/${data.id}/paid-status`, data)
+      .then((response) => {
+        // commit(types.UPDATE_EXPENSE_PAID_STATUS, {
+        //   id: data.id,
+        //   paid_status: data.paid_status,
+        // })
+        resolve(response)
+      })
+      .catch((err) => {
+        reject(err)
+      })
+  })
+}

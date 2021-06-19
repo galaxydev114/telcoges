@@ -244,7 +244,7 @@
             </sw-input-group>
           </div>
 
-          <sw-input-group
+          <!-- <sw-input-group
             :label="$t('invoices.invoice_template')"
             class="mt-6 mb-1"
             required
@@ -260,7 +260,7 @@
                 <pencil-icon class="h-5 ml-2 -mr-1" />
               </span>
             </sw-button>
-          </sw-input-group>
+          </sw-input-group> -->
         </div>
 
         <div

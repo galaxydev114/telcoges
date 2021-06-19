@@ -21,6 +21,7 @@ use Crater\Http\Controllers\V1\Expense\ExpenseCategoriesController;
 use Crater\Http\Controllers\V1\Expense\ExpensesController;
 use Crater\Http\Controllers\V1\Expense\ShowReceiptController;
 use Crater\Http\Controllers\V1\Expense\UploadReceiptController;
+use Crater\Http\Controllers\V1\Expense\ChangeExpensePaidStatusController;
 use Crater\Http\Controllers\V1\General\BootstrapController;
 use Crater\Http\Controllers\V1\General\CountriesController;
 use Crater\Http\Controllers\V1\General\CurrenciesController;
@@ -274,6 +275,8 @@ Route::prefix('/v1')->group(function () {
         Route::apiResource('expenses', ExpensesController::class);
 
         Route::apiResource('categories', ExpenseCategoriesController::class);
+
+        Route::post('/expenses/{expense}/paid-status', ChangeExpensePaidStatusController::class);
 
 
         // Payments

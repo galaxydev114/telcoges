@@ -22,7 +22,9 @@
     "customer": "Cliente",
     "invoice": "Factura",
     "estimate": "Estimar",
-    "payment": "Pago"
+    "payment": "Pago",
+    "paid": "PAGADA",
+    "pending": "PENDIENTE"
   },
   "table": {
     "filter_no_results": "No hay filas coincidentes"
@@ -238,8 +240,9 @@
     "copy_billing_address": "Copia de facturación",
     "no_customers": "¡Aún no hay clientes!",
     "no_customers_found": "¡No se encontraron clientes!",
-    "no_contact": "No contact",
-    "no_contact_name": "No contact name",
+    "no_email": "Sin correo electrónico registrado",
+    "no_contact": "Sin contacto",
+    "no_contact_name": "Sin nombre de contacto",
     "list_of_customers": "Esta sección contendrá la lista de clientes.",
     "primary_display_name": "Nombre de visualización principal",
     "select_currency": "Seleccione el tipo de moneda",
@@ -259,6 +262,7 @@
   "suppliers": {
     "title": "Proveedores",
     "add_supplier": "Agregar proveedor",
+    "no_email": "Sin correo electrónico registrado",
     "contacts_list": "Lista de proveedores",
     "name": "Nombre",
     "mail": "Correo | Correos",
@@ -295,8 +299,8 @@
     "copy_billing_address": "Copia de facturación",
     "no_suppliers": "¡Aún no hay proveedores!",
     "no_suppliers_found": "¡No se encontraron proveedores!",
-    "no_contact": "No contact",
-    "no_contact_name": "No contact name",
+    "no_contact": "Sin contacto",
+    "no_contact_name": "Sin nombre de contacto",
     "list_of_suppliers": "Esta sección contendrá la lista de proveedores.",
     "primary_display_name": "Nombre de visualización principal",
     "select_currency": "Seleccione el tipo de moneda",
@@ -515,6 +519,8 @@
   },
   "sales": {
     "title": "Ventas",
+    "mark_as_pending": "Marcar como Pendiente",
+    "mark_as_paid": "Marcar como Pagado",
     "sales_list": "Listado Ventas",
     "days": "{días} Días",
     "months": "{meses} Mes",

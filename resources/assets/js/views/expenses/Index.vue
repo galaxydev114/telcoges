@@ -3,9 +3,9 @@
     <!-- Page Header -->
     <sw-page-header :title="$t('expenses.title')">
       <sw-breadcrumb slot="breadcrumbs">
-        <sw-breadcrumb-item to="dashboard" :title="$t('general.home')" />
+        <sw-breadcrumb-item :title="$t('general.home')" to="dashboard" />
 
-        <sw-breadcrumb-item to="#" :title="$tc('expenses.expense', 2)" active />
+        <sw-breadcrumb-item :title="$tc('expenses.expense', 2)" to="#" active />
       </sw-breadcrumb>
 
       <template slot="actions">
@@ -241,11 +241,11 @@
             <span>{{ $t('invoices.paid_status') }}</span>
 
             <sw-badge
-              :bg-color="$utils.getBadgeStatusColor(row.status).bgColor"
-              :color="$utils.getBadgeStatusColor(row.status).color"
+              :bg-color="$utils.getExpensePaidStatusColor(row.paid_status).bgColor"
+              :color="$utils.getExpensePaidStatusColor(row.paid_status).color"
             >
               {{
-                $utils.getStatusTranslation(row.paid_status.replace('_', ' '))
+                $utils.getLabelTranslation(row.paid_status.replace('_', ' '))
               }}
             </sw-badge>
           </template>
@@ -274,8 +274,8 @@
               <dot-icon slot="activator" />
 
               <sw-dropdown-item
-                tag-name="router-link"
                 :to="`expenses/${row.id}/edit`"
+                tag-name="router-link"
               >
                 <pencil-icon class="h-5 mr-3 text-gray-600" />
                 {{ $t('general.edit') }}
@@ -284,6 +284,22 @@
               <sw-dropdown-item @click="removeExpense(row.id)">
                 <trash-icon class="h-5 mr-3 text-gray-600" />
                 {{ $t('general.delete') }}
+              </sw-dropdown-item>
+
+              <sw-dropdown-item
+                v-if="row.paid_status == 'PENDING'"
+                @click="markAsPaid(row.id)"
+              >
+                <check-circle-icon class="h-5 mr-3 text-gray-600" />
+                {{ $t('sales.mark_as_paid') }}
+              </sw-dropdown-item>
+
+              <sw-dropdown-item
+                v-if="row.paid_status == 'PAID'"
+                @click="markAsPending(row.id)"
+              >
+                <stop-icon class="h-5 mr-3 text-gray-600" />
+                {{ $t('sales.mark_as_pending') }}
               </sw-dropdown-item>
             </sw-dropdown>
           </template>
@@ -304,6 +320,8 @@ import {
   XIcon,
   ChevronDownIcon,
   PlusIcon,
+  CheckCircleIcon,
+  StopIcon,
 } from '@vue-hero-icons/solid'
 
 export default {
@@ -315,6 +333,8 @@ export default {
     ChevronDownIcon,
     PencilIcon,
     TrashIcon,
+    CheckCircleIcon,
+    StopIcon,
   },
 
   data() {
@@ -396,6 +416,7 @@ export default {
       'deleteMultipleExpenses',
       'selectAllExpenses',
       'setSelectAllState',
+      'updatePaidStatus',
     ]),
 
     ...mapActions('category', ['fetchCategories']),
@@ -520,6 +541,24 @@ export default {
           }
         }
       })
+    },
+
+    async markAsPending(id) {
+      const data = {
+        id: id,
+        paid_status: 'PENDING',
+      }
+      await this.updatePaidStatus(data)
+      this.refreshTable()
+    },
+
+    async markAsPaid(id) {
+      const data = {
+        id: id,
+        paid_status: 'PAID',
+      }
+      await this.updatePaidStatus(data)
+      this.refreshTable()
     },
   },
 }

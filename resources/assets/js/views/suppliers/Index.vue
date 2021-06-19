@@ -49,7 +49,7 @@
           />
         </sw-input-group>
 
-        <sw-input-group
+        <!-- <sw-input-group
           :label="$t('suppliers.contact_name')"
           class="flex-1 mt-2 ml-0 lg:ml-6"
         >
@@ -60,7 +60,7 @@
             class="mt-2"
             autocomplete="off"
           />
-        </sw-input-group>
+        </sw-input-group> -->
 
         <sw-input-group
           :label="$t('suppliers.phone')"
@@ -189,17 +189,13 @@
 
         <sw-table-column
           :sortable="true"
-          :label="$t('suppliers.contact_name')"
-          show="contact_name"
+          :label="$t('suppliers.email')"
+          show="email"
         >
           <template slot-scope="row">
-            <span>{{ $t('suppliers.contact_name') }}</span>
+            <span>{{ $t('suppliers.email') }}</span>
             <span>
-              {{
-                row.contact_name
-                  ? row.contact_name
-                  : $t('suppliers.no_contact_name')
-              }}
+              {{ row.email ? row.email : $t('suppliers.no_email') }}
             </span>
           </template>
         </sw-table-column>
