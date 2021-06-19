@@ -714,7 +714,7 @@
     "enter_password": "Escriba la contraseña",
     "retype_password": "Reescriba la contraseña",
     "login_placeholder": "correo@ejemplo.com",
-    "already_has_account": "Já tem uma conta?"
+    "already_has_account": "¿Ya tienes una cuenta?"
   },
   "signup": {
     "name": "Nombre",
@@ -729,7 +729,7 @@
     "enter_password": "Escriba la contraseña",
     "retype_password": "Reescriba la contraseña",
     "login_placeholder": "correo@ejemplo.com",
-    "already_has_account": "Já tem uma conta?"
+    "already_has_account": "¿Ya tienes una cuenta?"
   },
   "users": {
     "title": "Usuarios",
