@@ -213,7 +213,9 @@
         >
           <template slot-scope="row">
             <span>{{ $t('expenses.supplier') }}</span>
-            <span> {{ row.user_name ? row.user_name : $t('expenses.not_selected') }} </span>
+            <span>
+              {{ row.user_name ? row.user_name : $t('expenses.not_selected') }}
+            </span>
           </template>
         </sw-table-column>
 
@@ -227,6 +229,25 @@
             <div class="notes">
               <div class="truncate note w-60">{{ row.notes }}</div>
             </div>
+          </template>
+        </sw-table-column>
+
+        <sw-table-column
+          :sortable="true"
+          :label="$t('invoices.paid_status')"
+          sort-as="paid_status"
+        >
+          <template slot-scope="row">
+            <span>{{ $t('invoices.paid_status') }}</span>
+
+            <sw-badge
+              :bg-color="$utils.getBadgeStatusColor(row.status).bgColor"
+              :color="$utils.getBadgeStatusColor(row.status).color"
+            >
+              {{
+                $utils.getStatusTranslation(row.paid_status.replace('_', ' '))
+              }}
+            </sw-badge>
           </template>
         </sw-table-column>
 
