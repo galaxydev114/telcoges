@@ -152,6 +152,7 @@
         ref="table"
         :show-filter="false"
         :data="fetchData"
+        :filter-no-results="$t('table.filter_no_results')"
         table-class="table"
       >
         <sw-table-column

@@ -814,6 +814,9 @@ export default {
               this.newInvoice = res1.data.invoice
               this.formData = { ...this.formData, ...res1.data.invoice }
 
+              //
+              this.formData.invoice_template_id = 1;
+
               this.newInvoice.invoice_date = moment(
                 res1.data.invoice.invoice_date,
                 'YYYY-MM-DD'
@@ -899,7 +902,8 @@ export default {
         total: this.total,
         tax: this.totalTax,
         user_id: null,
-        invoice_template_id: this.getTemplateId,
+        // invoice_template_id: this.getTemplateId,
+        invoice_template_id: 1,
         checkedAsDefaultTemplate: this.checkedAsDefault,
       }
 
