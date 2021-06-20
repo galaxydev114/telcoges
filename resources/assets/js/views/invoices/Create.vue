@@ -435,7 +435,7 @@ export default {
         due_date: null,
         invoice_number: null,
         user_id: null,
-        invoice_template_id: 1,
+        invoice_template_id: 3,
         sub_total: null,
         total: null,
         tax: null,
@@ -815,7 +815,7 @@ export default {
               this.formData = { ...this.formData, ...res1.data.invoice }
 
               //
-              this.formData.invoice_template_id = 1;
+              this.formData.invoice_template_id = 3
 
               this.newInvoice.invoice_date = moment(
                 res1.data.invoice.invoice_date,
@@ -903,7 +903,7 @@ export default {
         tax: this.totalTax,
         user_id: null,
         // invoice_template_id: this.getTemplateId,
-        invoice_template_id: 1,
+        invoice_template_id: 3,
         checkedAsDefaultTemplate: this.checkedAsDefault,
       }
 

@@ -255,7 +255,7 @@
             </sw-input-group>
           </div>
 
-          <sw-input-group
+          <!-- <sw-input-group
             :label="$t('estimates.estimate_template')"
             class="mt-6 mb-1"
             required
@@ -271,7 +271,7 @@
                 <pencil-icon class="h-5 ml-2 -mr-1" />
               </span>
             </sw-button>
-          </sw-input-group>
+          </sw-input-group> -->
         </div>
         <div
           class="px-5 py-4 mt-6 bg-white border border-gray-200 border-solid rounded estimate-total lg:mt-0"
@@ -445,7 +445,7 @@ export default {
         expiry_date: null,
         estimate_number: null,
         user_id: null,
-        estimate_template_id: 1,
+        estimate_template_id: 3,
         sub_total: null,
         total: null,
         tax: null,
@@ -815,6 +815,9 @@ export default {
               this.customerId = res1.data.estimate.user_id
               this.newEstimate = res1.data.estimate
               this.formData = { ...this.formData, ...res1.data.estimate }
+              //
+              this.formData.estimate_template_id = 3
+
               this.newEstimate.estimate_date = moment(
                 res1.data.estimate.estimate_date,
                 'YYYY-MM-DD'
@@ -901,7 +904,8 @@ export default {
         total: this.total,
         tax: this.totalTax,
         user_id: null,
-        estimate_template_id: this.getTemplateId,
+        // estimate_template_id: this.getTemplateId,
+        estimate_template_id: 3,
       }
 
       if (this.selectedCustomer != null) {
