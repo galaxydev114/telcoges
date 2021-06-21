@@ -18,125 +18,126 @@
             {{ $t('dashboard.recent_invoices_card.view_all') }}
           </sw-button>
         </div>
-
-        <sw-table-component
-          ref="inv_table"
-          :data="getDueInvoices"
-          :show-filter="false"
-          :filter-no-results="$t('table.filter_no_results')"
-          table-class="table"
-        >
-          <sw-table-column
-            :sortable="true"
-            :label="$t('dashboard.recent_invoices_card.due_on')"
-            show="formattedDueDate"
+        <div class="responsive">
+          <sw-table-component
+            ref="inv_table"
+            :data="getDueInvoices"
+            :show-filter="false"
+            :filter-no-results="$t('table.filter_no_results')"
+            table-class="table"
           >
-            <template slot-scope="row">
-              <span>{{ $t('dashboard.recent_invoices_card.due_on') }}</span>
-              <span class="mt-6">{{ row.formattedDueDate }}</span>
-            </template>
-          </sw-table-column>
+            <sw-table-column
+              :sortable="true"
+              :label="$t('dashboard.recent_invoices_card.due_on')"
+              show="formattedDueDate"
+            >
+              <template slot-scope="row">
+                <span>{{ $t('dashboard.recent_invoices_card.due_on') }}</span>
+                <span class="mt-6">{{ row.formattedDueDate }}</span>
+              </template>
+            </sw-table-column>
 
-          <sw-table-column
-            :sortable="true"
-            :label="$t('dashboard.recent_invoices_card.customer')"
-            show="user.name"
-          >
-            <template slot-scope="row">
-              <span>{{ $t('dashboard.recent_invoices_card.customer') }}</span>
-              <router-link
-                :to="{ path: `invoices/${row.id}/view` }"
-                class="font-medium text-primary-500"
-              >
-                {{ row.user.name }}
-              </router-link>
-            </template>
-          </sw-table-column>
+            <sw-table-column
+              :sortable="true"
+              :label="$t('dashboard.recent_invoices_card.customer')"
+              show="user.name"
+            >
+              <template slot-scope="row">
+                <span>{{ $t('dashboard.recent_invoices_card.customer') }}</span>
+                <router-link
+                  :to="{ path: `invoices/${row.id}/view` }"
+                  class="font-medium text-primary-500"
+                >
+                  {{ row.user.name }}
+                </router-link>
+              </template>
+            </sw-table-column>
 
-          <sw-table-column
-            :sortable="true"
-            :label="$t('invoices.status')"
-            sort-as="status"
-          >
-            <template slot-scope="row">
-              <span> {{ $t('invoices.status') }}</span>
+            <sw-table-column
+              :sortable="true"
+              :label="$t('invoices.status')"
+              sort-as="status"
+            >
+              <template slot-scope="row">
+                <span> {{ $t('invoices.status') }}</span>
 
-              <sw-badge
-                :bg-color="$utils.getBadgeStatusColor(row.status).bgColor"
-                :color="$utils.getBadgeStatusColor(row.status).color"
-              >
-                {{
-                  $utils.getStatusTranslation(
-                    row.status != 'PARTIALLY_PAID'
-                      ? row.status
-                      : row.status.replace('_', ' ')
-                  )
-                }}
-              </sw-badge>
-            </template>
-          </sw-table-column>
+                <sw-badge
+                  :bg-color="$utils.getBadgeStatusColor(row.status).bgColor"
+                  :color="$utils.getBadgeStatusColor(row.status).color"
+                >
+                  {{
+                    $utils.getStatusTranslation(
+                      row.status != 'PARTIALLY_PAID'
+                        ? row.status
+                        : row.status.replace('_', ' ')
+                    )
+                  }}
+                </sw-badge>
+              </template>
+            </sw-table-column>
 
-          <sw-table-column
-            :sortable="true"
-            :label="$t('dashboard.recent_invoices_card.amount_due')"
-            show="due_amount"
-            sort-as="due_amount"
-          >
-            <template slot-scope="row">
-              <span>{{ $t('dashboard.recent_invoices_card.amount_due') }}</span>
+            <sw-table-column
+              :sortable="true"
+              :label="$t('dashboard.recent_invoices_card.amount_due')"
+              show="due_amount"
+              sort-as="due_amount"
+            >
+              <template slot-scope="row">
+                <span>{{ $t('dashboard.recent_invoices_card.amount_due') }}</span>
 
-              <div
-                v-html="$utils.formatMoney(row.due_amount, row.user.currency)"
-              />
-            </template>
-          </sw-table-column>
+                <div
+                  v-html="$utils.formatMoney(row.due_amount, row.user.currency)"
+                />
+              </template>
+            </sw-table-column>
 
-          <sw-table-column
-            :sortable="false"
-            :filterable="false"
-            cell-class="action-dropdown dashboard-recent-invoice-options no-click"
-          >
-            <sw-dropdown slot-scope="row">
-              <dot-icon slot="activator" />
-              <sw-dropdown-item
-                :to="`invoices/${row.id}/edit`"
-                tag-name="router-link"
-              >
-                <pencil-icon class="h-5 mr-3 text-gray-600" />
-                {{ $t('general.edit') }}
-              </sw-dropdown-item>
+            <sw-table-column
+              :sortable="false"
+              :filterable="false"
+              cell-class="action-dropdown dashboard-recent-invoice-options no-click"
+            >
+              <sw-dropdown slot-scope="row">
+                <dot-icon slot="activator" />
+                <sw-dropdown-item
+                  :to="`invoices/${row.id}/edit`"
+                  tag-name="router-link"
+                >
+                  <pencil-icon class="h-5 mr-3 text-gray-600" />
+                  {{ $t('general.edit') }}
+                </sw-dropdown-item>
 
-              <sw-dropdown-item
-                :to="`invoices/${row.id}/view`"
-                tag-name="router-link"
-              >
-                <eye-icon class="h-5 mr-3 text-gray-600" />
-                {{ $t('invoices.view') }}
-              </sw-dropdown-item>
+                <sw-dropdown-item
+                  :to="`invoices/${row.id}/view`"
+                  tag-name="router-link"
+                >
+                  <eye-icon class="h-5 mr-3 text-gray-600" />
+                  {{ $t('invoices.view') }}
+                </sw-dropdown-item>
 
-              <!-- <sw-dropdown-item
-                v-if="row.status == 'DRAFT'"
-                @click="sendInvoice(row.id)"
-              >
-                <paper-airplane-icon class="h-5 mr-3 text-gray-600" />
-                {{ $t('invoices.send_invoice') }}
-              </sw-dropdown-item> -->
+                <!-- <sw-dropdown-item
+                  v-if="row.status == 'DRAFT'"
+                  @click="sendInvoice(row.id)"
+                >
+                  <paper-airplane-icon class="h-5 mr-3 text-gray-600" />
+                  {{ $t('invoices.send_invoice') }}
+                </sw-dropdown-item> -->
 
-              <sw-dropdown-item
-                v-if="row.status === 'DRAFT'"
-                @click="sentInvoice(row.id)"
-              >
-                <check-circle-icon class="h-5 mr-3 text-gray-600" />
-                {{ $t('invoices.mark_as_sent') }}
-              </sw-dropdown-item>
+                <sw-dropdown-item
+                  v-if="row.status === 'DRAFT'"
+                  @click="sentInvoice(row.id)"
+                >
+                  <check-circle-icon class="h-5 mr-3 text-gray-600" />
+                  {{ $t('invoices.mark_as_sent') }}
+                </sw-dropdown-item>
 
-              <sw-dropdown-item @click="removeInvoice(row.id)">
-                <trash-icon class="h-5 mr-3 text-gray-600" />
-                {{ $t('general.delete') }}
-              </sw-dropdown-item>
-            </sw-dropdown>
-          </sw-table-column>
-        </sw-table-component>
+                <sw-dropdown-item @click="removeInvoice(row.id)">
+                  <trash-icon class="h-5 mr-3 text-gray-600" />
+                  {{ $t('general.delete') }}
+                </sw-dropdown-item>
+              </sw-dropdown>
+            </sw-table-column>
+          </sw-table-component>
+        </div>
       </div>
 
       <!-- Recent Estimates -->
@@ -154,137 +155,138 @@
             {{ $t('dashboard.recent_estimate_card.view_all') }}
           </sw-button>
         </div>
-
-        <sw-table-component
-          ref="est_table"
-          :data="getRecentEstimates"
-          :show-filter="false"
-          :filter-no-results="$t('table.filter_no_results')"
-          table-class="table"
-        >
-          <sw-table-column
-            :sortable="true"
-            :label="$t('dashboard.recent_estimate_card.date')"
-            show="formattedExpiryDate"
+        <div class="responsive">
+          <sw-table-component
+            ref="est_table"
+            :data="getRecentEstimates"
+            :show-filter="false"
+            :filter-no-results="$t('table.filter_no_results')"
+            table-class="table"
           >
-            <template slot-scope="row">
-              <span>{{ $t('dashboard.recent_estimate_card.date') }}</span>
-              <span class="mt-6">{{ row.formattedExpiryDate }}</span>
-            </template>
-          </sw-table-column>
+            <sw-table-column
+              :sortable="true"
+              :label="$t('dashboard.recent_estimate_card.date')"
+              show="formattedExpiryDate"
+            >
+              <template slot-scope="row">
+                <span>{{ $t('dashboard.recent_estimate_card.date') }}</span>
+                <span class="mt-6">{{ row.formattedExpiryDate }}</span>
+              </template>
+            </sw-table-column>
 
-          <sw-table-column
-            :sortable="true"
-            :label="$t('dashboard.recent_estimate_card.customer')"
-            show="user.name"
-          >
-            <template slot-scope="row">
-              <span>{{ $t('dashboard.recent_estimate_card.customer') }}</span>
-              <router-link
-                :to="{ path: `estimates/${row.id}/view` }"
-                class="font-medium text-primary-500"
-              >
-                {{ row.user.name }}
-              </router-link>
-            </template>
-          </sw-table-column>
+            <sw-table-column
+              :sortable="true"
+              :label="$t('dashboard.recent_estimate_card.customer')"
+              show="user.name"
+            >
+              <template slot-scope="row">
+                <span>{{ $t('dashboard.recent_estimate_card.customer') }}</span>
+                <router-link
+                  :to="{ path: `estimates/${row.id}/view` }"
+                  class="font-medium text-primary-500"
+                >
+                  {{ row.user.name }}
+                </router-link>
+              </template>
+            </sw-table-column>
 
-          <sw-table-column
-            :sortable="true"
-            :label="$t('estimates.status')"
-            show="status"
-          >
-            <template slot-scope="row">
-              <span> {{ $t('estimates.status') }}</span>
+            <sw-table-column
+              :sortable="true"
+              :label="$t('estimates.status')"
+              show="status"
+            >
+              <template slot-scope="row">
+                <span> {{ $t('estimates.status') }}</span>
 
-              <sw-badge
-                :bg-color="$utils.getBadgeStatusColor(row.status).bgColor"
-                :color="$utils.getBadgeStatusColor(row.status).color"
-                class="px-3 py-1"
-              >
-                {{ $utils.getStatusTranslation(row.status) }}
-              </sw-badge>
-            </template>
-          </sw-table-column>
+                <sw-badge
+                  :bg-color="$utils.getBadgeStatusColor(row.status).bgColor"
+                  :color="$utils.getBadgeStatusColor(row.status).color"
+                  class="px-3 py-1"
+                >
+                  {{ $utils.getStatusTranslation(row.status) }}
+                </sw-badge>
+              </template>
+            </sw-table-column>
 
-          <sw-table-column
-            :sortable="true"
-            :label="$t('dashboard.recent_estimate_card.amount_due')"
-            show="total"
-            sort-as="total"
-          >
-            <template slot-scope="row">
-              <span>{{ $t('dashboard.recent_estimate_card.amount_due') }}</span>
+            <sw-table-column
+              :sortable="true"
+              :label="$t('dashboard.recent_estimate_card.amount_due')"
+              show="total"
+              sort-as="total"
+            >
+              <template slot-scope="row">
+                <span>{{ $t('dashboard.recent_estimate_card.amount_due') }}</span>
 
-              <div v-html="$utils.formatMoney(row.total, row.user.currency)" />
-            </template>
-          </sw-table-column>
+                <div v-html="$utils.formatMoney(row.total, row.user.currency)" />
+              </template>
+            </sw-table-column>
 
-          <sw-table-column
-            :sortable="false"
-            :filterable="false"
-            cell-class="action-dropdown no-click"
-          >
-            <sw-dropdown slot-scope="row">
-              <dot-icon slot="activator" />
+            <sw-table-column
+              :sortable="false"
+              :filterable="false"
+              cell-class="action-dropdown no-click"
+            >
+              <sw-dropdown slot-scope="row">
+                <dot-icon slot="activator" />
 
-              <sw-dropdown-item
-                :to="`estimates/${row.id}/edit`"
-                tag-name="router-link"
-              >
-                <pencil-icon class="h-5 mr-3 text-gray-600" />
-                {{ $t('general.edit') }}
-              </sw-dropdown-item>
+                <sw-dropdown-item
+                  :to="`estimates/${row.id}/edit`"
+                  tag-name="router-link"
+                >
+                  <pencil-icon class="h-5 mr-3 text-gray-600" />
+                  {{ $t('general.edit') }}
+                </sw-dropdown-item>
 
-              <sw-dropdown-item
-                :to="`estimates/${row.id}/view`"
-                tag-name="router-link"
-              >
-                <eye-icon class="h-5 mr-3 text-gray-600" />
-                {{ $t('general.view') }}
-              </sw-dropdown-item>
+                <sw-dropdown-item
+                  :to="`estimates/${row.id}/view`"
+                  tag-name="router-link"
+                >
+                  <eye-icon class="h-5 mr-3 text-gray-600" />
+                  {{ $t('general.view') }}
+                </sw-dropdown-item>
 
-              <sw-dropdown-item @click="convertInToinvoice(row.id)">
-                <document-text-icon class="h-5 mr-3 text-gray-600" />
-                {{ $t('estimates.convert_to_invoice') }}
-              </sw-dropdown-item>
+                <sw-dropdown-item @click="convertInToinvoice(row.id)">
+                  <document-text-icon class="h-5 mr-3 text-gray-600" />
+                  {{ $t('estimates.convert_to_invoice') }}
+                </sw-dropdown-item>
 
-              <sw-dropdown-item @click="onMarkAsSent(row.id)">
-                <check-circle-icon class="h-5 mr-3 text-gray-600" />
-                {{ $t('estimates.mark_as_sent') }}
-              </sw-dropdown-item>
-              <!--
-              <sw-dropdown-item
-                v-if="row.status !== 'SENT'"
-                @click="sendEstimate(row.id)"
-              >
-                <paper-airplane-icon class="h-5 mr-3 text-gray-600" />
-                {{ $t('estimates.send_estimate') }}
-              </sw-dropdown-item> -->
+                <sw-dropdown-item @click="onMarkAsSent(row.id)">
+                  <check-circle-icon class="h-5 mr-3 text-gray-600" />
+                  {{ $t('estimates.mark_as_sent') }}
+                </sw-dropdown-item>
+                <!--
+                <sw-dropdown-item
+                  v-if="row.status !== 'SENT'"
+                  @click="sendEstimate(row.id)"
+                >
+                  <paper-airplane-icon class="h-5 mr-3 text-gray-600" />
+                  {{ $t('estimates.send_estimate') }}
+                </sw-dropdown-item> -->
 
-              <sw-dropdown-item
-                v-if="row.status !== 'ACCEPTED'"
-                @click="onMarkAsAccepted(row.id)"
-              >
-                <check-circle-icon class="h-5 mr-3 text-gray-600" />
-                {{ $t('estimates.mark_as_accepted') }}
-              </sw-dropdown-item>
+                <sw-dropdown-item
+                  v-if="row.status !== 'ACCEPTED'"
+                  @click="onMarkAsAccepted(row.id)"
+                >
+                  <check-circle-icon class="h-5 mr-3 text-gray-600" />
+                  {{ $t('estimates.mark_as_accepted') }}
+                </sw-dropdown-item>
 
-              <sw-dropdown-item
-                v-if="row.status !== 'REJECTED'"
-                @click="onMarkAsRejected(row.id)"
-              >
-                <x-circle-icon class="h-5 mr-3 text-gray-600" />
-                {{ $t('estimates.mark_as_rejected') }}
-              </sw-dropdown-item>
+                <sw-dropdown-item
+                  v-if="row.status !== 'REJECTED'"
+                  @click="onMarkAsRejected(row.id)"
+                >
+                  <x-circle-icon class="h-5 mr-3 text-gray-600" />
+                  {{ $t('estimates.mark_as_rejected') }}
+                </sw-dropdown-item>
 
-              <sw-dropdown-item @click="removeEstimate(row.id)">
-                <trash-icon class="h-5 mr-3 text-gray-600" />
-                {{ $t('general.delete') }}
-              </sw-dropdown-item>
-            </sw-dropdown>
-          </sw-table-column>
-        </sw-table-component>
+                <sw-dropdown-item @click="removeEstimate(row.id)">
+                  <trash-icon class="h-5 mr-3 text-gray-600" />
+                  {{ $t('general.delete') }}
+                </sw-dropdown-item>
+              </sw-dropdown>
+            </sw-table-column>
+          </sw-table-component>
+        </div>
       </div>
     </div>
   </div>

@@ -237,3 +237,19 @@
 .hero-text-btn:hover svg {
   color: rgba(40, 36, 97, 1);
 }
+
+
+@media (max-width: 768px) {
+  .responsive .table-component td:first-child {
+    padding-top: 40px !important;
+    padding-bottom: 30px !important;
+  }
+}
+@media (max-width: 480px) {
+  .estimate-create-page .estimate-foot .estimate-total {
+    min-width: 350px !important;
+  }
+  .items table {
+    min-width: 980px;
+  }
+}

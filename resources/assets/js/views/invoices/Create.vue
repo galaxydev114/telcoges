@@ -127,71 +127,72 @@
       </div>
 
       <!-- Items -->
-      <table class="w-full text-center item-table">
-        <colgroup>
-          <col style="width: 40%" />
-          <col style="width: 10%" />
-          <col style="width: 15%" />
-          <col v-if="discountPerItem === 'YES'" style="width: 15%" />
-          <col style="width: 15%" />
-        </colgroup>
-        <thead class="bg-white border border-gray-200 border-solid">
-          <tr>
-            <th
-              class="px-5 py-3 text-sm not-italic font-medium leading-5 text-left text-gray-700 border-t border-b border-gray-200 border-solid"
-            >
-              <span class="pl-12">
-                {{ $tc('items.item', 2) }}
-              </span>
-            </th>
-            <th
-              class="px-5 py-3 text-sm not-italic font-medium leading-5 text-right text-gray-700 border-t border-b border-gray-200 border-solid"
-            >
-              {{ $t('invoices.item.quantity') }}
-            </th>
-            <th
-              class="px-5 py-3 text-sm not-italic font-medium leading-5 text-left text-gray-700 border-t border-b border-gray-200 border-solid"
-            >
-              {{ $t('invoices.item.price') }}
-            </th>
-            <th
-              v-if="discountPerItem === 'YES'"
-              class="px-5 py-3 text-sm not-italic font-medium leading-5 text-left text-gray-700 border-t border-b border-gray-200 border-solid"
-            >
-              {{ $t('invoices.item.discount') }}
-            </th>
-            <th
-              class="px-5 py-3 text-sm not-italic font-medium leading-5 text-right text-gray-700 border-t border-b border-gray-200 border-solid"
-            >
-              <span class="pr-10">
-                {{ $t('invoices.item.amount') }}
-              </span>
-            </th>
-          </tr>
-        </thead>
+      <div class="overflow-auto items">
+        <table class="w-full text-center item-table">
+          <colgroup>
+            <col style="width: 40%" />
+            <col style="width: 10%" />
+            <col style="width: 15%" />
+            <col v-if="discountPerItem === 'YES'" style="width: 15%" />
+            <col style="width: 15%" />
+          </colgroup>
+          <thead class="bg-white border border-gray-200 border-solid">
+            <tr>
+              <th
+                class="px-5 py-3 text-sm not-italic font-medium leading-5 text-left text-gray-700 border-t border-b border-gray-200 border-solid"
+              >
+                <span class="pl-12">
+                  {{ $tc('items.item', 2) }}
+                </span>
+              </th>
+              <th
+                class="px-5 py-3 text-sm not-italic font-medium leading-5 text-right text-gray-700 border-t border-b border-gray-200 border-solid"
+              >
+                {{ $t('invoices.item.quantity') }}
+              </th>
+              <th
+                class="px-5 py-3 text-sm not-italic font-medium leading-5 text-left text-gray-700 border-t border-b border-gray-200 border-solid"
+              >
+                {{ $t('invoices.item.price') }}
+              </th>
+              <th
+                v-if="discountPerItem === 'YES'"
+                class="px-5 py-3 text-sm not-italic font-medium leading-5 text-left text-gray-700 border-t border-b border-gray-200 border-solid"
+              >
+                {{ $t('invoices.item.discount') }}
+              </th>
+              <th
+                class="px-5 py-3 text-sm not-italic font-medium leading-5 text-right text-gray-700 border-t border-b border-gray-200 border-solid"
+              >
+                <span class="pr-10">
+                  {{ $t('invoices.item.amount') }}
+                </span>
+              </th>
+            </tr>
+          </thead>
 
-        <draggable
-          v-model="newInvoice.items"
-          class="item-body"
-          tag="tbody"
-          handle=".handle"
-        >
-          <invoice-item
-            v-for="(item, index) in newInvoice.items"
-            :key="item.id"
-            :index="index"
-            :item-data="item"
-            :invoice-items="newInvoice.items"
-            :currency="currency"
-            :tax-per-item="taxPerItem"
-            :discount-per-item="discountPerItem"
-            @remove="removeItem"
-            @update="updateItem"
-            @itemValidate="checkItemsData"
-          />
-        </draggable>
-      </table>
-
+          <draggable
+            v-model="newInvoice.items"
+            class="item-body"
+            tag="tbody"
+            handle=".handle"
+          >
+            <invoice-item
+              v-for="(item, index) in newInvoice.items"
+              :key="item.id"
+              :index="index"
+              :item-data="item"
+              :invoice-items="newInvoice.items"
+              :currency="currency"
+              :tax-per-item="taxPerItem"
+              :discount-per-item="discountPerItem"
+              @remove="removeItem"
+              @update="updateItem"
+              @itemValidate="checkItemsData"
+            />
+          </draggable>
+        </table>
+      </div>
       <div
         class="flex items-center justify-center w-full px-6 py-3 text-base border-b border-gray-200 border-solid cursor-pointer text-primary-400 hover:bg-gray-200"
         @click="addItem"
@@ -1033,7 +1034,7 @@ export default {
   @media (max-width: 480px) {
     .invoice-foot {
       .invoice-total {
-        min-width: 384px;
+        min-width: 350px;
       }
     }
   }
