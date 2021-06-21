@@ -315,13 +315,13 @@
                 {{ $t('estimates.mark_as_sent') }}
               </sw-dropdown-item>
 
-              <sw-dropdown-item
+              <!-- <sw-dropdown-item
                 v-if="row.status !== 'SENT'"
                 @click="sendEstimate(row)"
               >
                 <paper-airplane-icon class="h-5 mr-3 text-gray-600" />
                 {{ $t('estimates.send_estimate') }}
-              </sw-dropdown-item>
+              </sw-dropdown-item> -->
 
               <!-- resend estimte -->
               <sw-dropdown-item

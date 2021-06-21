@@ -12,7 +12,7 @@
             {{ $t('estimates.mark_as_sent') }}
           </sw-button>
         </div>
-        <sw-button
+        <!-- <sw-button
           v-if="estimate.status === 'DRAFT'"
           :disabled="isSendingEmail"
           variant="primary"
@@ -20,7 +20,7 @@
           @click="onSendEstimate"
         >
           {{ $t('estimates.send_estimate') }}
-        </sw-button>
+        </sw-button> -->
         <sw-dropdown class="ml-3">
           <sw-button slot="activator" variant="primary">
             <dots-horizontal-icon class="h-5" />

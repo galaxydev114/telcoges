@@ -219,16 +219,12 @@
           </template>
         </sw-table-column>
 
-        <sw-table-column
-          :sortable="true"
-          :label="$t('expenses.note')"
-          sort-as="expense_date"
-        >
+        <sw-table-column :sortable="true" :label="$t('expenses.number')">
           <template slot-scope="row">
-            <span>{{ $t('expenses.note') }}</span>
-            <div class="notes">
-              <div class="truncate note w-60">{{ row.notes }}</div>
-            </div>
+            <span>{{ $t('expenses.number') }}</span>
+            <span>
+              {{ row.doc_num }}
+            </span>
           </template>
         </sw-table-column>
 

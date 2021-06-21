@@ -2,13 +2,13 @@
   <base-page v-if="payment" class="xl:pl-96">
     <sw-page-header :title="pageTitle">
       <template slot="actions">
-        <sw-button
+        <!-- <sw-button
           :disabled="isSendingEmail"
           variant="primary"
           @click="onPaymentSend"
         >
           {{ $t('payments.send_payment_receipt') }}
-        </sw-button>
+        </sw-button> -->
         <sw-dropdown class="ml-3">
           <sw-button slot="activator" variant="primary" class="h-10">
             <dots-horizontal-icon class="h-5" />

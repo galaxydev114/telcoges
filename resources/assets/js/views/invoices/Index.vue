@@ -199,6 +199,12 @@
           </div>
         </sw-table-column>
 
+        <sw-table-column :sortable="true" :label="$t('invoices.concept')">
+          <template slot-scope="row">
+            {{ row.items[0].name }}
+          </template>
+        </sw-table-column>
+
         <sw-table-column
           :sortable="true"
           :label="$t('invoices.date')"
@@ -306,13 +312,13 @@
                 {{ $t('sales.view') }}
               </sw-dropdown-item>
 
-              <sw-dropdown-item
+              <!-- <sw-dropdown-item
                 v-if="row.status == 'DRAFT'"
                 @click="sendInvoice(row)"
               >
                 <paper-airplane-icon class="h-5 mr-3 text-gray-600" />
                 {{ $t('invoices.send_invoice') }}
-              </sw-dropdown-item>
+              </sw-dropdown-item> -->
 
               <sw-dropdown-item
                 v-if="row.status === 'SENT' || row.status === 'VIEWED'"
@@ -619,7 +625,6 @@ export default {
       let response = await this.fetchInvoices(data)
       this.isRequestOngoing = false
       this.currency = response.data.currency
-
       return {
         data: response.data.invoices.data,
         pagination: {

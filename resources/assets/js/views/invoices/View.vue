@@ -12,7 +12,7 @@
             {{ $t('invoices.mark_as_sent') }}
           </sw-button>
         </div>
-        <sw-button
+        <!-- <sw-button
           v-if="invoice.status === 'DRAFT'"
           :disabled="isSendingEmail"
           variant="primary"
@@ -20,7 +20,7 @@
           @click="onSendInvoice"
         >
           {{ $t('invoices.send_invoice') }}
-        </sw-button>
+        </sw-button> -->
         <sw-button
           v-if="
             invoice.status === 'SENT' ||

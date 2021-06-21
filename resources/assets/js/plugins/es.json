@@ -435,6 +435,7 @@
   },
   "invoices": {
     "title": "Facturas",
+    "concept": "CONCEPTO",
     "invoices_list": "Lista de facturas",
     "days": "{días} Días",
     "months": "{meses} Mes",
@@ -674,6 +675,7 @@
     "supplier": "Proveedor",
     "contact": "Contacto",
     "category": "Categoría",
+    "number": "NUM",
     "from_date": "Desde la fecha",
     "to_date": "Hasta la fecha",
     "expense_date": "Fecha",
