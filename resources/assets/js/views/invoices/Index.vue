@@ -199,9 +199,14 @@
           </div>
         </sw-table-column>
 
-        <sw-table-column :sortable="true" :label="$t('invoices.concept')">
+        <sw-table-column
+          :sortable="true"
+          :label="$t('invoices.concept')"
+          cell-class="overflow-auto"
+        >
           <template slot-scope="row">
-            {{ row.items[0].name }}
+            <span>{{ $t('invoices.concept') }}</span>
+            <div>{{ row.items[0].name }}</div>
           </template>
         </sw-table-column>
 
