@@ -325,13 +325,13 @@
                 {{ $t('invoices.send_invoice') }}
               </sw-dropdown-item> -->
 
-              <sw-dropdown-item
+              <!-- <sw-dropdown-item
                 v-if="row.status === 'SENT' || row.status === 'VIEWED'"
                 @click="sendInvoice(row)"
               >
                 <paper-airplane-icon class="h-5 mr-3 text-gray-600" />
                 {{ $t('invoices.resend_invoice') }}
-              </sw-dropdown-item>
+              </sw-dropdown-item> -->
 
               <sw-dropdown-item
                 v-if="row.status == 'DRAFT'"

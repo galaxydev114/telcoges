@@ -324,13 +324,13 @@
               </sw-dropdown-item> -->
 
               <!-- resend estimte -->
-              <sw-dropdown-item
+              <!-- <sw-dropdown-item
                 v-if="row.status == 'SENT' || row.status == 'VIEWED'"
                 @click="sendEstimate(row)"
               >
                 <paper-airplane-icon class="h-5 mr-3 text-gray-600" />
                 {{ $t('estimates.resend_estimate') }}
-              </sw-dropdown-item>
+              </sw-dropdown-item> -->
 
               <sw-dropdown-item
                 v-if="row.status !== 'ACCEPTED'"

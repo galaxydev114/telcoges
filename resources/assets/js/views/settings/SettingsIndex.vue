@@ -162,11 +162,11 @@ export default {
       if (this.currentUser.role == 'super admin') {
         menu = [
           ...menu,
-          {
-            link: '/admin/settings/mail-configuration',
-            title: 'settings.mail.mail_config',
-            icon: 'mail-icon',
-          },
+          // {
+          //   link: '/admin/settings/mail-configuration',
+          //   title: 'settings.mail.mail_config',
+          //   icon: 'mail-icon',
+          // },
           {
             link: '/admin/settings/file-disk',
             title: 'settings.menu_title.file_disk',
