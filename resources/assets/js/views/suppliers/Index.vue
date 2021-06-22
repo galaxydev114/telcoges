@@ -2,7 +2,7 @@
   <base-page class="suppler-index">
     <sw-page-header :title="$t('suppliers.title')">
       <sw-breadcrumb slot="breadcrumbs">
-        <sw-breadcrumb-item :title="$t('general.home')" to="dashboard" />
+        <sw-breadcrumb-item :title="$t('general.home')" to="/admin/dashboard" />
         <sw-breadcrumb-item
           :title="$tc('suppliers.supplier', 2)"
           to="#"

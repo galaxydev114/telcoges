@@ -2,7 +2,7 @@
   <base-page v-if="invoice" class="xl:pl-96">
     <sw-page-header :title="pageTitle">
       <template slot="actions">
-        <div class="mr-3 text-sm">
+        <!-- <div class="mr-3 text-sm">
           <sw-button
             v-if="invoice.status === 'DRAFT'"
             :disabled="isMarkingAsSent"
@@ -11,7 +11,7 @@
           >
             {{ $t('invoices.mark_as_sent') }}
           </sw-button>
-        </div>
+        </div> -->
         <!-- <sw-button
           v-if="invoice.status === 'DRAFT'"
           :disabled="isSendingEmail"

@@ -333,13 +333,13 @@
                 {{ $t('invoices.resend_invoice') }}
               </sw-dropdown-item> -->
 
-              <sw-dropdown-item
+              <!-- <sw-dropdown-item
                 v-if="row.status == 'DRAFT'"
                 @click="markInvoiceAsSent(row.id)"
               >
                 <check-circle-icon class="h-5 mr-3 text-gray-600" />
                 {{ $t('invoices.mark_as_sent') }}
-              </sw-dropdown-item>
+              </sw-dropdown-item> -->
 
               <sw-dropdown-item
                 v-if="

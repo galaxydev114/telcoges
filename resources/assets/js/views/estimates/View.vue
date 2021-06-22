@@ -2,7 +2,7 @@
   <base-page v-if="estimate" class="xl:pl-96">
     <sw-page-header :title="pageTitle">
       <template slot="actions">
-        <div class="mr-3 text-sm">
+        <!-- <div class="mr-3 text-sm">
           <sw-button
             v-if="estimate.status === 'DRAFT'"
             :disabled="isMarkAsSent"
@@ -11,7 +11,7 @@
           >
             {{ $t('estimates.mark_as_sent') }}
           </sw-button>
-        </div>
+        </div> -->
         <!-- <sw-button
           v-if="estimate.status === 'DRAFT'"
           :disabled="isSendingEmail"

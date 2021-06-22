@@ -307,13 +307,13 @@
                 {{ $t('estimates.convert_to_invoice') }}
               </sw-dropdown-item>
 
-              <sw-dropdown-item
+              <!-- <sw-dropdown-item
                 v-if="row.status !== 'SENT'"
                 @click="onMarkAsSent(row.id)"
               >
                 <check-circle-icon class="h-5 mr-3 text-gray-600" />
                 {{ $t('estimates.mark_as_sent') }}
-              </sw-dropdown-item>
+              </sw-dropdown-item> -->
 
               <!-- <sw-dropdown-item
                 v-if="row.status !== 'SENT'"

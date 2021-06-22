@@ -2,7 +2,7 @@
   <base-page class="customer-create">
     <sw-page-header :title="$t('customers.title')">
       <sw-breadcrumb slot="breadcrumbs">
-        <sw-breadcrumb-item :title="$t('general.home')" to="dashboard" />
+        <sw-breadcrumb-item :title="$t('general.home')" to="/admin/dashboard" />
         <sw-breadcrumb-item
           :title="$tc('customers.customer', 2)"
           to="#"
