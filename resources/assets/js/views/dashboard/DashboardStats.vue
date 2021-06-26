@@ -20,7 +20,7 @@
         </span>
       </div>
       <div class="flex items-center">
-        <dollar-icon class="w-10 h-10 xl:w-12 xl:h-12" />
+        <currency-euro-icon class="w-10 h-10 xl:w-12 xl:h-12" />
       </div>
     </router-link>
 
@@ -42,7 +42,7 @@
         </span>
       </div>
       <div class="flex items-center">
-        <contact-icon class="w-10 h-10 xl:w-12 xl:h-12" />
+        <user-icon class="w-10 h-10 xl:w-12 xl:h-12" />
       </div>
     </router-link>
 
@@ -64,7 +64,7 @@
         </span>
       </div>
       <div class="flex items-center">
-        <invoice-icon class="w-10 h-10 xl:w-12 xl:h-12" />
+        <invoice-outline-icon class="w-10 h-10 xl:w-12 xl:h-12" />
       </div>
     </router-link>
 
@@ -86,7 +86,7 @@
         </span>
       </div>
       <div class="flex items-center">
-        <estimate-icon class="w-10 h-10 xl:w-12 xl:h-12" />
+        <estimate-outline-icon class="w-10 h-10 xl:w-12 xl:h-12" />
       </div>
     </router-link>
   </div>
@@ -94,17 +94,17 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import DollarIcon from '../../components/icon/DollarIcon'
-import ContactIcon from '../../components/icon/ContactIcon'
-import InvoiceIcon from '../../components/icon/InvoiceIcon'
-import EstimateIcon from '../../components/icon/EstimateIcon'
+import CurrencyEuroIcon from '../../components/icon/CurrencyEuroIcon'
+import UserIcon from '../../components/icon/UserIcon'
+import InvoiceOutlineIcon from '../../components/icon/InvoiceOutlineIcon'
+import EstimateOutlineIcon from '../../components/icon/EstimateOutlineIcon'
 
 export default {
   components: {
-    DollarIcon,
-    ContactIcon,
-    InvoiceIcon,
-    EstimateIcon,
+    CurrencyEuroIcon,
+    UserIcon,
+    InvoiceOutlineIcon,
+    EstimateOutlineIcon,
   },
   data() {
     return {
