@@ -167,9 +167,9 @@
 
         <sw-table-column
           :sortable="true"
-          :label="$t('payments.date')"
-          sort-as="payment_date"
-          show="formattedPaymentDate"
+          :label="$t('payments.created_at')"
+          sort-as="created_at"
+          show="formattedCreatedAt"
         />
 
         <sw-table-column

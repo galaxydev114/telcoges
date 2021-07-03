@@ -212,9 +212,9 @@
 
         <sw-table-column
           :sortable="true"
-          :label="$t('invoices.date')"
-          sort-as="invoice_date"
-          show="formattedInvoiceDate"
+          :label="$t('invoices.created_at')"
+          sort-as="created_at"
+          show="formattedCreatedAt"
         />
 
         <sw-table-column

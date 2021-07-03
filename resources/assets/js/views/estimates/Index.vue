@@ -215,9 +215,9 @@
 
         <sw-table-column
           :sortable="true"
-          :label="$t('estimates.date')"
-          sort-as="estimate_date"
-          show="formattedEstimateDate"
+          :label="$t('estimates.created_at')"
+          sort-as="created_at"
+          show="formattedCreatedAt"
         />
 
         <sw-table-column

@@ -40,6 +40,7 @@ class Estimate extends Model implements HasMedia
     protected $appends = [
         'formattedExpiryDate',
         'formattedEstimateDate',
+        'formattedCreatedAt',
         'estimatePdfUrl'
     ];
 
@@ -174,6 +175,12 @@ class Estimate extends Model implements HasMedia
     {
         $dateFormat = CompanySetting::getSetting('carbon_date_format', $this->company_id);
         return Carbon::parse($this->estimate_date)->format($dateFormat);
+    }
+
+    public function getFormattedCreatedAtAttribute($value)
+    {
+        $dateFormat = CompanySetting::getSetting('carbon_date_format', $this->company_id);
+        return Carbon::parse($this->created_at)->format($dateFormat);
     }
 
     public function scopeEstimatesBetween($query, $start, $end)

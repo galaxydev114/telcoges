@@ -347,6 +347,7 @@
     "title": "Presupuestos",
     "estimate": "Presupuesto | Presupuestos",
     "estimates_list": "Lista de presupuestos",
+    "created_at": "Presupuesto de creación",
     "days": "{días} Días",
     "months": "{meses} Mes",
     "years": "{años} Año",
@@ -436,6 +437,7 @@
   "invoices": {
     "title": "Facturas",
     "concept": "CONCEPTO",
+    "created_at": "Venta de creación",
     "invoices_list": "Lista de facturas",
     "days": "{días} Días",
     "months": "{meses} Mes",
@@ -630,6 +632,7 @@
   "payments": {
     "title": "Pagos",
     "payments_list": "Lista de pagos",
+    "created_at":"Pago de creación",
     "record_payment": "Registro de pago",
     "customer": "Cliente",
     "date": "Fecha",
@@ -668,6 +671,7 @@
   },
   "expenses": {
     "title": "Gastos",
+    "created_at": "Gasto de creación",
     "expenses_list": "Lista de gastos",
     "select_a_customer": "Selecciona un cliente",
     "expense_title": "Título",
@@ -854,6 +858,7 @@
     "invoices": {
       "invoice": "Factura",
       "invoice_date": "Fecha de la factura",
+      "created_at": "Venta de creación",
       "due_date": "Fecha de vencimiento",
       "amount": "Cantidad",
       "contact_name": "Nombre de contacto",
@@ -1045,6 +1050,7 @@
       "invoices": {
         "title": "Facturas",
         "notes": "Notas",
+        "created_at": "Venta de creación",
         "invoice_prefix": "Prefijo de las facturas",
         "invoice_number_length": "Longitud del número de factura",
         "default_invoice_email_body": "Cuerpo predeterminado del correo electrónico de la factura",
