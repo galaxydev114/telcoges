@@ -167,9 +167,9 @@
 
         <sw-table-column
           :sortable="true"
-          :label="$t('payments.created_at')"
-          sort-as="created_at"
-          show="formattedCreatedAt"
+          :label="$t('payments.date')"
+          sort-as="payment_date"
+          show="formattedPaymentDate"
         />
 
         <sw-table-column
@@ -379,7 +379,7 @@ export default {
             ? this.filters.payment_mode.id
             : '',
         payment_number: this.filters.payment_number,
-        orderByField: sort.fieldName || 'created_at',
+        orderByField: sort.fieldName || 'payment_date',
         orderBy: sort.order || 'desc',
         page,
       }

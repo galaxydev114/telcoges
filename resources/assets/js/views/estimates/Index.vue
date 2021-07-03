@@ -215,9 +215,9 @@
 
         <sw-table-column
           :sortable="true"
-          :label="$t('estimates.created_at')"
-          sort-as="created_at"
-          show="formattedCreatedAt"
+          :label="$t('estimates.date')"
+          sort-as="estimate_date"
+          show="formattedEstimateDate"
         />
 
         <sw-table-column
@@ -496,7 +496,7 @@ export default {
         from_date: this.filters.from_date,
         to_date: this.filters.to_date,
         estimate_number: this.filters.estimate_number,
-        orderByField: sort.fieldName || 'created_at',
+        orderByField: sort.fieldName || 'estimate_date',
         orderBy: sort.order || 'desc',
         page,
       }

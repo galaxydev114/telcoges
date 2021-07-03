@@ -212,9 +212,9 @@
 
         <sw-table-column
           :sortable="true"
-          :label="$t('invoices.created_at')"
-          sort-as="created_at"
-          show="formattedCreatedAt"
+          :label="$t('invoices.date')"
+          sort-as="invoice_date"
+          show="formattedInvoiceDate"
         />
 
         <sw-table-column
@@ -621,7 +621,7 @@ export default {
         from_date: this.filters.from_date,
         to_date: this.filters.to_date,
         invoice_number: this.filters.invoice_number,
-        orderByField: sort.fieldName || 'created_at',
+        orderByField: sort.fieldName || 'invoice_date',
         orderBy: sort.order || 'desc',
         page,
       }

@@ -183,9 +183,9 @@
 
         <sw-table-column
           :sortable="true"
-          :label="$t('expenses.created_at')"
-          sort-as="created_at"
-          show="formattedCreatedAt"
+          :label="$t('expenses.date')"
+          sort-as="expense_date"
+          show="formattedExpenseDate"
         />
 
         <sw-table-column
@@ -434,7 +434,7 @@ export default {
             ? this.filters.to_date
             : this.filters.to_date,
 
-        orderByField: sort.fieldName || 'created_at',
+        orderByField: sort.fieldName || 'expense_date',
 
         orderBy: sort.order || 'desc',
 
