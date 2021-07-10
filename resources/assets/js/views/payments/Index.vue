@@ -2,8 +2,8 @@
   <base-page class="payments">
     <sw-page-header :title="$t('payments.title')">
       <sw-breadcrumb slot="breadcrumbs">
-        <sw-breadcrumb-item to="dashboard" :title="$t('general.home')" />
-        <sw-breadcrumb-item to="#" :title="$tc('payments.payment', 2)" active />
+        <sw-breadcrumb-item :title="$t('general.home')" to="dashboard" />
+        <sw-breadcrumb-item :title="$tc('payments.payment', 2)" to="#" active />
       </sw-breadcrumb>
 
       <template slot="actions">
@@ -202,7 +202,11 @@
           <template slot-scope="row">
             <span>{{ $t('payments.payment_mode') }}</span>
             <span>
-              {{ row.payment_mode ? row.payment_mode : $t('payments.not_selected') }}
+              {{
+                row.payment_mode
+                  ? row.payment_mode
+                  : $t('payments.not_selected')
+              }}
             </span>
           </template>
         </sw-table-column>
@@ -216,7 +220,11 @@
           <template slot-scope="row">
             <span>{{ $t('invoices.invoice_number') }}</span>
             <span>
-              {{ row.invoice_number ? row.invoice_number : $t('payments.no_invoice') }}
+              {{
+                row.invoice_number
+                  ? row.invoice_number
+                  : $t('payments.no_invoice')
+              }}
             </span>
           </template>
         </sw-table-column>
@@ -239,16 +247,16 @@
               <dot-icon slot="activator" />
 
               <sw-dropdown-item
-                tag-name="router-link"
                 :to="`payments/${row.id}/edit`"
+                tag-name="router-link"
               >
                 <pencil-icon class="h-5 mr-3 text-gray-600" />
                 {{ $t('general.edit') }}
               </sw-dropdown-item>
 
               <sw-dropdown-item
-                tag-name="router-link"
                 :to="`payments/${row.id}/view`"
+                tag-name="router-link"
               >
                 <eye-icon class="h-5 mr-3 text-gray-600" />
                 {{ $t('general.view') }}

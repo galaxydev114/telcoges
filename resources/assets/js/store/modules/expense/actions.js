@@ -5,6 +5,7 @@ export const fetchExpenses = ({ commit, dispatch, state }, params) => {
     window.axios
       .get(`/api/v1/expenses`, { params })
       .then((response) => {
+        console.log(response)
         commit(types.SET_EXPENSES, response.data.expenses.data)
         commit(types.SET_TOTAL_EXPENSES, response.data.expenseTotalCount)
         resolve(response)

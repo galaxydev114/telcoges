@@ -22,7 +22,6 @@ export const fetchSuppliers = ({ commit, dispatch, state }, params) => {
 }
 
 export const fetchSupplier = ({ commit, dispatch, state }, params) => {
-  console.log("===>", params)
   return new Promise((resolve, reject) => {
     window.axios
       .get(`/api/v1/suppliers/${params.id}`)

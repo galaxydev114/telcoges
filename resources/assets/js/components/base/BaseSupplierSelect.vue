@@ -2,17 +2,17 @@
   <div class="item-selector">
     <sw-select
       ref="baseSelect"
-      v-model="customerSelect"
-      :options="customers"
+      v-model="supplierSelect"
+      :options="suppliers"
       :show-labels="false"
       :preserve-search="false"
-      :placeholder="$t('customers.type_or_click')"
+      :placeholder="$t('suppliers.type_or_click')"
       label="name"
       class="multi-select-item"
-      @close="checkCustomers"
+      @close="checkSuppliers"
       @value="onTextChange"
       @select="(val) => $emit('select', val)"
-      @remove="deselectCustomer"
+      @remove="deselectSupplier"
     />
   </div>
 </template>
@@ -23,37 +23,37 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   data() {
     return {
-      customerSelect: null,
+      supplierSelect: null,
       loading: false,
     }
   },
   computed: {
-    ...mapGetters('customer', ['customers']),
+    ...mapGetters('supplier', ['suppliers']),
   },
 
   created() {
-    this.fetchCustomers()
+    this.fetchSuppliers()
   },
 
   methods: {
-    ...mapActions('customer', ['fetchCustomers']),
-    async searchCustomers(search) {
+    ...mapActions('supplier', ['fetchSuppliers']),
+    async searchSuppliers(search) {
       this.loading = true
 
-      await this.fetchCustomers({ search })
+      await this.fetchSuppliers({ search })
 
       this.loading = false
     },
     onTextChange(val) {
-      this.searchCustomers(val)
+      this.searchSuppliers(val)
     },
-    checkCustomers(val) {
-      if (!this.customers.length) {
-        this.fetchCustomers()
+    checkSuppliers(val) {
+      if (!this.suppliers.length) {
+        this.fetchSuppliers()
       }
     },
-    deselectCustomer() {
-      this.customerSelect = null
+    deselectSupplier() {
+      this.supplierSelect = null
       this.$emit('deselect')
     },
   },
