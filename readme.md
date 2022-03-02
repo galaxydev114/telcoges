@@ -31,7 +31,7 @@ Build Vue
 yarn build
 ```
 
-Run scropt
+Run script
 ```
 yarn dev
 ```
